@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+  link: MyString
+  visible: false
+  parent: 
+  position: 1
+
+two:
+  name: MyString
+  description: MyText
+  link: MyString
+  visible: false
+  parent: 
+  position: 1

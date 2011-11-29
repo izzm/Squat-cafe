@@ -1,0 +1,67 @@
+<%= semantic_form_for [:admin, @category] do |f| %>
+  <%= f.inputs :info do %>
+    <%= f.input :parent, :as => :nested_set if (@category.new_record? && @category.parent_id.nil?) || @category.can_move? %>
+    <%= f.input :name %>
+    <%= f.input :description, :as => :ckeditor, 
+                        :input_html => { :cols => 0, 
+                                         :width => '77%',
+                                         :resize_dir => 'vertical'} %>
+  <% end %>
+
+  <%= f.inputs :seo do %>
+    <%= f.input :seo_title %>
+    <%= f.input :seo_description %>
+    <%= f.input :seo_keywords %>
+  <% end %>
+
+  <%= f.inputs :control do %>
+    <%= f.input :link %>
+    <%= f.input :visible %>
+    <%= f.input :virtual if @category.can_be_virtual? %>
+  <% end %>
+  
+  <%= f.inputs :params do %>
+    <ul id="parameters_list" class="sortable">
+    <% parameters_method = @category.new_record? ? 'nested_parameters' : 'parameters'  -%>
+    <% (@category.send(parameters_method) || []).each { |p| -%>
+      <%= render :partial => 'parameter', :locals => {:p => p} %>
+    <% } -%>
+    </ul>
+    
+    <%= content_tag( :input, :type => :submit, :value => t('add'), :id => "add_parameter_link") {}%>
+  <% end %>
+  
+  <%= f.buttons %>
+<% end %>
+
+<%= content_tag(:script, :id => 'new_parameter', :type => 'text/x-jquery-tmpl') { render :partial => 'parameter' } %>
+
+<%= render(:partial => 'admin/attachments/list',
+           :locals => { :object => @category }) if !@category.new_record?  %>
+
+<%= javascript_tag do %>
+$(function() {
+  $('#add_parameter_link').click(function() {
+    var $new = $($('#new_parameter').html());
+    
+    $new.find('span.close').click(function() {
+      $(this).parent().remove();
+      $('#parameters_list').sortable('refresh');
+    });
+  
+    $('#parameters_list').append($new).sortable('refresh');
+    
+    return false;
+  });
+  
+  $('#parameters_list li > span.close').click(function() {
+    $(this).parent().remove();
+    $('#parameters_list').sortable('refresh');
+  });
+  
+  $('#parameters_list').sortable({
+    axis: 'y',
+    cursor: 'crosshair'
+  });
+});
+<% end %>

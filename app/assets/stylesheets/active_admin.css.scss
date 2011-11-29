@@ -1,0 +1,60 @@
+// Active Admin CSS Styles
+@import "active_admin/mixins";
+@import "active_admin/base";
+
+@import "jquery/jquery.treeview";
+@import "jquery/chosen";
+@import "jquery/jquery-ui";
+
+// To customize the Active Admin interfaces, add your
+// styles here:
+
+li.ckeditor {
+  > span {
+    margin-left: 20%;
+  }
+}
+
+.sortable { 
+  list-style-type: none; 
+  margin: 0; 
+  padding: 0; 
+  width: 100%;
+  
+  li {
+    margin: 0 3px 3px 3px !important; 
+    padding: 0.4em  !important; 
+    padding-right: 1.5em  !important; 
+    padding-left: 1.5em  !important; 
+    position: relative;
+
+    input {
+      width: 20%;
+    }
+  
+    span.sort { 
+      position: absolute; 
+      margin-left: -1.3em; 
+    }
+    
+    span.close { 
+      position: absolute; 
+      right: 0; 
+      top: 0; 
+      cursor: pointer;
+    }
+  }
+}
+
+.images_table tr td.image {
+  width: 100px;
+}
+
+.images_table tr td.destroy {
+  width: 100px;
+}
+
+.images_table .label {
+  font-size: 1.2em;
+  font-weight: bold;
+}

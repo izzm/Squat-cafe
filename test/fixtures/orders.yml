@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  customer: 
+  delivery_at: 2011-11-27 23:41:27
+  checked_out_at: 2011-11-27 23:41:27
+  discount: 1
+  total_price: 9.99
+
+two:
+  customer: 
+  delivery_at: 2011-11-27 23:41:27
+  checked_out_at: 2011-11-27 23:41:27
+  discount: 1
+  total_price: 9.99

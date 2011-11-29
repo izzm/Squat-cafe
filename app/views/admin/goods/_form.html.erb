@@ -1,0 +1,77 @@
+<%= semantic_form_for [:admin, @category, @good] do |f| %>
+  <%= f.inputs :info do %>
+    <%= f.input :name %>
+    <%= f.input :description, :as => :ckeditor, 
+                        :input_html => { :cols => 0, 
+                                         :width => '77%',
+                                         :resize_dir => 'vertical'} %>
+    <%= f.input :price %>
+  <% end %>
+
+  <%= f.inputs :control do %>
+    <%= f.input :visible %>
+  <% end %>
+  
+  <%= f.inputs :virtual do %>
+    <% Category.virtual.each { |cat| -%>
+      <%= f.input :virtual_categories, :as => :select, 
+                    :collection => cat.children, 
+                    :label => cat.name, 
+                    :multiple => true, 
+                    :input_html => { 
+                      'data-placeholder' => t('choose'),
+                      'style' => 'width: 78%;'
+                    }, 
+                    :prompt => false %>
+    <% } -%>
+  <% end %>
+  
+  <%= f.inputs :params do %>
+    <ul id="parameters_list" class="sortable">
+    <% parameters_method = @good.new_record? ? 'nested_parameters' : 'parameters'  -%>
+    <% (@good.send(parameters_method) || []).each { |p| -%>
+      <%= render :partial => 'parameter', :locals => {:p => p} %>
+    <% } -%>
+    </ul>
+    
+    <%= content_tag( :input, :type => :submit, :value => t('add'), :id => "add_parameter_link") {}%>
+  <% end %>
+  
+  <%= f.buttons %>
+<% end %>
+
+<%= content_tag(:script, :id => 'new_parameter', :type => 'text/x-jquery-tmpl') { render :partial => 'parameter' } %>
+
+<%= render(:partial => 'admin/attachments/list',
+           :locals => { :object => @category }) if !@category.new_record?  %>
+
+
+<%= javascript_tag do %>
+$(function() {
+  $('#good_virtual_category_ids').chosen();
+
+  $('#add_parameter_link').click(function() {
+    var $new = $($('#new_parameter').html());
+    
+    $new.find('span.close').click(function() {
+      $(this).parent().remove();
+      $('#parameters_list').sortable('refresh');
+    });
+  
+    $('#parameters_list').append($new).sortable('refresh');
+    
+    return false;
+  });
+ 
+  $('#parameters_list li > span.close').click(function() {
+    $(this).parent().remove();
+    $('#parameters_list').sortable('refresh');
+  });
+  
+  $('#parameters_list').sortable({
+    axis: 'y',
+    cursor: 'crosshair'
+  });
+  
+});
+<% end %>

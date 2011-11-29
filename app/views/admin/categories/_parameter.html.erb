@@ -1,0 +1,8 @@
+<li class="ui-state-default">
+  <span class="ui-icon ui-icon-arrowthick-2-n-s sort"></span>
+  Название: <%= text_field_tag 'category[parameters][][name]', p.try('[]', 'name') %>
+  Значение: <%= text_field_tag 'category[parameters][][value]', p.try('[]', 'value') %>
+  Единица: <%= text_field_tag  'category[parameters][][unit]',  p.try('[]', 'unit') %>
+  <span class="ui-icon ui-icon-close close"></span>
+</li>
+

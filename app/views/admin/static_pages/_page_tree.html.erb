@@ -1,0 +1,23 @@
+<%= render_tree StaticPage.arrange, :sort => lambda{|x| x.position} do |page, child| %>
+  <li>
+    <% if current_page.try(:id) == page.id -%>
+      <%= link_to content_tag('b', page.title), edit_admin_static_page_path(page)  %>
+    <% else -%>
+      <%= link_to page.title, link == :filter ? admin_static_pages_path('q[parent_id_eq]' => page.id) : edit_admin_static_page_path(page)  %>
+    <% end -%>
+    <%= child %>
+  </li>
+<% end %>
+
+<%= javascript_tag do %>
+  $('#tree_sidebar_section .panel_contents > ul').treeview({
+    collapsed: true,
+    persist: "cookie",
+    cookieId: "treeview-static_page",
+    cookieOptions: {
+      path: '/'
+    },
+    unique: false,
+    animated: "fast"
+  });
+<% end %>

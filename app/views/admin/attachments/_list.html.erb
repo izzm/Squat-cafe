@@ -1,0 +1,52 @@
+<table border="0" cellspacing="0" cellpadding="0" class="index_table images_table">
+  <thead>
+    <tr>
+      <th>Picture</th>
+      <th>Info</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% object.attachments.each { |attachment| -%>
+      <%= render :partial => 'admin/attachments/image', 
+                 :locals => {:attachment => attachment} %>
+    <% } -%>
+    <%= render :partial => 'admin/attachments/image', :locals => {:object => object, :attachment => nil, :show_delete => false } if object.attachments.blank? %>
+  </tbody>
+
+  </tfoot>
+    <tr>
+      <td colspan="3">
+        <%= content_tag( :input, :type => :submit, :value => t('add'), :id => "add_image_link") {}%>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<%= content_tag(:script, :id => 'new_image', :type => 'text/x-jquery-tmpl') { render :partial => 'admin/attachments/image', :locals => {:object => object, :attachment => nil, :show_delete => true} } %>
+
+<%= javascript_tag do %>
+$(function() {
+  $('#add_image_link').click(function() {
+    var $new = $($('#new_image').html());
+
+    $new.find('.row_destroy_link').click(function() {
+      $(this).closest('tr').remove();
+      return false;
+    });
+    
+    $new.new_attachment().attachment_image_upload();
+    
+    $('.images_table').append($new);
+    
+    return false;
+  });
+
+  $('.images_table').new_attachment();
+  $('.images_table').attachment_image_upload();
+  $('.images_table').attachment_update_form();
+  $('.images_table').image_destroy_link();
+
+});
+<% end %>

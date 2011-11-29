@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  content: MyText
+  parent: 
+  link: MyString
+  visible: false
+  position: 1
+  seo_title: MyString
+  seo_keywords: MyString
+  seo_description: MyString
+
+two:
+  title: MyString
+  content: MyText
+  parent: 
+  link: MyString
+  visible: false
+  position: 1
+  seo_title: MyString
+  seo_keywords: MyString
+  seo_description: MyString

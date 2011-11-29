@@ -1,0 +1,34 @@
+<% case link
+  when :edit
+    link_function = 'edit_admin_category_path'
+  when :good
+    link_function = 'admin_category_goods_path'
+end -%>
+
+<%= render_tree Category.arrange, :sort => lambda{|x| x.position} do |cat, child| %>
+  <li>
+    <% if current_page.try(:id) == cat.id -%>
+      <%= link_to content_tag('b', cat.name), send(link_function, cat) %>
+    <% else -%>
+      <% if link == :edit || cat.can_have_goods?  -%>
+        <%= link_to cat.name, send(link_function, cat) %>
+      <% else -%>
+        <%= cat.name  %>
+      <% end -%>
+    <% end -%>
+    <%= child %>
+  </li>
+<% end %>
+
+<%= javascript_tag do %>
+  $('#tree_sidebar_section .panel_contents > ul').treeview({
+    collapsed: true,
+    persist: "cookie",
+    cookieId: "treeview-category",
+    cookieOptions: {
+      path: '/'
+    },
+    unique: false,
+    animated: "fast"
+  });
+<% end %>

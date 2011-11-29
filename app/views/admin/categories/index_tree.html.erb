@@ -1,0 +1,37 @@
+<table border="0" cellspacing="0" cellpadding="0" id="static_pages" class="index_table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Goods</th>
+      <th>Link</th>
+      <th>Visible</th>
+      <th></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+  <% odd = true -%>
+  <% render_table_tree @categories, 
+                       :sort => lambda{|x| x.position} do |cat, child| %>
+    <tr class="<%= (odd = !odd) ? 'odd' : 'even' %>" id="category_#{cat.id}">
+      <td>
+        <%=raw ('|'+('&nbsp'*5)) * (cat.depth || 0) %>|-
+        <%= link_to cat.name, edit_admin_category_path(cat) %>
+      </td>
+      <td>
+        <%= link_to "show (#{cat.goods.count})", admin_category_goods_path(cat) if cat.can_have_goods?  %>
+      </td>
+      <td><%= cat.link %></td>
+      <td>
+        <span class="status <%= cat.visible ? 'ok' : 'error' %>"><%= cat.visible %></span>
+      </td>
+      <td>
+        <%= link_to 'Destroy', admin_category_path(cat), :method => :delete, :confirm => t('are_you_shure') %>
+      </td>
+    </tr>
+  <% end %>
+
+
+  </tbody>
+</table>
+

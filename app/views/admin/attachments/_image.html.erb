@@ -1,0 +1,33 @@
+<tr>
+  <td class="image">
+    <%= image_tag(attachment.nil? ? 'image_not_found.jpg' : attachment.image.url(:thumb)) %>
+  </td>
+  <td class="info">
+    <% if attachment.nil? -%>
+      <% new_attachment = Attachment.new -%>
+      <% new_attachment.resource = object -%>
+
+      <%= form_for [:admin, new_attachment],
+          :html => { :multipart => true } do |f| %>
+        <%= f.hidden_field :resource_id %>
+        <%= f.hidden_field :resource_type %>
+        <span class="label"><%= t('attachment.image_file') %>:</span>     
+        <span class="file_upload">
+          <%= f.file_field :image, :class => 'attachment_image_upload' %>
+        </span>
+        <span class="file_processing" style="display: none">
+          <%= t('processing') %>
+        </span>
+      <% end %>
+    <% else -%>
+      <%= render(:partial => 'admin/attachments/preferences', :locals => {:attachment => attachment}) %>
+    <% end -%>
+  </td>
+  <td class="destroy">
+    <% if !attachment.nil? -%>
+      <%= render(:partial => 'admin/attachments/destroy_link', :locals => {:attachment => attachment}) %>
+    <% elsif show_delete -%>
+      <%= link_to t('active_admin.delete_model'), "#", :class => 'row_destroy_link' %>
+    <% end -%>
+  </td>
+</tr>
