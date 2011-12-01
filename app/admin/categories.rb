@@ -1,5 +1,4 @@
 ActiveAdmin.register Category do
-  menu :parent => 'Site content'
   form :partial => 'form'
 
   controller do

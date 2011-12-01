@@ -1,2 +1,46 @@
-<h1>Site#index</h1>
-<p>Find me in app/views/site/index.html.erb</p>
+<div class="slider_wrapper">
+  <div class="ribbon"></div>
+  <div id="slider" class="nivoSlider">
+    <% @page.children.find_by_link('slider').attachments.each do |attachment| -%>
+      <% if attachment.link.blank? -%>
+        <%= image_tag attachment.image.url(:slider), :alt => attachment.name %>
+      <% else -%>
+        <%= link_to image_tag(attachment.image.url(:slider), :alt => attachment.name), attachment.link %>
+      <% end -%>
+    <% end -%>
+  </div>
+</div><!--end_slider-->
+<div class="banners">
+  <ul>
+    <% @page.children.find_by_link('images').attachments.each do |attachment| -%>
+      <li>
+        <% if attachment.link.blank? -%>
+          <%= image_tag attachment.image.url(:main_page_images), :alt => attachment.name %>
+        <% else -%>
+          <%= link_to image_tag(attachment.image.url(:slider), :alt => attachment.name), attachment.link %>
+        <% end -%>
+      </li>
+    <% end -%>
+  </ul>
+</div><!--end_banners-->
+  
+<%=raw @page.content %>
+
+<%= javascript_tag do %>
+  $(function() {
+      $('#slider').nivoSlider({
+        effect:"fade",
+        animSpeed:500,
+        pauseTime:3000,
+        startSlide:0,
+        directionNav:true,
+        directionNavHide:true,
+        controlNav:true,
+        controlNavThumbs:false,
+        controlNavThumbsFromRel:true,
+        keyboardNav:true,
+        pauseOnHover:true,
+        manualAdvance:false
+    });
+  });
+<% end %>

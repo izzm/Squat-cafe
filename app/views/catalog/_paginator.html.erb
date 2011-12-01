@@ -1,0 +1,31 @@
+<div class="paginator<%= ' page_nobg' if nobg %>">
+  <div class="number_page">Выводить по
+    <%= link_to 20, category_path(:path => @category.url_path, :perpage => 20), 
+                    :class => (@perpage == 20 ? "page_active" : nil) %>
+    <%= link_to 50, category_path(:path => @category.url_path, :perpage => 50), 
+                    :class => (@perpage == 50 ? "page_active" : nil) %>
+    <%= link_to 100, category_path(:path => @category.url_path, :perpage => 100), 
+                    :class => (@perpage == 100 ? "page_active" : nil) %>
+  </div>
+  
+  <%= paginate @goods %>
+  
+  <div class="sorting">
+    <form action="">
+      <label>Сортировать</label>
+      <select name="standard-dropdown">
+        <option value="1">По цене</option>
+        <option value="2">Item 2</option>
+        <option value="3">Item 3</option>
+        <option value="4">Item 4</option>
+      </select>
+      
+      <span class="sorting_arrows">
+        <a href="#"><%= image_tag "site/arrow_top.jpg" %></a><br />
+        <a href="#"><%= image_tag "site/arrow_bottom.jpg" %></a>
+      </span>
+    </form>
+  </div>
+  
+  <div class="clear"></div>
+</div><!--end_paginator-->

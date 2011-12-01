@@ -1,2 +1,20 @@
-<h1>Catalog#category</h1>
-<p>Find me in app/views/catalog/category.html.erb</p>
+<div class="catalog">
+  <%=raw @category.description %>
+  <%= render :partial => 'paginator', :locals => {:nobg => false} %>
+
+  <ul class="list_product">
+    <% @goods.each do |good| -%>
+      <li>
+        <% image_url = good.attachments.first.image.url(:preview) rescue nil -%>
+        <%= link_to image_tag(image_url || "site/similar.jpg", :alt => good.name), 
+                               good_url(:path => @category.url_path, :id => good.id) %><br />
+        <%= link_to good.name, good_url(:path => @category.url_path, :id => good.id) %><br />
+        <% p = good.parameters.first -%>
+        <%= p['name'] %>, <%= p['unit'] %>: <%= p['value'] %>
+        <span class="price"><%= number_to_currency(good.price) %></span>
+      </li>
+    <% end -%>
+  </ul>
+
+  <%= render :partial => 'paginator', :locals => {:nobg => true} %>
+</div><!--end_catalog-->

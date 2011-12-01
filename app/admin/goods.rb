@@ -3,6 +3,7 @@ ActiveAdmin.register Good do
   filter :name
 
   form :partial => 'form'
+  scope :sorted, :default => true
 
   index do
     column :name do |good|

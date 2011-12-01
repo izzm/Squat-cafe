@@ -2,7 +2,7 @@ class Good < ActiveRecord::Base
   acts_as_list :scope => :category
 
   scope :visible, where(:visible => true)
-  default_scope order('position ASC')
+  scope :sorted,  order('position ASC')
 
   serialize :parameters
 
@@ -25,6 +25,15 @@ class Good < ActiveRecord::Base
 
   def to_s
     self.title
+  end
+
+  def present_in?(category)
+    return ( category.virtual && self.virtual_category_ids.include?(category.id) ) || 
+    ( !category.virtual && self.category_id == category.id )
+  end
+  
+  def attachment_styles
+    { :preview => "219x134#", :big => "350x245#", :small => "66x66#" } 
   end
 
 end

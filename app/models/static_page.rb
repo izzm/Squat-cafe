@@ -5,8 +5,8 @@ class StaticPage < ActiveRecord::Base
 
   scope :visible, where(:visible => true)
   scope :sorted,  order('position ASC')
-  scope :nested_set,          order('lft ASC')
-  scope :reversed_nested_set, order('lft DESC')
+  #scope :nested_set,          order('lft ASC')
+  #scope :reversed_nested_set, order('lft DESC')
 
   #default_scope order('position asc')
   has_many :attachments, 
@@ -21,6 +21,10 @@ class StaticPage < ActiveRecord::Base
 
   def to_s
     self.title
+  end
+  
+  def attachment_styles
+    { :slider => "698x374#", :main_page_images => "160x168#" } 
   end
 
 end

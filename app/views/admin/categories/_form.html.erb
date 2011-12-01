@@ -20,16 +20,18 @@
     <%= f.input :virtual if @category.can_be_virtual? %>
   <% end %>
   
-  <%= f.inputs :params do %>
-    <ul id="parameters_list" class="sortable">
-    <% parameters_method = @category.new_record? ? 'nested_parameters' : 'parameters'  -%>
-    <% (@category.send(parameters_method) || []).each { |p| -%>
-      <%= render :partial => 'parameter', :locals => {:p => p} %>
-    <% } -%>
-    </ul>
-    
-    <%= content_tag( :input, :type => :submit, :value => t('add'), :id => "add_parameter_link") {}%>
-  <% end %>
+  <% if @category.can_have_goods? -%>
+    <%= f.inputs :params do %>
+      <ul id="parameters_list" class="sortable">
+      <% parameters_method = @category.new_record? ? 'nested_parameters' : 'parameters'  -%>
+      <% (@category.send(parameters_method) || []).each { |p| -%>
+        <%= render :partial => 'parameter', :locals => {:p => p} %>
+      <% } -%>
+      </ul>
+      
+      <%= content_tag( :input, :type => :submit, :value => t('add'), :id => "add_parameter_link") {}%>
+    <% end %>
+  <% end -%>
   
   <%= f.buttons %>
 <% end %>

@@ -9,35 +9,39 @@ RailsShop::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :customers
   
+  scope '/customers', :controller => :customers do
+    get   '', :action => :index,    :as => 'customer'
+  end
+  
   scope '/wishlist', :controller => :wishlist do
-    get   '', :action => :index
-    post  '/add_good'
-    post  '/remove_good'
+    get   '', :action => :index,    :as => 'wishlist'
+    post  '/add_good',              :as => 'wishlist_add_good'
+    post  '/remove_good',           :as => 'wishlist_remove_good'
   end
 
   scope '/cart', :controller => :cart do 
-    get   '', :action => :index
-    post  '/add_good'
-    post  '/remove_good'
-    post  '/recalculate'
-    post  '/purchase'
+    get   '', :action => :index,    :as => 'cart'
+    post  '/add_good',              :as => 'cart_add_good'
+    post  '/remove_good',           :as => 'cart_remove_good'
+    post  '/recalculate',           :as => 'cart_recalculate'
+    post  '/purchase',              :as => 'cart_purchase'
   end
 
   scope '/catalog', :controller => :catalog do
     #get   '', :action => :index
-    post  '/add_to_compare'
-    post  '/remove_from_compare'
-    match '/search'
+    post  '/add_to_compare',                  :as => 'catalog_add_to_compare'
+    post  '/remove_from_compare',             :as => 'catalog_remove_from_compare'
+    match '/search', :via => [:get, :post],   :as => 'catalog_search'
     
     # Constraint class in lib/GoodConstraint.rb
-    get '/*path/good/:id', :action => :good, :constraints => GoodConstraint
+    get '/*path/goods/:id', :action => :good, :as => 'good', :constraints => GoodConstraint
     # Constraint class in lib/CategoryConstraint.rb
-    get '/*path', :action => :category, :constraints => CategoryConstraint
+    get '/*path', :action => :category,       :as => 'category', :constraints => CategoryConstraint
   end
 
   scope :controller => :site do
     # Constraint class in lib/StaticPageConstraint.rb
-    get '/page/*path', :action => :static_page, :constraints => StaticPageConstraint
+    get '/page/*path', :action => :static_page,:as => 'static_page', :constraints => StaticPageConstraint
   end
   
   root :to => 'site#index'

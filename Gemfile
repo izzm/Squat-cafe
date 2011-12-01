@@ -20,14 +20,17 @@ end
 gem 'jquery-rails'
 gem 'activeadmin'
 gem 'meta_search',    '>= 1.1.0.pre'
+gem 'meta-tags', :require => 'meta_tags'
+gem 'kaminari'
 
 gem 'nested_set'
 gem 'acts_as_list'
-gem 'formtastic_nested_set', :path => 'vendor/gems/formtastic_nested_set'
-gem 'acts_as_breadcrumbs', :path => 'vendor/gems/acts_as_breadcrumbs' 
+gem 'formtastic_nested_set', :git => 'git://github.com/izzm/formtastic_nested_set.git'
+gem 'acts_as_breadcrumbs', :git => 'git://github.com/izzm/acts_as_breadcrumbs.git' 
 
 gem 'ckeditor'
 gem 'paperclip'
+gem "simple_captcha", :git => 'git://github.com/izzm/simple-captcha.git'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

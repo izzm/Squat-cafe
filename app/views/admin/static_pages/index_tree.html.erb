@@ -17,7 +17,7 @@
         <%=raw ('|'+('&nbsp'*5)) * (page.depth || 0) %>|-
         <%= link_to page.title, edit_admin_static_page_path(page) %>
       </td>
-      <td><%= page.link %></td>
+      <td><%= page.url_path %></td>
       <td>
         <span class="status <%= page.visible ? 'ok' : 'error' %>"><%= page.visible %></span>
       </td>

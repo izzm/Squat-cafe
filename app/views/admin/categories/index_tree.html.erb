@@ -21,7 +21,7 @@
       <td>
         <%= link_to "show (#{cat.goods.count})", admin_category_goods_path(cat) if cat.can_have_goods?  %>
       </td>
-      <td><%= cat.link %></td>
+      <td><%= cat.url_path %></td>
       <td>
         <span class="status <%= cat.visible ? 'ok' : 'error' %>"><%= cat.visible %></span>
       </td>

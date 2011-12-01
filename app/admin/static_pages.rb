@@ -1,5 +1,4 @@
 ActiveAdmin.register StaticPage do
-  menu :parent => 'Site content'
   filter :title
   scope :roots, :default => :true
 

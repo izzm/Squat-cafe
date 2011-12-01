@@ -43,7 +43,7 @@
 <%= content_tag(:script, :id => 'new_parameter', :type => 'text/x-jquery-tmpl') { render :partial => 'parameter' } %>
 
 <%= render(:partial => 'admin/attachments/list',
-           :locals => { :object => @category }) if !@category.new_record?  %>
+           :locals => { :object => @good }) if !@good.new_record?  %>
 
 
 <%= javascript_tag do %>

@@ -5,14 +5,13 @@ class Category < ActiveRecord::Base
 
   scope :visible, where(:visible => true)
   scope :sorted,  order('position ASC')
-  scope :nested_set,          order('lft ASC')
-  scope :reversed_nested_set, order('lft DESC')
+  #scope :nested_set,          order('lft ASC')
+  #scope :reversed_nested_set, order('lft DESC')
   scope :virtual, where(:virtual => true)
 
 	serialize :parameters
 	
-  has_many :goods
-  
+  has_many :goods  
   has_and_belongs_to_many :virtual_goods, :class_name => 'Good'
     
   has_many :attachments, 
@@ -29,6 +28,10 @@ class Category < ActiveRecord::Base
   validates :description, :presence => true 
   validates :link, :presence => true,
                    :uniqueness => {:scope => :parent_id}
+  
+  def site_goods
+    self.parent.try(:virtual) ? self.virtual_goods : self.goods
+  end
 
   def can_be_virtual?
     self.parent.nil? || !self.parent.virtual
