@@ -34,7 +34,8 @@
     
     <div class="cart">
       <%= image_tag "site/basket_icon.png" %>
-      <span>Ваш заказ: <%= link_to "12 позиций", cart_path %>, на сумму <%= link_to number_to_currency(1200000), cart_path %></span>
+      <% pl = Russian.p(session[:cart_count], 'позиция', 'позиции', 'позиций') -%>
+      <span>Ваш заказ: <%= link_to "#{session[:cart_count]} #{pl}", cart_path %>, на сумму <%= link_to number_to_currency(session[:cart_price]), cart_path %></span>
     </div>
   </div>
 </div><!--end_top_nav_inner-->

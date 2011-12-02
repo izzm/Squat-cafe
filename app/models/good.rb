@@ -3,6 +3,12 @@ class Good < ActiveRecord::Base
 
   scope :visible, where(:visible => true)
   scope :sorted,  order('position ASC')
+  scope :random, lambda { |cnt|
+    order('random()').limit(cnt)
+  }
+  scope :not, lambda { |id|
+    where(['id <> ?', id])
+  }
 
   serialize :parameters
 
@@ -17,7 +23,7 @@ class Good < ActiveRecord::Base
                    :length => { :maximum => 255 }
   validates :price, :presence => true,
                     :numericality => true 
-
+  
   def nested_parameters
 	  (self.parameters.nil? && !self.category.nil?) ? 
 	      self.category.nested_parameters : self.parameters
@@ -33,7 +39,7 @@ class Good < ActiveRecord::Base
   end
   
   def attachment_styles
-    { :preview => "219x134#", :big => "350x245#", :small => "66x66#" } 
+    { :preview => "219x134#", :big => "350x245#", :small => "66x66#", :cart => "101x80" } 
   end
 
 end

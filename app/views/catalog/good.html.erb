@@ -1,2 +1,114 @@
-<h1>Catalog#good</h1>
-<p>Find me in app/views/catalog/good.html.erb</p>
+<% content_for :page_javascript do %>
+  $(document).ready(function() {
+    $('#mycarousel').jcarousel();
+    
+    $('#submit_button').click(function() {
+      $('#submit_form').submit();
+      return false;
+    });
+    
+    $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+  });
+<% end %>
+
+<div class="navigator">
+  <ul>
+    <li><%= link_to "Главная", root_path %></li>
+    <% @category.self_and_ancestors.each do |cat| -%>
+      <li><%= link_to cat.name, category_path(cat.url_path) %></li>
+    <% end -%>
+    <li class="active_nav"><%= link_to @good.name, good_path(:path => @category.url_path, :id => @good.id) %></li>
+  </ul>
+</div><!--end_navigator-->
+
+<div class="item_cart">
+  <div class="product_photo">
+    <% attachment = @good.attachments.first -%>
+    <%= link_to image_tag(attachment.image.url(:big)), attachment.image.url(:original), :class => 'cloud-zoom', :id => 'good_image_zoom', :rel => "adjustX: 10, adjustY:-4, softFocus:true" %>
+    
+    <ul>
+      <% @good.attachments.each do |attachment| -%>
+        <li><%= link_to image_tag(attachment.image.url(:small)), attachment.image.url(:original), :class => 'cloud-zoom-gallery', :rel => "useZoom: 'good_image_zoom', smallImage: '#{attachment.image.url(:big)}' " %></li>
+      <% end -%>
+    </ul>
+    
+    <div class="carousel">
+      <strong>Цвета и материалы</strong>
+      <ul id="mycarousel" class="jcarousel-skin-tango">
+        <li><a href="#"><img src="/assets/site/carousel1.jpg" alt="" width="50" height="42" /></a></li>
+        <li><a href="#"><img src="/assets/site/carousel2.jpg" alt="" /></a></li>
+        <li><a href="#"><img src="/assets/site/carousel3.jpg" alt="" /></a></li>
+        <li><a href="#"><img src="/assets/site/carousel4.jpg" alt="" /></a></li>
+        <li><a href="#"><img src="/assets/site/carousel5.jpg" alt="" /></a></li>
+        <li><a href="#"><img src="/assets/site/carousel2.jpg" alt="" /></a></li>
+        <li><a href="#"><img src="/assets/site/carousel3.jpg" alt="" /></a></li>
+        <li><a href="#"><img src="/assets/site/carousel4.jpg" alt="" /></a></li>
+        <li><a href="#"><img src="/assets/site/carousel5.jpg" alt="" /></a></li>
+      </ul>
+    </div>
+  </div><!--end_product_photo-->
+  
+  <div class="product_info">
+    <h2><%= @good.name %><%= link_to raw("Добавить<br />в Wish List"), wishlist_add_good_path(:id =>@good.id), :class => "add_wish", :method => :post %></h2>
+    
+    <span class="articul">Артикул <%= @good.articul || "не задан" %></span>
+    
+    <% p = @good.parameters.first -%>
+    <p><strong><%= p['name'] %>:</strong> <%= "#{p['unit']}: " if !p['unit'].blank? %><%= p['value'] %></p>
+    
+    <span class="price_block"><%= number_to_currency(@good.price) %></span>
+    
+    <% @good.parameters[1 .. -1].each do |p| -%>
+      <p><strong><%= p['name'] %>:</strong> <%= "#{p['unit']}: " if !p['unit'].blank? %><%= p['value'] %></p>
+    <% end -%>
+    
+    <%=raw @good.description %>
+    
+    <div class="form_prod">
+      <%= form_tag cart_add_good_path, :id => "submit_form", :method => :post do %>
+        <%= hidden_field_tag "good_id", @good.id  %>
+        <p>
+          <label>Цвет<span>*</span></label>
+          <select name="standard-dropdown">
+            <option value="1">Item 1</option>
+          </select>
+        </p>
+        
+        <p>
+          <label>Ткань<span>*</span></label>
+          <select name="standard-dropdown">
+            <option value="1">Item 1</option>
+          </select>
+        </p>
+        
+        <p>
+          <label>Размер<span>*</span></label>
+          <select name="standard-dropdown">
+            <option value="1">Item 1</option>
+          </select>
+        </p>
+      <%end %>
+    </div>
+
+    <div class="prod_btns">+<%= link_to "Добавить к сравнению", catalog_add_to_compare_path(:id => @good.id), :method => :post %><%= link_to content_tag('span', 'Добавить к заказу'), "#", :id => "submit_button", :class => "blue_button" %></div>
+  </div><!--end_product_info-->
+  <div class="clear"></div>
+</div><!--end_item_cart-->
+
+<div class="similar_items">
+  <h2>Похожие изделия</h2>
+  
+  <ul class="list_product">
+    <% @category.site_goods.visible.random(3).not(@good.id).each do |good| -%>
+      <li>
+        <% image_url = good.attachments.first.image.url(:preview) rescue nil -%>
+        <%= link_to image_tag(image_url || "site/similar.jpg", :alt => good.name), 
+                               good_url(:path => @category.url_path, :id => good.id) %><br />
+        <%= link_to good.name, good_url(:path => @category.url_path, :id => good.id) %><br />
+        <% p = good.parameters[1] || good.parameters[0] -%>
+        <%= p['name'] %>, <%= p['unit'] %>: <%= p['value'] %>
+        <span class="price"><%= number_to_currency(good.price) %></span>
+      </li>
+    <% end -%>
+  </ul>
+</div>
