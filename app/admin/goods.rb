@@ -20,6 +20,12 @@ ActiveAdmin.register Good do
   end
 
   controller do
+    def new
+      @category = Category.find(params[:category_id])
+      @good = @category.goods.build
+      @good.visible ||= true
+    end
+
     def show
       redirect_to admin_category_goods_path
     end

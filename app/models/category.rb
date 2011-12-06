@@ -34,7 +34,7 @@ class Category < ActiveRecord::Base
   end
 
   def can_be_virtual?
-    self.parent.nil? || !self.parent.virtual
+    (self.parent.nil? || !self.parent.virtual) && !self.new_record?
   end
   
   def can_have_subcats?

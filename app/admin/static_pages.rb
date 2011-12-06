@@ -9,6 +9,11 @@ ActiveAdmin.register StaticPage do
       redirect_to index_tree_admin_static_pages_path
     end
     
+    def new
+      @static_page = StaticPage.new
+      @static_page.visible ||= true
+    end
+    
     def show
       #redirect_to edit_admin_static_page_path(@page)
       redirect_to index_tree_admin_static_pages_path

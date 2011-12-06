@@ -5,6 +5,12 @@ ActiveAdmin.register Category do
     def index
       redirect_to index_tree_admin_categories_path
     end
+
+    def new
+      @category = Category.new
+      @category.parent_id ||= params[:parent_id]
+      @category.visible ||= true
+    end
     
     def show
       redirect_to index_tree_admin_categories_path

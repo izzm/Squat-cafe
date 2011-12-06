@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   before_filter :init_cart
+  before_filter :set_locale
   
 protected
   def set_meta(meta_object)
@@ -12,7 +13,11 @@ protected
                     :keywords => meta_object.seo_keywords
     end
   end
-  
+
+  def set_locale
+    I18n.locale = :ru
+  end
+
   def init_cart
     session[:cart] ||= {}
     session[:cart_count] ||= 0
