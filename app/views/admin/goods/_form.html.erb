@@ -19,8 +19,10 @@
                     :label => cat.name, 
                     :multiple => true, 
                     :input_html => { 
-                      'data-placeholder' => t('choose'),
-                      'style' => 'width: 78%;'
+                      :'data-placeholder' => t('choose'),
+                      :style => 'width: 78%;',
+                      :class => 'good_virtual_category_ids',
+                      :id => "good_virtual_category_#{cat.id}_ids"
                     }, 
                     :prompt => false %>
     <% } -%>
@@ -48,7 +50,7 @@
 
 <%= javascript_tag do %>
 $(function() {
-  $('#good_virtual_category_ids').chosen();
+  $('.good_virtual_category_ids').chosen();
 
   $('#add_parameter_link').click(function() {
     var $new = $($('#new_parameter').html());
