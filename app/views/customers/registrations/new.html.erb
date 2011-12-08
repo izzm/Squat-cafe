@@ -1,18 +1,45 @@
-<h2>Sign up</h2>
+<div class="registration">
+  <h2>Регистрация</h2>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "yellow_form"}) do |f| %>
+    <%= devise_error_messages! %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <p>
+      <%= f.label :name, 'Имя, фамилия:' %>
+      <%= f.text_field :name, :class => "standart_inptxt" %>
+    </p>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+    <p>
+      <%= f.label :email, 'Email:' %>
+      <%= f.text_field :email, :class => "standart_inptxt" %>
+    </p>
+    
+    <p>
+      <%= f.label :password, 'Пароль:' %>
+      <%= f.password_field :password, :class => "standart_inptxt" %>
+    </p>
+    
+    <p>
+      <%= f.label :password_confirmation, 'Пароль еще раз:' %>
+      <%= f.password_field :password_confirmation, :class => "standart_inptxt" %>
+    </p>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+    
+    <p>
+      <label>Введите код <br />с изображения:</label>
+      <span class="security_code">
+        <img src="img/code.jpg" alt="" />
+      </span>
+      <input type="text" name="" class="small_inptxt" />
+    </p>
+    
+    <p>
+      <%= f.submit "Зарегистрироваться", :class => "blue_inp_bg" %>
+    </p>
+    
+    <p class="form_link">
+      <%= link_to "Войти", new_customer_session_path %>
+      <span class="bull">&bull;</span>
+      <%= link_to "Восстановить пароль", new_customer_password_path %>
+    </p>
+  <% end %>
+</div>

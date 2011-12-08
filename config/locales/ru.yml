@@ -5,3 +5,9 @@ ru:
 
   add: Добавить
   choose: Выбрать
+
+  good:
+    variants:
+      color: "Цвет"
+      cloth: "Материал"
+      size: "Размер"

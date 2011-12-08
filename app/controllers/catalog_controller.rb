@@ -17,12 +17,25 @@ class CatalogController < ApplicationController
   end
 
   def compare
+    @goods = Good.find(session[:compare], :include => :category)
   end
 
   def add_to_compare
+    @good = Good.visible.find(params[:good_id])
+    
+    if @good && @good.category.visible &&
+       !session[:compare].include?(@good.id)
+      session[:compare] << @good.id
+    end
+    
+    redirect_to catalog_compare_path
   end
 
   def remove_from_compare
+    good_id = params[:good_id].to_i
+    session[:compare].delete(good_id)
+    
+    redirect_to catalog_compare_path
   end
 
   def search

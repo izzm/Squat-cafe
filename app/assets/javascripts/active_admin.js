@@ -6,6 +6,7 @@
 //= require jquery_plugins/jquery.treeview
 //= require jquery_plugins/jquery.chosen
 //= require jquery_plugins/jquery.form
+//= require jquery_plugins/jquery.tmpl
 
 /* Active Admin JS */
 /* copied from 'app/assets/javascripts/base.js in active_admin source code */

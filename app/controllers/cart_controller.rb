@@ -1,4 +1,7 @@
 class CartController < ApplicationController
+  before_filter :authenticate_customer!,
+                :except => [:add_good]
+
   def index
     @goods = Good.find(session[:cart].keys, :include => :category)
   end
@@ -8,7 +11,8 @@ class CartController < ApplicationController
     
     if @good && @good.category.visible
       session[:cart][@good.id] ||= {}
-      session[:cart][@good.id][:order_parameters] = params[:order_parameters]
+      session[:cart][@good.id][:good_id] = @good.id
+      session[:cart][@good.id][:variant] = params[:variant]
       session[:cart][@good.id][:count] ||= 0
       session[:cart][@good.id][:count] += 1
       session[:cart][@good.id][:price] = @good.price
@@ -39,6 +43,14 @@ class CartController < ApplicationController
   end
 
   def purchase
+    @order = Order.new
+
+    @order.order_goods_attributes = session[:cart]
+    @order.total_price = session[:cart_price]
+
+    @order.save
+
+    redirect_to cart_path
   end
   
 protected

@@ -45,12 +45,27 @@
   
   <div class="delivery">
     <h5>Доставка</h5>
-    <form action="">
-      <p><input type="radio" id="radio1" name="5" value="1" class="styled" /><label for="radio1">Доставка</label></p>
-      <p><label>по адресу:</label><br /><input type="text" class="text_inp19px" /></p>
-      <p class="cent_rad"><input type="radio" id="radio2" name="5" value="1" class="styled" /><label for="radio2">Самовывоз</label></p>
-      <p><label><strong>Добавить комментарий</strong></label><br /><textarea rows="" cols=""></textarea>
-      <input type="submit" value="Оформить заказ" class="blue_inp_bg" /></p>
-    </form>
+    
+    <%= form_tag cart_purchase_path, :id => "purchase_form", :method => :post do %>
+      <p>
+        <input type="radio" id="radio1" name="5" value="1" class="styled" />
+        <label for="radio1">Доставка</label>
+        </p>
+        <p>
+          <label>по адресу:</label><br />
+          <input type="text" class="text_inp19px" />
+        </p>
+      
+        <p class="cent_rad">
+          <input type="radio" id="radio2" name="5" value="1" class="styled" />
+          <label for="radio2">Самовывоз</label>
+        </p>
+
+        <p>
+          <label><strong>Добавить комментарий</strong></label><br />
+          <textarea rows="" cols=""></textarea>
+          <input type="submit" value="Оформить заказ" class="blue_inp_bg" />
+        </p>
+    <% end %>
   </div>
 </div><!--end_my_cart-->

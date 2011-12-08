@@ -713,9 +713,9 @@ a.add_wish:hover{
 .form_prod{
 	margin-top:10px;
 	background:#fcfaf4;
-	padding:16px 10px 16px 35px;}
+	padding:16px 10px 16px 15px;}
 .form_prod label{
-	width:58px;
+	width:78px;
 	display:-moz-inline-stack; /* для FF2 */
 	display:inline-block; /* для других */
 	zoom:1; /* для ие */
@@ -1186,6 +1186,15 @@ p.cent_rad{
 	width:217px;
 	padding:0 2px;
 	vertical-align:middle;}
+.yellow_form input[type="email"]{
+	width:217px;
+	padding:0 2px;
+	vertical-align:middle;}
+.yellow_form input[type="password"]{
+	width:217px;
+	padding:0 2px;
+	vertical-align:middle;}
+
 .login_memberarea a{
 	vertical-align:middle;}
 p.form_link{

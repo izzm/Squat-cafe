@@ -20,6 +20,14 @@ li.ckeditor {
   margin: 0; 
   padding: 0; 
   width: 100%;
+
+  &.variants_list {
+    li {
+      input {
+        width: 95%;
+      }
+    }
+  }
   
   li {
     margin: 0 3px 3px 3px !important; 
@@ -57,4 +65,19 @@ li.ckeditor {
 .images_table .label {
   font-size: 1.2em;
   font-weight: bold;
+}
+
+.variants_type_list {
+  & > li {
+    border-bottom: 1px solid #E8E8E8;
+  }
+
+  .sortable {
+    padding-left: 20%;
+    width: 78%;
+  }
+
+  .add_variant_link_wrapper {
+    padding-left: 20%;
+  }
 }

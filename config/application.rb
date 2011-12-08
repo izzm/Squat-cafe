@@ -45,9 +45,19 @@ module RailsShop
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-
     config.assets.precompile += %w[active_admin.css active_admin.js]
 
     config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+    config.action_mailer.smtp_settings = {
+      :address         => 'mail.1gb.ru',
+      :port            => 25,
+      :domain          => 'oltis-lux.com',
+      :user_name       => 'u248736',
+      :password        => '8132ed26',
+      :authentication  => :login
+    } 
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.perform_deliveries = true
   end
 end

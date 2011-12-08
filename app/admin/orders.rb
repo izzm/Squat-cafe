@@ -4,8 +4,8 @@ ActiveAdmin.register Order do
   filter :total_price
   #filter :checked_out_at
 
-  scope :all, :default => true
-  scope :new_orders
+  scope :all
+  scope :new_orders, :default => true
   scope :in_progress
   scope :complete
   scope :canceled
@@ -19,8 +19,8 @@ ActiveAdmin.register Order do
       status_tag(order.state)
     }
 
-    column("Date", :checked_out_at)
-    column("Customer", :user)
+    column("Date", :created_at)
+    column("Customer", :customer)
     column("Total") { |order| 
       number_to_currency order.total_price 
     }
@@ -28,24 +28,24 @@ ActiveAdmin.register Order do
 
   show do
     panel "Invoice" do
-    #  table_for(order.line_items) do |t|
-    #    t.column("Product") {|item| auto_link item.product        }
-    #    t.column("Price")   {|item| number_to_currency item.price }
-    #    
-    #    tr :class => "odd" do
-    #      td "Total:", :style => "text-align: right;"
-    #      td number_to_currency(order.total_price)
-    #    end
-    #  end
+      table_for(order.order_goods) do |t|
+        t.column("Product") {|item| auto_link item.good           }
+        t.column("Price")   {|item| number_to_currency item.price }
+        
+        tr :class => "odd" do
+          td "Total:", :style => "text-align: right;"
+          td number_to_currency(order.total_price)
+        end
+      end
     end
 
     active_admin_comments
   end
 
   sidebar :customer_information, :only => :show do
-    attributes_table_for order.user do
-      row("User") { auto_link order.user }
-      row :email
+    attributes_table_for order.customer do
+      row("User") { auto_link order.customer }
+      #row :emal
     end
   end  
 end

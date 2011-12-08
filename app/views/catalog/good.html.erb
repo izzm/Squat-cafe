@@ -67,30 +67,16 @@
     <div class="form_prod">
       <%= form_tag cart_add_good_path, :id => "submit_form", :method => :post do %>
         <%= hidden_field_tag "good_id", @good.id  %>
-        <p>
-          <label>Цвет<span>*</span></label>
-          <select name="standard-dropdown">
-            <option value="1">Item 1</option>
-          </select>
-        </p>
-        
-        <p>
-          <label>Ткань<span>*</span></label>
-          <select name="standard-dropdown">
-            <option value="1">Item 1</option>
-          </select>
-        </p>
-        
-        <p>
-          <label>Размер<span>*</span></label>
-          <select name="standard-dropdown">
-            <option value="1">Item 1</option>
-          </select>
-        </p>
+        <% @good.variants.each do |variant_type, variants| -%>
+          <p>
+            <label><%=t "good.variants.#{variant_type}" %><span>*</span></label>
+            <%= select_tag "variant[#{variant_type}]", options_for_select(variants) %>
+          </p>
+        <% end -%>  
       <%end %>
     </div>
 
-    <div class="prod_btns">+<%= link_to "Добавить к сравнению", catalog_add_to_compare_path(:id => @good.id), :method => :post %><%= link_to content_tag('span', 'Добавить к заказу'), "#", :id => "submit_button", :class => "blue_button" %></div>
+    <div class="prod_btns">+<%= link_to "Добавить к сравнению", catalog_add_to_compare_path(:good_id => @good.id), :method => :post %><%= link_to content_tag('span', 'Добавить к заказу'), "#", :id => "submit_button", :class => "blue_button" %></div>
   </div><!--end_product_info-->
   <div class="clear"></div>
 </div><!--end_item_cart-->

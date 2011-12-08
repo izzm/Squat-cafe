@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   before_filter :init_cart
+  before_filter :init_compare
   before_filter :set_locale
   
 protected
@@ -22,5 +23,9 @@ protected
     session[:cart] ||= {}
     session[:cart_count] ||= 0
     session[:cart_price] ||= 0
+  end
+  
+  def init_compare
+    session[:compare] ||= []
   end
 end

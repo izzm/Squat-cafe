@@ -1,16 +1,8 @@
 class Good < ActiveRecord::Base
   acts_as_list :scope => :category
 
-  scope :visible, where(:visible => true)
-  scope :sorted,  order('position ASC')
-  scope :random, lambda { |cnt|
-    order('random()').limit(cnt)
-  }
-  scope :not, lambda { |id|
-    where(['id <> ?', id])
-  }
-
   serialize :parameters
+  serialize :variants
 
   belongs_to :category
   has_and_belongs_to_many :virtual_categories, :class_name => 'Category'
@@ -18,12 +10,31 @@ class Good < ActiveRecord::Base
   has_many :attachments, 
            :as => :resource,
            :dependent => :destroy
+  has_many :order_goods,
+           :dependent => :restrict
 
+  scope :visible, where(:visible => true)
+  scope :sorted,  order('position ASC')
+  scope :random, lambda { |cnt|
+    order('random()').limit(cnt)
+  }
+  scope :not, lambda { |id|
+    where(['id <> ?', id])
+  }         
+  
   validates :name, :presence => true, 
                    :length => { :maximum => 255 }
   validates :price, :presence => true,
                     :numericality => true 
   
+  def variants
+    {
+      "color" => [],
+      "cloth" => [],
+      "size" => []
+    }.merge(super || {})
+  end
+
   def nested_parameters
 	  (self.parameters.nil? && !self.category.nil?) ? 
 	      self.category.nested_parameters : self.parameters
@@ -39,7 +50,7 @@ class Good < ActiveRecord::Base
   end
   
   def attachment_styles
-    { :preview => "219x134#", :big => "350x245#", :small => "66x66#", :cart => "101x80" } 
+    { :preview => "219x134#", :big => "350x245#", :small => "66x66#", :cart => "101x80", :compare => "184x111#" } 
   end
 
 end

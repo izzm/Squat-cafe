@@ -1,17 +1,26 @@
-<h2>Sign in!!!!!!!!!!!!</h2>
-
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+<div class="login_memberarea">
+  <h2>Вход в личный кабинет</h2>
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "yellow_form"}) do |f| %>
+    <%= devise_error_messages! %>
+  
+    <p>
+      <%= f.label :email, 'Email:' %>
+      <%= f.text_field :email, :class => "standart_inptxt" %>
+    </p>
+    
+    <p>
+      <%= f.label :password, 'Пароль:' %>
+      <%= f.password_field :password, :class => "standart_inptxt" %>
+    </p>
+    
+    <p>
+      <%= f.submit "Войти", :class => "blue_inp_bg" %>
+    </p>
+    
+    <p class="form_link">
+      <%= link_to "Восстановить пароль", new_customer_password_path %>
+      <span class="bull">&bull;</span>
+      <%= link_to "Зарегистрироваться", new_customer_registration_path %>
+    </p>
+  <% end %>
+</div>

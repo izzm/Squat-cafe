@@ -1,5 +1,8 @@
 class Order < ActiveRecord::Base
   belongs_to :customer
+
+  has_many :order_goods, :dependent => :destroy
+  accepts_nested_attributes_for :order_goods
   
   scope :new_orders, where("orders.checked_out_at IS NULL and orders.delivery_at IS NULL")
   scope :in_progress,  where("orders.checked_out_at IS NULL and orders.delivery_at IS NOT NULL")
@@ -39,4 +42,4 @@ class Order < ActiveRecord::Base
     ActionController::Base.helpers.number_to_currency(total_price) + 
        " - Order ##{id} (#{user.username})"
   end
-  end
+end
