@@ -11,3 +11,9 @@ ru:
       color: "Цвет"
       cloth: "Материал"
       size: "Размер"
+  order:
+    state:
+      new_order: "Новый заказ"
+      complete: "Выполенен"
+      in_progress: "В процессе"
+      canceled: "Отменён"

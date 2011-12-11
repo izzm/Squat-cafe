@@ -23,7 +23,14 @@
       <% @goods.each do |good| -%>
       <li>
         <div class="border">
-          <span class="title_prod"><%= link_to good.name, good_path(:path => good.category.url_path, :id => good.id) %></span>
+          <span class="title_prod">
+            <%= link_to good.name, good_path(:path => good.category.url_path, :id => good.id) %><br>
+            <span class="variant">
+              <% session[:cart][good.id][:variant].each do |variant_type, variant| -%>
+                <nobr><%=t "good.variants.#{variant_type}" %>: <%= variant %>;</nobr>
+              <% end -%>
+            </span>
+          </span>
           <span class="articul_prod"><%= good.articul %></span>
           <span class="photo_prod"><%= link_to image_tag(good.attachments.first.image.url(:cart)), good_path(:path => good.category.url_path, :id => good.id) %></span>
           <span class="price_prod"><%= number_to_currency(good.price) %></span>
@@ -38,34 +45,36 @@
       <% end -%>
       
       <li class="intotal">
-        <%= link_to "Пересчитать", "#", :id => 'cart_link' %>Итого: <span class="intotal_price"><%= number_to_currency(session[:cart_price]) %></span>
+        <%= link_to "Пересчитать", "#", :id => 'cart_link' if @goods.count > 0 %>Итого: <span class="intotal_price"><%= number_to_currency(session[:cart_price]) %></span>
       </li>
     </ul>
   <% end %>
-  
+ 
+  <% if @goods.count > 0 -%>
   <div class="delivery">
     <h5>Доставка</h5>
     
     <%= form_tag cart_purchase_path, :id => "purchase_form", :method => :post do %>
       <p>
-        <input type="radio" id="radio1" name="5" value="1" class="styled" />
-        <label for="radio1">Доставка</label>
-        </p>
-        <p>
-          <label>по адресу:</label><br />
-          <input type="text" class="text_inp19px" />
-        </p>
+        <%= radio_button 'order', 'delivery_type', 'delivery', :class => 'styled' %>
+        <%= label 'order', 'delivery_type_delivery', 'Доставка'  %>
+      </p>
+      <p>
+        <%= label 'order', 'address', 'по адресу:' %><br />
+        <%= text_field 'order', 'address', :class => 'text_inp19px' %>
+      </p>
       
-        <p class="cent_rad">
-          <input type="radio" id="radio2" name="5" value="1" class="styled" />
-          <label for="radio2">Самовывоз</label>
-        </p>
+      <p class="cent_rad">
+        <%= radio_button 'order', 'delivery_type', 'manual', :class => 'styled' %>
+        <%= label 'order', 'delivery_type_manual', 'Самовывоз'  %>
+      </p>
 
-        <p>
-          <label><strong>Добавить комментарий</strong></label><br />
-          <textarea rows="" cols=""></textarea>
-          <input type="submit" value="Оформить заказ" class="blue_inp_bg" />
-        </p>
+      <p>
+        <label><strong>Добавить комментарий</strong></label><br />
+        <%= text_area 'order', 'comment' %>
+        <input type="submit" value="Оформить заказ" class="blue_inp_bg" />
+      </p>
     <% end %>
   </div>
+  <% end -%>
 </div><!--end_my_cart-->

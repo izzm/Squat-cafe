@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111207205638) do
+ActiveRecord::Schema.define(:version => 20111209210323) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -194,6 +194,10 @@ ActiveRecord::Schema.define(:version => 20111207205638) do
     t.decimal  "total_price",    :precision => 8, :scale => 2, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "number"
+    t.string   "delivery_type"
+    t.string   "address"
+    t.text     "comment"
   end
 
   add_index "orders", ["checked_out_at"], :name => "index_orders_on_checked_out_at"
@@ -219,5 +223,15 @@ ActiveRecord::Schema.define(:version => 20111207205638) do
 
   add_index "static_pages", ["parent_id"], :name => "index_static_pages_on_parent_id"
   add_index "static_pages", ["url_path"], :name => "index_static_pages_on_url_path"
+
+  create_table "wishlist_goods", :force => true do |t|
+    t.integer  "customer_id"
+    t.integer  "good_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "wishlist_goods", ["customer_id"], :name => "index_wishlist_goods_on_customer_id"
+  add_index "wishlist_goods", ["good_id"], :name => "index_wishlist_goods_on_good_id"
 
 end

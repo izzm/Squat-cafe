@@ -11,4 +11,6 @@ class Customer < ActiveRecord::Base
   scope :corporate, where(:corporate => true)
 
   has_many :orders
+  has_many :wishlist_goods, :dependent => :destroy
+  has_many :goods, :through => :wishlist_goods
 end

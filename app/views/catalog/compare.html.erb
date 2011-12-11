@@ -40,6 +40,16 @@
           <span class="items price"><%= number_to_currency(good.price) %></span>
         <% end -%>
       </li>
+      <% if false -%>
+      <li>
+        <span class="title_compare">&nbsp;</span>
+        <% @goods[low...high].each do |good| -%>
+          <span class="items price">
+            <%= link_to content_tag(:span, 'Добавить к заказу'), "#", :class => 'blue_button' %>
+          </span>
+        <% end -%>
+      </li>
+      <% end -%>
     </ul>
     <% low += 3 -%>
     <% high = [high + 3, @goods.size].min -%>

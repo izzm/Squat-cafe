@@ -16,7 +16,7 @@
   <% end %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body bgcolor="#0a1e43">
 
 <div class="top_nav">
   <div class="top_nav_inner">
@@ -26,7 +26,7 @@
       <li class="first"><%= link_to "Вход в личный кабинет", new_customer_session_path %></li>
       <% else -%>
       <li class="name_person"><%= image_tag "site/flower.png" %><%= current_customer.name %></li>
-      <li class="first"><%= link_to "Личный кабинет", customer_path %></li>
+      <li class="first"><%= link_to "Личный кабинет", edit_customer_registration_path %></li>
       <li><%= link_to "Мой Wish List", wishlist_path %></li>
       <li><%= link_to "Выход", destroy_customer_session_path, :method => :delete %></li>
       <% end -%>
@@ -82,8 +82,8 @@
     <div id="container"><!--container-->
       <div class="left_bar">
         <div class="search">
-          <%= form_tag catalog_search_path, :method => :post do |f| %>
-            <label>Поиск</label><input type="text" name="" class="search_inp" />
+          <%= form_tag catalog_search_path, :method => :get do |f| %>
+            <label>Поиск</label><input type="text" name="single_search" class="search_inp" />
             <input type="submit" value="" class="search_btn" />
           <% end -%>
           <p>
@@ -91,6 +91,15 @@
           </p>
         </div>
         <div class="catalog">
+          <% if !current_customer.nil? -%>
+          <h3 class="lightblue">Личный кабинет</h3>
+          <ul class="list_catalog">
+            <li class="<%= current_page?(edit_customer_registration_path) ? 'active_prod' : '' %>"><%= link_to "Мои данные", edit_customer_registration_path%></li>
+            <li class="<%= current_page?(wishlist_path) ? 'active_prod' : '' %>"><%= link_to "Мой Wish List", wishlist_path %></li>
+            <li class="<%= current_page?(cart_history_path) ? 'active_prod' : '' %>"><%= link_to "История заказов", cart_history_path %></li>
+            <li><%= link_to "Выход", destroy_customer_session_path, :method => :delete %></li>
+          </ul>
+          <% end -%>
           <% classes = ["brown", "", "blue"] -%>
           <% anc = @category.try(:self_and_ancestors) || [] -%>
           <% site_catalog_menu.each do |root_category| -%>
@@ -151,8 +160,8 @@
   
     <div class="footer_menu">
      	<ul class="foot_list first_list">
-      	<li class="list_title"><%= link_to "Личный кабинет", customer_path %></li>
-        <li><%= link_to "Личные данные", customer_path %></li>
+      	<li class="list_title"><%= link_to "Личный кабинет", edit_customer_registration_path %></li>
+        <li><%= link_to "Личные данные", edit_customer_registration_path %></li>
         <li><%= link_to "Корзина", cart_path %></li>
         <li><%= link_to "Wish List", wishlist_path %></li>
       </ul>

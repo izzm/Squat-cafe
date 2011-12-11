@@ -3,7 +3,12 @@ class CartController < ApplicationController
                 :except => [:add_good]
 
   def index
-    @goods = Good.find(session[:cart].keys, :include => :category)
+    load_cart
+    @order = Order.new
+  end
+
+  def history
+    @orders = Order.order('created_at asc').find_all_by_customer_id(current_customer.id)
   end
 
   def add_good
@@ -43,18 +48,34 @@ class CartController < ApplicationController
   end
 
   def purchase
-    @order = Order.new
+    @order = Order.new(params[:order])
 
     @order.order_goods_attributes = session[:cart]
     @order.total_price = session[:cart_price]
+    @order.customer = current_customer
 
-    @order.save
+    if @order.save
+      flash[:order_id] = @order.id
+      session_cart_clear
+      redirect_to cart_purchase_complete_path
+    else
+      load_cart
+      render :action => :index
+      #redirect_to cart_path
+    end
+  end
 
-    redirect_to cart_path
+  def purchase_complete
+    if flash[:order_id].nil?
+      redirect_to cart_path
+    else
+      @order = Order.find(flash[:order_id])
+      redirect_to cart_path if @order.nil?
+    end
   end
   
 protected
-  def session_cart_recalculate(use_params)
+  def session_cart_recalculate(use_params = false)
     session[:cart_count] = 0
     session[:cart_price] = 0
     
@@ -70,6 +91,15 @@ protected
       
       session[:cart][good_id][:count] = new_count
     }
+  end
+
+  def session_cart_clear
+    session[:cart] = {}
+    session_cart_recalculate
+  end
+
+  def load_cart
+    @goods = Good.find(session[:cart].keys, :include => :category)
   end
 
 end

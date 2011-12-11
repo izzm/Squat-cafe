@@ -1,4 +1,5 @@
 <div class="paginator<%= ' page_nobg' if nobg %>">
+  <% if !current_page?(catalog_search_path) -%>
   <div class="number_page">Выводить по
     <%= link_to 20, category_path(:path => @category.url_path, :perpage => 20), 
                     :class => (@perpage == 20 ? "page_active" : nil) %>
@@ -7,6 +8,7 @@
     <%= link_to 100, category_path(:path => @category.url_path, :perpage => 100), 
                     :class => (@perpage == 100 ? "page_active" : nil) %>
   </div>
+  <% end -%>
   
   <%= paginate @goods %>
   

@@ -1,2 +1,26 @@
-<h1>Wishlist#index</h1>
-<p>Find me in app/views/wishlist/index.html.erb</p>
+<div class="my_cart">
+  <h2>Мой Wish List</h2>
+    <ul>
+      <li class="cart_title">
+        <span class="title_prod_wide">Название</span>
+        <span class="articul_prod">Артикул</span>
+        <span class="photo_prod">Фото</span>
+        <span class="price_prod">Цена</span>
+        <span class="delet_prod">Удалить</span>
+      </li>
+      
+      <% @goods.each do |good| -%>
+      <li>
+        <div class="border">
+          <span class="title_prod_wide"><%= link_to good.name, good_path(:path => good.category.url_path, :id => good.id) %></span>
+          <span class="articul_prod"><%= good.articul %></span>
+          <span class="photo_prod"><%= link_to image_tag(good.attachments.first.image.url(:cart)), good_path(:path => good.category.url_path, :id => good.id) %></span>
+          <span class="price_prod"><%= number_to_currency(good.price) %></span>
+          <span class="delet_prod">
+            <%= link_to image_tag("site/cart_prod_delet.png"), wishlist_remove_good_path(:good_id => good.id), :method => :post %>
+          </span>
+        </div>
+      </li>
+      <% end -%>
+    </ul>
+</div>

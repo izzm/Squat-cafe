@@ -9,10 +9,6 @@ RailsShop::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :customers
   
-  scope '/customers', :controller => :customers do
-    get   '', :action => :index,    :as => 'customer'
-  end
-  
   scope '/wishlist', :controller => :wishlist do
     get   '', :action => :index,    :as => 'wishlist'
     post  '/add_good',              :as => 'wishlist_add_good'
@@ -21,10 +17,13 @@ RailsShop::Application.routes.draw do
 
   scope '/cart', :controller => :cart do 
     get   '', :action => :index,    :as => 'cart'
+    get   '/history',               :as => 'cart_history'
     post  '/add_good',              :as => 'cart_add_good'
     post  '/remove_good',           :as => 'cart_remove_good'
     post  '/recalculate',           :as => 'cart_recalculate'
     post  '/purchase',              :as => 'cart_purchase'
+    get   '/purchase/complete', :action => :purchase_complete,
+                                    :as => 'cart_purchase_complete'
   end
 
   scope '/catalog', :controller => :catalog do

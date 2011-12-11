@@ -49,7 +49,7 @@
   </div><!--end_product_photo-->
   
   <div class="product_info">
-    <h2><%= @good.name %><%= link_to raw("Добавить<br />в Wish List"), wishlist_add_good_path(:id =>@good.id), :class => "add_wish", :method => :post %></h2>
+    <h2><%= @good.name %><%= link_to raw("Добавить<br />в Wish List"), wishlist_add_good_path(:good_id =>@good.id), :class => "add_wish", :method => :post %></h2>
     
     <span class="articul">Артикул <%= @good.articul || "не задан" %></span>
     

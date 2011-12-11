@@ -1,5 +1,5 @@
 ActiveAdmin.register Order do
-  actions :index, :show
+  actions :index, :show, :edit, :update
 
   filter :total_price
   #filter :checked_out_at
@@ -11,16 +11,20 @@ ActiveAdmin.register Order do
   scope :canceled
 
   index do
-    column("Order", :sortable => :id) { |order| 
-      link_to "##{order.id} ", admin_order_path(order) 
+    column("Order") { |order| 
+      content_tag :nobr do 
+        link_to "##{order.number} ", admin_order_path(order) 
+      end
     }
     
     column("State") { |order| 
       status_tag(order.state)
     }
 
-    column("Date", :created_at)
-    column("Customer", :customer)
+    column("Created", :created_at, :sortable => false)
+    column("Delivery", :delivery_at, :sortable => false)
+    column("Complete", :checked_out_at, :sortable => false)
+    column("Customer", :customer, :sortable => false)
     column("Total") { |order| 
       number_to_currency order.total_price 
     }
@@ -39,13 +43,25 @@ ActiveAdmin.register Order do
       end
     end
 
+    panel "Info" do
+      attributes_table_for order do
+        row("Created") { order.created_at }
+        row("Delivery") { order.delivery_at }
+        row("Complete") { order.checked_out_at }
+
+        row :delivery_type
+        row :address
+        row :comment
+      end
+    end
+
     active_admin_comments
   end
 
   sidebar :customer_information, :only => :show do
     attributes_table_for order.customer do
       row("User") { auto_link order.customer }
-      #row :emal
+      row :email
     end
   end  
 end

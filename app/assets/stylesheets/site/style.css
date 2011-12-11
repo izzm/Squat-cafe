@@ -6,9 +6,11 @@ body{
 	background:url(/assets/site/body_bg.png);
 	font-family:Georgia, "Times New Roman", Times, serif;
 	font-size:13px;
-	color:#323232;}
+	color:#323232;
+  background-color:#0a1e43;}
 html, body{
-	height:100%;}
+	height:100%;
+  background-color:#0a1e43;}
 img{
 	border:none;}
 a{
@@ -295,6 +297,8 @@ img.blue_arrow{
 
 .catalog{
 	padding-top:3px;}
+h3.lightblue{
+  color:#1369b4;}
 h3.brown{
 	color:#622f00;}
 h3.blue{
@@ -1088,7 +1092,45 @@ ul.list_page li a.active{
 .intotal_price{
 	font-size:18px;}
 .my_cart ul li a{}
-.title_prod, .articul_prod, .photo_prod, .price_prod, .quantity_prod, .delet_prod{
+
+.my_cart ul.order_history li {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.my_cart ul.order_history li.cart_title {
+  padding: 0;
+}
+
+.my_cart ul.order_expand {
+  padding-top: 20px;
+}
+
+.my_cart ul.order_expand li.order_title {
+  background-color: #f6f6f6;
+  margin-top: 2px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.my_cart ul.order_expand li {
+  background-color: #ffffff;
+  border-bottom: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.order_expand_toggle {
+  display: block;
+  width: 11px;
+  height: 11px;
+  margin-left: 15px;
+  background-image: url(/assets/site/expand.jpg);
+  background-position: 0 0;
+  cursor: pointer;
+}
+.variant {
+  color: #656565;
+}
+.prod_expand, .title_prod, .title_prod_wide, .articul_prod, .photo_prod, .price_prod, .quantity_prod, .delet_prod{
 	display:-moz-inline-stack; /* для FF2 */
 	display:inline-block; /* для других */
 	zoom:1; /* для ие */
@@ -1096,8 +1138,14 @@ ul.list_page li a.active{
 	_overflow:hidden; /* для ие6, чтобы не умещающиеся в нем элементы не раздвигали блок */
 	text-align:center;
 	vertical-align:middle;}
+.prod_expand{
+  width: 30px;}
 .title_prod{
 	width:144px;}
+.title_prod_wide{
+  width:246px;}
+.title_prod_wide a{
+  text-decoration:none;}
 .title_prod a{
 	text-decoration:none;}
 .articul_prod{

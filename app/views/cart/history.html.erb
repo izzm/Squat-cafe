@@ -1,0 +1,68 @@
+<% content_for :page_javascript do %>
+  $(document).ready(function() {
+    $('.order_expand_toggle').toggle(function () {
+      $(this).css({backgroundPosition: "0px 11px"});
+      $('#order_expand_' + $(this).attr('rel')).show();
+    }, function () {
+      $(this).css({backgroundPosition: "0px 0px"});
+      $('#order_expand_' + $(this).attr('rel')).hide();
+    });
+  });
+<% end %>
+
+
+<div class="my_cart">
+  <h2>История заказов</h2>
+  
+  <ul class="order_history">
+    <li class="cart_title">
+      <span class="prod_expand">&nbsp;</span>
+      <span class="title_prod">Номер заказа</span>
+      <span class="articul_prod">Дата заказа</span>
+      <span class="photo_prod">Кол-во товаров</span>
+      <span class="price_prod">Сумма заказа</span>
+      <span class="delet_prod">Статус заказа</span>
+    </li>
+    
+    <% @orders.each do |order| -%>
+    <li>
+      <span class="prod_expand"><span class="order_expand_toggle" id="order_expand_toggle_<%= order.id %>" rel="<%= order.id %>"></span></span>
+      <span class="title_prod"><%= order.number %></span>
+      <span class="articul_prod"><%= Russian.strftime(order.created_at, "%d.%m.%Y") %></span>
+      <span class="photo_prod"><%= order.order_goods.count %></span>
+      <span class="price_prod"><%= order.total_price %></span>
+      <span class="delet_prod"><%=t "order.state.#{order.state}" %></span>
+
+      <ul class="order_expand" id="order_expand_<%= order.id %>" style="display: none;">
+        <li class="order_title">
+          <span class="articul_prod">Артикул</span>
+          <span class="title_prod_wide">Название</span>
+          <span class="photo_prod">Фото</span>
+          <span class="quantity_prod">Кол-во</span>
+          <span class="price_prod">Стоимость</span>
+        </li>
+
+        <% order.order_goods.each do |order_good| -%>
+          <% good = order_good.good -%>
+          <li>
+            <span class="articul_prod"><%= good.articul %></span>
+            <span class="title_prod_wide">
+            <%= link_to good.name, good_path(:path => good.category.url_path, :id => good.id) %><br>
+              <span class="variant">
+              <% order_good.variant.each do |variant_type, variant| -%>
+                <nobr><%=t "good.variants.#{variant_type}" %>: <%= variant %>;</nobr>
+              <% end -%>
+              </span>
+            </span>
+            <span class="photo_prod"><%= link_to image_tag(good.attachments.first.image.url(:cart)), good_path(:path => good.category.url_path, :id => good.id) %></span>
+            <span class="quantity_prod">
+              <%= order_good.count %>
+            </span>
+            <span class="price_prod"><%= number_to_currency(good.price) %></span>
+          </li>
+        <% end -%>
+      </ul>
+    </li>
+    <% end -%>
+  </ul>
+</div>
