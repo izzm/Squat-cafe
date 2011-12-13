@@ -4,22 +4,26 @@ class Order < ActiveRecord::Base
   has_many :order_goods, :dependent => :destroy
   has_many :goods, :through => :order_goods
   accepts_nested_attributes_for :order_goods
+
+  default_scope order('created_at desc')
  
   scope :canceled, where(:canceled => true)
-  scope :active, where(:canceled => false)
-
+  scope :active, where(:canceled => [false, nil])
+  
+  scope :all_orders, where("1=1") # Ugly hack for active admin
   scope :new_orders, where("orders.checked_out_at IS NULL and orders.delivery_at IS NULL").active
   scope :in_progress,  where("orders.checked_out_at IS NULL and orders.delivery_at IS NOT NULL").active
   scope :complete, where("orders.checked_out_at IS NOT NULL").active
 
   before_save :assign_number
+  after_create :set_customer_first_order
 
   validates :delivery_type, :presence => true
   validates :address, :length => { :maximum => 255 }
   validates :comment, :length => { :maximum => 1000 }
   validates :customer, :presence => true
   
-  NEW_ORDER = "new_order"
+  NEW_ORDER = "new_orders"
   COMPLETE = "complete"
   IN_PROGRESS = "in_progress"
   CANCELED = "canceled"
@@ -50,7 +54,7 @@ class Order < ActiveRecord::Base
 
   def display_name
     ActionController::Base.helpers.number_to_currency(total_price) + 
-       " - Order ##{id} (#{user.username})"
+       " - Order ##{number} (#{customer.try(:name)})"
   end
 
 protected
@@ -69,5 +73,9 @@ protected
       else
         "sm"
     end
+  end
+
+  def set_customer_first_order
+    self.customer.set_first_order! self
   end
 end

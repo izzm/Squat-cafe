@@ -41,7 +41,7 @@
   <% end %>
 </div><!--end_adv_search-->
 
-<% if !params[:search].nil? -%>
+<% if !params[:search].nil? || !params[:single_search].nil? -%>
 <div class="objects_found">
   Найдено объектов: <%= @search.count %>
 </div>

@@ -1,0 +1,23 @@
+ru:
+  activerecord:
+    models:
+      attachment: "Прикреплённые файлы"
+    attributes:
+      attachment:
+        picture: "Изображение"
+        info: "Информация"
+
+  active_admin:
+    actions:
+      attachment:
+        add: "Добавить"
+        destroy: "Удалить"
+
+  formtastic:
+    labels:
+      attachment:
+        name: "Название"
+        link: "Ссылка"
+    actions:
+      attachment:
+        update: "Сохранить"

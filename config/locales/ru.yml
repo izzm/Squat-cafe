@@ -1,4 +1,10 @@
 ru:
+  number:
+    currency:
+      format:
+        format: "%n %u"
+        unit: "руб."
+        precision: 0
   visible: отображается
   invisible: скрыта
   are_you_shure: Вы уверены?

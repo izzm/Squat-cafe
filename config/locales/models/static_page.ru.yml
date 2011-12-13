@@ -1,0 +1,39 @@
+ru:
+  activerecord:
+    models:
+      static_page: "Страницы сайта"
+    attributes:
+      static_page:
+        title: "Заголовок"
+        link: "Ссылка"
+        visible: "Отображается"
+ 
+  active_admin:
+    titles:
+      static_page:
+        index_tree: "Структура сайта"
+    actions:
+      static_page:
+        destroy: "Удалить"
+    status_tags:
+      static_page:
+        visible: "Да"
+        invisible: "Нет"
+
+  formtastic:
+    labels:
+      static_page:
+        title: "Заголовок раздела"
+        content: "Содержимое раздела"
+        parent: "Родительский раздел"
+    hints:
+      static_page:
+        new:
+          title: "Выберете заголовок для раздела"
+          content: "Напишите содержимое раздела"
+        edit:
+          title: "Измените при желании заголовок для раздела"
+          content: "Отредактируйте содержимое раздела"
+    actions:
+      static_page:
+        create: "Создать страницу"

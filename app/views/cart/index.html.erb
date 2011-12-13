@@ -26,7 +26,7 @@
           <span class="title_prod">
             <%= link_to good.name, good_path(:path => good.category.url_path, :id => good.id) %><br>
             <span class="variant">
-              <% session[:cart][good.id][:variant].each do |variant_type, variant| -%>
+              <% (session[:cart][good.id][:variant] || {}).each do |variant_type, variant| -%>
                 <nobr><%=t "good.variants.#{variant_type}" %>: <%= variant %>;</nobr>
               <% end -%>
             </span>

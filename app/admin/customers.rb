@@ -1,5 +1,5 @@
 ActiveAdmin.register Customer do
-  scope :all, :default => true
+  scope :all_customers, :default => true
   scope :individual
   scope :corporate
 
@@ -39,22 +39,22 @@ ActiveAdmin.register Customer do
     f.buttons
   end
 
-  show :title => :name do
-    panel I18n.t('order_history') do
+  show :title => :name_with_email do
+    panel I18n.t('active_admin.titles.customer.order_history') do
       table_for(customer.orders) do
-        column("Order", :sortable => :id) { |order| 
-          link_to "##{order.id}", admin_order_path(order)
+        column(I18n.t('activerecord.attributes.order.number'), :sortable => :id) { |order| 
+          link_to "##{order.number}", admin_order_path(order)
         }
         
-        column("State") { |order|
-          status_tag(order.state)
+        column(I18n.t('activerecord.attributes.order.state')) { |order|
+          status_tag(I18n.t("active_admin.scopes.#{order.state}"))
         }
 
-        column("Date", :sortable => :checked_out_at) { |order|
-          pretty_format(order.checked_out_at) 
+        column(I18n.t('activerecord.attributes.order.created_at'), :sortable => :created_at) { |order|
+          pretty_format(order.created_at) 
         }
 
-        column("Total") { |order| 
+        column(I18n.t('activerecord.attributes.order.total_price')) { |order| 
           number_to_currency order.total_price 
         }
       end
@@ -63,11 +63,11 @@ ActiveAdmin.register Customer do
     active_admin_comments
   end
 
-  sidebar :customer_details, :only => :show do
-    attributes_table_for customer, :name, :company, :corporate, :phone, :email, :created_at, :first_order
+  sidebar I18n.t('active_admin.titles.customer.customer_details'), :only => :show do
+    attributes_table_for customer, :name, :company, :phone, :email, :created_at, :first_order
   end
 
-  sidebar :order_history, :only => :show do
+  sidebar I18n.t('active_admin.titles.customer.order_info'), :only => :show do
     attributes_table_for customer do
       row(:total_orders) { customer.orders.complete.count }
       row(:total_value) { number_to_currency customer.orders.complete.sum(:total_price) }

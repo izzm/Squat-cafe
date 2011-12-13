@@ -1,0 +1,47 @@
+ru:
+  activerecord:
+    models:
+      good: "Товары"
+    attribtes:
+      good:
+        name: "Наименование"
+        price: "Цена"
+        visible: "Отображается"
+
+  active_admin:
+    filters:
+      good:
+        name: "Поиск по имени"
+    titles:
+      good:
+        tree: "Структура каталога"
+    actions:
+      good:
+        destroy: "Удалить"
+    status_tags:
+      good:
+        visible: "Да"
+        invisible: "Нет"
+  
+  formtastic:
+    labels:
+      good:
+        name: "Название товара"
+        description: "Описание товара"
+        articul: "Артикул"
+        price: "Цена (руб)"
+    hints:
+      good:
+        new:
+          name: "Введите название товара"
+          description: "Введите описание товара (не обязательно)"
+          weight: "Введите вес блюда в граммах (не обязательно)"
+          price: "Введите цену товара (в рублях)"
+        edit:
+          name: "Отредактируйте название товара"
+          description: "Добавьте или измените описание товара"
+          weight: "Введите или измените вес"
+          price: "Откорректируйте цену на товар"
+    actions:
+      good:
+        create: "Создать товар"

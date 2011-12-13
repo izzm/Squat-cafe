@@ -1,0 +1,31 @@
+ru:
+  activerecord:
+    models:
+      order: "Заказы"
+    attributes:
+      order:
+        number: "Номер заказа"
+        state: "Стаус заказа"
+        delivery_at: "Дата доставки"
+        checked_out_at: "Дата выполнения"
+        customer: "Покупатель"
+        created_at: "Дата заказа"
+        total_price: "Общая стоимость"
+  
+  active_admin:
+    titles:
+      order:
+        recent_order: "Новые заказы"
+        show: "Заказ #%{number}"
+    scopes:
+      all_orders: "Все"
+      new_orders: "Новые"
+      in_progress: "В обработке"
+      complete: "Завершенные"
+      canceled: "Отмененные"
+
+  formtastic:
+    labels:
+      order:
+        note: "Примечание"
+        order_status: "Статус заказа"

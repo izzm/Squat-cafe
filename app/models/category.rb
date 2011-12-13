@@ -29,6 +29,9 @@ class Category < ActiveRecord::Base
   validates :link, :presence => true,
                    :uniqueness => {:scope => :parent_id}
   
+  VISIBLE = "visible"
+  INVISIBLE = "invisible"
+
   def site_goods
     self.parent.try(:virtual) ? self.virtual_goods : self.goods
   end
@@ -56,6 +59,10 @@ class Category < ActiveRecord::Base
 
   def to_s
     self.name
+  end
+
+  def status
+    self.visible ? VISIBLE : INVISIBLE
   end
 
 end

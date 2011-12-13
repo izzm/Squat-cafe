@@ -1,8 +1,8 @@
 <table border="0" cellspacing="0" cellpadding="0" class="index_table images_table">
   <thead>
     <tr>
-      <th>Picture</th>
-      <th>Info</th>
+      <th><%= Attachment.human_attribute_name(:picture) %></th>
+      <th><%= Attachment.human_attribute_name(:info) %></th>
       <th></th>
     </tr>
   </thead>
@@ -18,7 +18,7 @@
   </tfoot>
     <tr>
       <td colspan="3">
-        <%= content_tag( :input, :type => :submit, :value => t('add'), :id => "add_image_link") {}%>
+        <%= content_tag( :input, :type => :submit, :value => t('active_admin.actions.attachment.add'), :id => "add_image_link") {}%>
       </td>
     </tr>
   </tfoot>

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   before_filter :init_cart
   before_filter :init_compare
-  before_filter :set_locale
+#  before_filter :set_locale
   
 protected
   def set_meta(meta_object)

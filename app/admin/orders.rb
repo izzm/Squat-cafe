@@ -4,33 +4,33 @@ ActiveAdmin.register Order do
   filter :total_price
   #filter :checked_out_at
 
-  scope :all
+  scope :all_orders
   scope :new_orders, :default => true
   scope :in_progress
   scope :complete
   scope :canceled
 
   index do
-    column("Order") { |order| 
+    column(:number) { |order| 
       content_tag :nobr do 
         link_to "##{order.number} ", admin_order_path(order) 
       end
     }
     
-    column("State") { |order| 
-      status_tag(order.state)
+    column(:state) { |order| 
+      status_tag(I18n.t("active_admin.scopes.#{order.state}"))
     }
 
-    column("Created", :created_at, :sortable => false)
-    column("Delivery", :delivery_at, :sortable => false)
-    column("Complete", :checked_out_at, :sortable => false)
-    column("Customer", :customer, :sortable => false)
-    column("Total") { |order| 
+    column(:created_at, :sortable => false)
+    column(:delivery_at, :sortable => false)
+    column(:checked_out_at, :sortable => false)
+    column(:customer, :sortable => false)
+    column(:total_price) { |order| 
       number_to_currency order.total_price 
     }
   end
 
-  show do
+  show :title => lambda{ |order| I18n.t('active_admin.titles.order.show', :number => order.number) } do
     panel "Invoice" do
       table_for(order.order_goods) do |t|
         t.column("Product") {|item| auto_link item.good           }

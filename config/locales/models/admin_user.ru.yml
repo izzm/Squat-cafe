@@ -1,0 +1,19 @@
+ru:
+  activerecord:
+    models:
+      admin_user: "Администратор"
+    attributes:
+      admin_user:
+        password: "Пароль"
+        remember_me: "Запомнить меня"
+  
+  active_admin:
+    login:
+      title: "Вход в систему управления сайтом"
+      forgot_your_password: "Забыли пароль?"
+      sign_in: "Войти"
+    logout: "Выйти"
+    actions:
+      admin_user:
+        login: "Войти"
+        change_my_password: "Сменить"

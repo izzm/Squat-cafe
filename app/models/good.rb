@@ -13,8 +13,8 @@ class Good < ActiveRecord::Base
   has_many :order_goods,
            :dependent => :restrict
 
+  default_scope order('position ASC')
   scope :visible, where(:visible => true)
-  scope :sorted,  order('position ASC')
   scope :random, lambda { |cnt|
     order('random()').limit(cnt)
   }
@@ -27,6 +27,9 @@ class Good < ActiveRecord::Base
   validates :price, :presence => true,
                     :numericality => true 
   
+  VISIBLE = "visible"
+  INVISIBLE = "invisible"
+
   def variants
     {
       "color" => [],
@@ -51,6 +54,10 @@ class Good < ActiveRecord::Base
   
   def attachment_styles
     { :preview => "219x134#", :big => "350x245#", :small => "66x66#", :cart => "101x80", :compare => "184x111#" } 
+  end
+
+  def status
+    self.visible ? VISIBLE : INVISIBLE
   end
 
 end

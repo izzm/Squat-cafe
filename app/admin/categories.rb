@@ -11,7 +11,7 @@ ActiveAdmin.register Category do
       @category.parent_id ||= params[:parent_id]
       @category.visible ||= true
     end
-    
+
     def show
       redirect_to index_tree_admin_categories_path
     end
@@ -19,11 +19,13 @@ ActiveAdmin.register Category do
 
   collection_action :index_tree, :method => :get do
     @categories = Category.arrange
+    @page_title = I18n.t('active_admin.titles.category.index_tree')
 
     render :action => 'blank' if @categories.blank?
   end
   
-  sidebar :tree, :only => [:edit]  do |page|
+  sidebar I18n.t('active_admin.titles.category.tree'),  
+          :only => [:edit]  do |page|
     render :partial => 'category_tree',
            :locals => {:current_page => category,
                        :link => :edit}

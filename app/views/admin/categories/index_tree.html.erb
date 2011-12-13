@@ -1,10 +1,10 @@
 <table border="0" cellspacing="0" cellpadding="0" id="static_pages" class="index_table">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Goods</th>
-      <th>Link</th>
-      <th>Visible</th>
+      <th><%= t('activerecord.attributes.category.title') %></th>
+      <th><%= t('activerecord.attributes.category.goods') %></th>
+      <th><%= t('activerecord.attributes.category.link') %></th>
+      <th><%= t('activerecord.attributes.category.visible') %></th>
       <th></th>
     </tr>
   </thead>
@@ -19,14 +19,14 @@
         <%= link_to cat.name, edit_admin_category_path(cat) %>
       </td>
       <td>
-        <%= link_to "show (#{cat.goods.count})", admin_category_goods_path(cat) if cat.can_have_goods?  %>
+        <%= link_to t('active_admin.actions.category.show', :count => cat.goods.count), admin_category_goods_path(cat) if cat.can_have_goods?  %>
       </td>
       <td><%= cat.url_path %></td>
       <td>
-        <span class="status <%= cat.visible ? 'ok' : 'error' %>"><%= cat.visible %></span>
+        <span class="status <%= cat.visible ? 'ok' : 'error' %>"><%= t("active_admin.status_tags.category.#{cat.status}") %></span>
       </td>
       <td>
-        <%= link_to 'Destroy', admin_category_path(cat), :method => :delete, :confirm => t('are_you_shure') %>
+        <%= link_to t('active_admin.actions.category.destroy'), admin_category_path(cat), :method => :delete, :confirm => t('are_you_shure') %>
       </td>
     </tr>
   <% end %>
