@@ -22,11 +22,12 @@ ActiveAdmin.register StaticPage do
 
   collection_action :index_tree, :method => :get do
     @static_pages = StaticPage.arrange
+    @page_title = I18n.t('active_admin.titles.static_page.index_tree')
 
     render :action => 'blank' if @static_pages.blank?
   end
   
-  sidebar :tree, :only => [:edit]  do |page|
+  sidebar I18n.t('active_admin.titles.static_page.tree'), :only => [:edit]  do |page|
     render :partial => 'page_tree',
            :locals => {:current_page => static_page,
                        :link => :edit}

@@ -1,9 +1,9 @@
 <table border="0" cellspacing="0" cellpadding="0" id="static_pages" class="index_table">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Link</th>
-      <th>Visible</th>
+      <th><%= StaticPage.human_attribute_name(:title) %></th>
+      <th><%= StaticPage.human_attribute_name(:link) %></th>
+      <th><%= StaticPage.human_attribute_name(:visible) %></th>
       <th></th>
     </tr>
   </thead>
@@ -19,10 +19,10 @@
       </td>
       <td><%= page.url_path %></td>
       <td>
-        <span class="status <%= page.visible ? 'ok' : 'error' %>"><%= page.visible %></span>
+        <span class="status <%= page.visible ? 'ok' : 'error' %>"><%= t("active_admin.status_tags.static_page.#{page.status}") %></span>
       </td>
       <td>
-        <%= link_to 'Destroy', admin_static_page_path(page), :method => :delete, :confirm => t('are_you_shure') %>
+        <%= link_to t('active_admin.actions.static_page.destroy'), admin_static_page_path(page), :method => :delete, :confirm => t('are_you_shure') %>
       </td>
     </tr>
   <% end %>

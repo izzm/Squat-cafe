@@ -1,3 +1,4 @@
+<div class="treeview">
 <%= render_tree StaticPage.arrange, :sort => lambda{|x| x.position} do |page, child| %>
   <li>
     <% if current_page.try(:id) == page.id -%>
@@ -8,9 +9,10 @@
     <%= child %>
   </li>
 <% end %>
+</div>
 
 <%= javascript_tag do %>
-  $('#tree_sidebar_section .panel_contents > ul').treeview({
+  $('.treeview > ul').treeview({
     collapsed: true,
     persist: "cookie",
     cookieId: "treeview-static_page",

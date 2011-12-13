@@ -19,12 +19,19 @@ class StaticPage < ActiveRecord::Base
   validates :link, :presence => true,
                    :uniqueness => {:scope => :parent_id}
 
+  VISIBLE = "visible"
+  INVISIBLE = "invisible"
+
   def to_s
     self.title
   end
   
   def attachment_styles
     { :slider => "698x374#", :main_page_images => "160x168#" } 
+  end
+
+  def status
+    self.visible ? VISIBLE : INVISIBLE
   end
 
 end

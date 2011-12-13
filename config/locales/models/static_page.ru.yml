@@ -12,6 +12,7 @@ ru:
     titles:
       static_page:
         index_tree: "Структура сайта"
+        tree: "Структура сайта"
     actions:
       static_page:
         destroy: "Удалить"
