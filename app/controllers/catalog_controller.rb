@@ -5,7 +5,7 @@ class CatalogController < ApplicationController
     @search = params[:search] || {:meta_sort => 'name.desc'}
   
     @category = Category.find(params[:category_id])
-    @goods = @category.site_goods.visible.
+    @goods = @category.site_goods.visible.includes(:category).
                   page(@page).per(@perpage)#.
                   #search(@search)
     params.delete(:category_id)

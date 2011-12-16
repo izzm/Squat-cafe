@@ -7,7 +7,10 @@ body{
 	font-family:Georgia, "Times New Roman", Times, serif;
 	font-size:13px;
 	color:#323232;
-  background-color:#0a1e43;}
+    background-color:#0a1e43;
+	min-height:100%;
+	height:auto !important;
+	height:100%;}
 html, body{
 	height:100%;
   background-color:#0a1e43;}
@@ -177,7 +180,7 @@ textarea{
 	height:25px;
 	font-size:13px;
 	font-family:Georgia, "Times New Roman", Times, serif;
-	/*color:#333333;*/}
+	color:#333333;}
 p.checkbox_bl{
 	padding-top:7px;}
 p.checkbox_bl label{
@@ -541,7 +544,7 @@ ul.foot_list{
 	background:url(/assets/site/foot_list_line.png) no-repeat left center;
 	padding-left:27px;
 	min-height:181px;
-	margin-left:24px;}
+	margin-left:22px;}
 ul.foot_list li{
 	padding:1px 0;}
 ul.foot_list li.list_title{
