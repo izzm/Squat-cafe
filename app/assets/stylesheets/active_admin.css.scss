@@ -67,6 +67,24 @@ li.ckeditor {
   font-weight: bold;
 }
 
+#extra_attachments_files .file {
+  float: left;
+  padding: 15px;
+  position: relative;
+  border: 0;
+
+  .close {
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+  }
+}
+
+.spacer {
+  height: 20px;
+}
+
 .variants_type_list {
   & > li {
     border-bottom: 1px solid #E8E8E8;

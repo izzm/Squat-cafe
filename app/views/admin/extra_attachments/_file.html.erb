@@ -1,0 +1,9 @@
+<div class="file ui-state-default" <%= 'id=file_tmp_${id}' if attachment.nil? %>>
+  <% if attachment.nil? -%>
+    <%= image_tag "image_processing_small.gif" %>
+  <% else -%>
+    <%= image_tag attachment.file.url(:color) %>
+  <% end -%>
+
+  <%= content_tag(:span, "", :rel => url_for(admin_extra_attachment_path(attachment.try(:id) || '${id}')), :class => 'ui-icon ui-icon-close close') if show_delete %>
+</div>

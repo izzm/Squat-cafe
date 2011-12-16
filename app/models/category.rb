@@ -33,7 +33,16 @@ class Category < ActiveRecord::Base
   INVISIBLE = "invisible"
 
   def site_goods
-    self.parent.try(:virtual) ? self.virtual_goods : self.goods
+    self.parent.try(:virtual) ? self.virtual_goods : 
+                                self.self_and_descendants_goods
+  end
+
+  def self_and_descendants_goods
+    ids =  self.self_and_descendants.map { |cat|
+      cat.id
+    }
+
+    Good.where(:category_id => ids)
   end
 
   def can_be_virtual?

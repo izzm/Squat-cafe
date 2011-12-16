@@ -6,11 +6,11 @@ ActiveAdmin.register Good do
   #scope :sorted, :default => true
 
   index do
-    column I18n.t('activerecord.attribtes.good.name') do |good|
+    column I18n.t('activerecord.attributes.good.name') do |good|
       link_to good.name, edit_admin_category_good_path(category, good)
     end
-    column I18n.t('activerecord.attribtes.good.price'), :price, :sortable => false
-    column I18n.t('activerecord.attribtes.good.visible') do |good|
+    column I18n.t('activerecord.attributes.good.price'), :price, :sortable => false
+    column I18n.t('activerecord.attributes.good.visible') do |good|
       status_tag(I18n.t("active_admin.status_tags.good.#{good.status}"), good.visible? ? :ok : :error)
     end
 

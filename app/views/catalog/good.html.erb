@@ -8,6 +8,8 @@
     });
     
     $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+
+    $('#mycarousel a').lightBox();
   });
 <% end %>
 
@@ -35,15 +37,11 @@
     <div class="carousel">
       <strong>Цвета и материалы</strong>
       <ul id="mycarousel" class="jcarousel-skin-tango">
-        <li><a href="#"><img src="/assets/site/carousel1.jpg" alt="" width="50" height="42" /></a></li>
-        <li><a href="#"><img src="/assets/site/carousel2.jpg" alt="" /></a></li>
-        <li><a href="#"><img src="/assets/site/carousel3.jpg" alt="" /></a></li>
-        <li><a href="#"><img src="/assets/site/carousel4.jpg" alt="" /></a></li>
-        <li><a href="#"><img src="/assets/site/carousel5.jpg" alt="" /></a></li>
-        <li><a href="#"><img src="/assets/site/carousel2.jpg" alt="" /></a></li>
-        <li><a href="#"><img src="/assets/site/carousel3.jpg" alt="" /></a></li>
-        <li><a href="#"><img src="/assets/site/carousel4.jpg" alt="" /></a></li>
-        <li><a href="#"><img src="/assets/site/carousel5.jpg" alt="" /></a></li>
+        <% @good.extra_attachments.each do |attachment| -%>
+          <li>
+            <%= link_to image_tag(attachment.file.url(:color)), attachment.file.url(:original) %>
+          </li>
+        <% end -%>
       </ul>
     </div>
   </div><!--end_product_photo-->
@@ -81,11 +79,13 @@
   <div class="clear"></div>
 </div><!--end_item_cart-->
 
+<% similar = Good.visible.find_all_by_articul(@good.similar || []) -%>
+<% if similar.count > 0 -%>
 <div class="similar_items">
   <h2>Похожие изделия</h2>
   
   <ul class="list_product">
-    <% @category.site_goods.visible.random(3).not(@good.id).each do |good| -%>
+    <% similar.each do |good| -%>
       <li>
         <% image_url = good.attachments.first.image.url(:preview) rescue nil -%>
         <%= link_to image_tag(image_url || "site/similar.jpg", :alt => good.name), 
@@ -98,3 +98,4 @@
     <% end -%>
   </ul>
 </div>
+<% end -%>

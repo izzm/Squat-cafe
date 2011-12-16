@@ -21,15 +21,17 @@
 <div class="top_nav">
   <div class="top_nav_inner">
     <ul class="nav_list">
-      <% if current_customer.nil? -%>
+    <% if current_customer.nil? -%>
       <li class="name_person"><%= image_tag "site/flower.png" %></li>
       <li class="first"><%= link_to "Вход в личный кабинет", new_customer_session_path %></li>
-      <% else -%>
+      <%= content_tag :li, link_to("Cравнение: #{session[:compare].size}", catalog_compare_path) if !session[:compare].empty? %>
+    <% else -%>
       <li class="name_person"><%= image_tag "site/flower.png" %><%= current_customer.name %></li>
       <li class="first"><%= link_to "Личный кабинет", edit_customer_registration_path %></li>
       <li><%= link_to "Мой Wish List", wishlist_path %></li>
+      <%= content_tag :li, link_to("Cравнение: #{session[:compare].size}", catalog_compare_path) if !session[:compare].empty? %>
       <li><%= link_to "Выход", destroy_customer_session_path, :method => :delete %></li>
-      <% end -%>
+    <% end -%>
     </ul>
     
     <div class="cart">
@@ -55,10 +57,10 @@
           <div class="feedback_block">
           	<h2><span>Форма быстрой связи</span><a href="#" class="close_fb"></a></h2>
               <form action="">
-              	<p><input type="text" name="" value="Ваше имя" class="fb_inp" onclick="if(this.value=='Ваше имя'){this.value='';}" onblur="if(this.value==''){this.value='Ваше имя';}" onkeydown="setcolor(this,'#000')"/></p>
-                  <p><input type="text" name="" value="Телефон  (+7 (906) 333-09-33)" class="fb_inp" onclick="if(this.value=='Телефон  (+7 (906) 333-09-33)'){this.value='';}" onblur="if(this.value==''){this.value='Телефон  (+7 (906) 333-09-33)';}" onkeydown="setcolor(this,'#000')"/></p>
+              	<p><input type="text" name="" value="Ваше имя" class="fb_inp inp_gray" onclick="if(this.value=='Ваше имя'){this.value='';}" onblur="if(this.value==''){this.value='Ваше имя';setcolor(this, '#afafaf')}" onkeydown="setcolor(this,'#000')"/></p>
+                  <p><input type="text" name="" value="Телефон  (+7 (xxx) xxx-xx-xx)" class="fb_inp inp_gray" onclick="if(this.value=='Телефон  (+7 (xxx) xxx-xx-xx)'){this.value='';}" onblur="if(this.value==''){this.value='Телефон  (+7 (xxx) xxx-xx-xx)';setcolor(this, '#afafaf')}" onkeydown="setcolor(this,'#000')"/></p>
                   <p class="checkbox_bl"><input type="checkbox" id="check1" name="a" class="styled" /><label for="check1">Перезвоните мне</label></p>
-                  <p><input type="text" name="" value="E-mail (example@company.ru)" class="fb_inp" onclick="if(this.value=='E-mail (example@company.ru)'){this.value='';}" onblur="if(this.value==''){this.value='E-mail (example@company.ru)';}" onkeydown="setcolor(this,'#000')"/></p>
+                  <p><input type="text" name="" value="E-mail (example@company.ru)" class="fb_inp inp_gray" onclick="if(this.value=='E-mail (example@company.ru)'){this.value='';}" onblur="if(this.value==''){this.value='E-mail (example@company.ru)';setcolor(this, '#afafaf')}" onkeydown="setcolor(this,'#000')"/></p>
                   <p class="txtarea_bl"><label>Сообщение: </label><br /><textarea rows="" cols="" class=""></textarea></p>
                   <p class="fd_btn"><input type="submit" value="Отправить" class="blue_inp_bg" /></p>
               </form>

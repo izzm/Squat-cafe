@@ -1,0 +1,101 @@
+<table border="0" cellspacing="0" cellpadding="0" class="index_table extra_attachments_table">
+  <thead>
+    <tr>
+      <th><%= ExtraAttachment.model_name.human %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        <div id="extra_attachments_files">
+          <% object.extra_attachments.each { |attachment| -%>
+            <%= render :partial => 'admin/extra_attachments/file',
+                       :locals => {:attachment => attachment,
+                                   :show_delete => true} %>
+          <% } -%>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+
+  </tfoot>
+    <tr>
+      <td>
+        <% new_attachment = ExtraAttachment.new -%>
+        <% new_attachment.resource = object -%>
+
+        <%= form_for [:admin, new_attachment],
+              :html => { :multipart => true } do |f| %>
+          <%= f.hidden_field :resource_id %>
+          <%= f.hidden_field :resource_type %>
+          <span class="file_upload">
+            <%= f.file_field :file, :class => 'extra_attachment_file_upload' %>
+          </span>
+
+          <%= content_tag( :input, :type => :submit, :value => t('active_admin.actions.extra_attachment.add'), :id => "add_extra_attachment_link") {}%>
+        <% end %>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+<div class="spacer"></div>
+
+<%= content_tag(:script, :id => 'new_extra_attachment_file', :type => 'text/x-jquery-tmpl') { render :partial => 'admin/extra_attachments/file', :locals => {:attachment => nil, :show_delete => true } } %>
+
+<%= javascript_tag do %>
+$(function() {
+  $('#new_extra_attachment').submit(function() {
+    var $form = $(this);
+    var $images = $('#extra_attachments_files');
+    var tmp_id = Math.floor(Math.random() * 1000000);
+
+    if($("#extra_attachment_file").val().length == 0) {
+      return false;
+    }
+
+    $form.ajaxSubmit({
+      dataType: 'json',
+      beforeSubmit: function() {
+        $form.find('input[type="submit"]').attr('disabled', 'disabled');
+        var $new = $.tmpl($('#new_extra_attachment_file'), 
+            {"id": tmp_id});
+
+        $new.find('span.close').click(function() {
+          var $this = $(this);
+
+          $this.closest('.file').find('img').attr('src', '/assets/image_processing_small.gif');
+
+          $.post($this.attr('rel'), {'_method': 'delete'}, function(data) {
+            $this.closest('.file').remove();
+          });
+        }).hide();
+
+        $images.append($new);
+      },
+      success: function(data) {
+        $form.find('input[type="submit"]').removeAttr('disabled');
+        if(data.id != false) {
+          var $file = $images.find('#file_tmp_'+tmp_id)
+
+          $file.children('.close').attr('rel', data.destroy_url).show(); 
+          $file.children('img').attr('src', data.url);
+        }
+      }
+    });
+
+    return false;
+  });
+
+  $('#extra_attachments_files span.close').click(function() {
+    var $this = $(this);
+    $this.hide();
+
+    $this.closest('.file').find('img').attr('src', '/assets/image_processing_small.gif');
+
+    $.post($this.attr('rel'), {'_method': 'delete'}, function(data) {
+      $this.closest('.file').remove();
+    });
+  });
+});
+<% end %>

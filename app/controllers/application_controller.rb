@@ -14,8 +14,8 @@ protected
     end
   end
 
-  def set_locale
-    I18n.locale = :ru
+  def set_locale(locale)
+    I18n.locale = locale
   end
 
   def init_cart

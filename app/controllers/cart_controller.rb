@@ -25,7 +25,7 @@ class CartController < ApplicationController
     
     session_cart_recalculate(false)
     
-    redirect_to cart_path
+    redirect_to request.referrer
   end
 
   def remove_good

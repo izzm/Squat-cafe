@@ -64,12 +64,37 @@
     </ol>
   <% end %>
 
+  <%= f.inputs :similar_goods do %>
+    <ol class="variants_type_list">
+      <li rel="articul">
+        <label><%= Good.human_attribute_name(:articul) %></label>
+        
+        <ul id="similar_articul_list" class="variants_list sortable">
+          <% (@good.similar || []).each { |value| -%>
+          <%= render :partial => 'similar', 
+                     :locals => {
+                       :value => value
+                     } %>
+          <% } -%>
+        </ul>
+          
+        <div class="add_variant_link_wrapper"> 
+          <%= content_tag( :input, :type => :submit, :value => t('add'), :id => "add_similar_link", :class => "add_similar_link") {}%>
+        </div>
+      </li>
+    </ol>
+  <% end %>
+
+
   <%= f.buttons %>
 <% end %>
 
 <%= content_tag(:script, :id => 'new_parameter', :type => 'text/x-jquery-tmpl') { render :partial => 'parameter' } %>
-
 <%= content_tag(:script, :id => 'new_variant', :type => 'text/x-jquery-tmpl') { render :partial => 'variant' } %>
+<%= content_tag(:script, :id => 'new_similar', :type => 'text/x-jquery-tmpl') { render :partial => 'similar' } %>
+
+<%= render(:partial => 'admin/extra_attachments/list',
+           :locals => { :object => @good }) if !@good.new_record?  %>
 
 <%= render(:partial => 'admin/attachments/list',
            :locals => { :object => @good }) if !@good.new_record?  %>
@@ -112,6 +137,40 @@ $(function() {
 
     var $new = $.tmpl($('#new_variant'), 
       {"variant_type": $li.attr('rel')});
+    
+    $new.find('span.close').click(function() {
+      var $sortable = $(this).closest(".sortable");
+
+      $(this).parent().remove();
+      $sortable.sortable('refresh');
+    });
+  
+    $li.children('.sortable').append($new).sortable('refresh');
+    
+    return false;
+  });
+ 
+  $('.variants_list li > span.close').click(function() {
+    var $sortable = $(this).closest(".sortable");
+
+    $(this).parent().remove();
+    $sortable.sortable('refresh');
+  });
+  
+  $('.variants_list').sortable({
+    axis: 'y',
+    cursor: 'crosshair'
+  });
+  
+});
+<% end %>
+
+<%= javascript_tag do %>
+$(function() {
+  $('.add_similar_link').click(function() {
+    var $li = $(this).closest('li');
+
+    var $new = $.tmpl($('#new_similar'), {});
     
     $new.find('span.close').click(function() {
       var $sortable = $(this).closest(".sortable");

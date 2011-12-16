@@ -3,6 +3,7 @@ class Good < ActiveRecord::Base
 
   serialize :parameters
   serialize :variants
+  serialize :similar
 
   belongs_to :category
   has_and_belongs_to_many :virtual_categories, :class_name => 'Category'
@@ -10,6 +11,10 @@ class Good < ActiveRecord::Base
   has_many :attachments, 
            :as => :resource,
            :dependent => :destroy
+  has_many :extra_attachments, 
+           :as => :resource,
+           :dependent => :destroy
+
   has_many :order_goods,
            :dependent => :restrict
 

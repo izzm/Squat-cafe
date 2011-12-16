@@ -2,11 +2,12 @@ ru:
   activerecord:
     models:
       good: "Товары"
-    attribtes:
+    attributes:
       good:
         name: "Наименование"
         price: "Цена"
         visible: "Отображается"
+        articul: "Артикул"
 
   active_admin:
     filters:
@@ -24,6 +25,10 @@ ru:
         invisible: "Нет"
   
   formtastic:
+    titles:
+      params: "Доп. параметры"
+      order_variants: "Варианты заказа"
+      similar_goods: "Похожие товары"
     labels:
       good:
         name: "Название товара"

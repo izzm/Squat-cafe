@@ -177,7 +177,7 @@ textarea{
 	height:25px;
 	font-size:13px;
 	font-family:Georgia, "Times New Roman", Times, serif;
-	color:#333333;}
+	/*color:#333333;*/}
 p.checkbox_bl{
 	padding-top:7px;}
 p.checkbox_bl label{

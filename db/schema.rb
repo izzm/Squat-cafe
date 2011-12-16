@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111209210323) do
+ActiveRecord::Schema.define(:version => 20111216003236) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -156,6 +156,19 @@ ActiveRecord::Schema.define(:version => 20111209210323) do
   add_index "customers", ["email"], :name => "index_customers_on_email", :unique => true
   add_index "customers", ["reset_password_token"], :name => "index_customers_on_reset_password_token", :unique => true
 
+  create_table "extra_attachments", :force => true do |t|
+    t.integer  "resource_id",       :null => false
+    t.string   "resource_type",     :null => false
+    t.string   "name"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
   create_table "goods", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -168,6 +181,7 @@ ActiveRecord::Schema.define(:version => 20111209210323) do
     t.datetime "updated_at"
     t.string   "articul"
     t.text     "variants"
+    t.text     "similar"
   end
 
   add_index "goods", ["category_id"], :name => "index_goods_on_category_id"

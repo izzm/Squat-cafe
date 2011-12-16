@@ -1,0 +1,10 @@
+ru:
+  activerecord:
+    models:
+      extra_attachment: "Цвета и материалы"
+
+  active_admin:
+    actions:
+      extra_attachment:
+        add: "Загрузить"
+

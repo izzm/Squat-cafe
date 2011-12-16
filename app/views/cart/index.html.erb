@@ -4,6 +4,12 @@
       $('#cart_form').submit();
       return false;
     });
+
+    $("#order_address").keypress(function() {
+      $("#order_delivery_type_delivery").
+        attr('checked', 'checked').
+        prev().css('background-position', '0px -50px');
+    });
   });
 <% end %>
 
@@ -26,9 +32,9 @@
           <span class="title_prod">
             <%= link_to good.name, good_path(:path => good.category.url_path, :id => good.id) %><br>
             <span class="variant">
-              <% (session[:cart][good.id][:variant] || {}).each do |variant_type, variant| -%>
-                <nobr><%=t "good.variants.#{variant_type}" %>: <%= variant %>;</nobr>
-              <% end -%>
+              <%=raw (session[:cart][good.id][:variant] || {}).map{ |variant_type, variant|
+                content_tag :nobr, "#{t("good.variants.#{variant_type}")}: #{variant}"
+              }.join(", ") -%>
             </span>
           </span>
           <span class="articul_prod"><%= good.articul %></span>
