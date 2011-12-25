@@ -18,6 +18,7 @@ ru:
       attachment:
         name: "Название"
         link: "Ссылка"
+        main: "Сделать главной"
     actions:
       attachment:
         update: "Сохранить"

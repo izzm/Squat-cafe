@@ -99,3 +99,15 @@ li.ckeditor {
     padding-left: 20%;
   }
 }
+
+form.attachment {
+  .boolean {
+    position: relative;
+    float: right;
+  }
+
+  .attachment_submit {
+    position: relative;
+    float: left;
+  }
+}

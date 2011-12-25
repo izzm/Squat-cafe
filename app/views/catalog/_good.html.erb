@@ -1,6 +1,8 @@
 <% category = good.category -%>
 <li>
-  <% image_url = good.attachments.first.image.url(:preview) rescue nil -%>
+  <% attachment = good.attachments.main.first || 
+                  good.attachments.first -%>
+  <% image_url = attachment.image.url(:preview) rescue nil -%>
   <%= link_to image_tag(image_url || "site/similar.jpg", :alt => good.name), good_url(:path => category.url_path, :id => good.id) %><br />
   <%= link_to good.name, good_url(:path => category.url_path, :id => good.id) %><br />
   <% p = good.parameters[1] || good.parameters[0] -%>

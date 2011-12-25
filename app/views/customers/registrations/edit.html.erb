@@ -1,25 +1,55 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="registration">
+  <h2>Личные данные</h2>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => "yellow_form"}) do |f| %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+    <p>
+      <%= f.label :name, 'Имя, фамилия:' %>
+      <%= f.text_field :name, :class => "standart_inptxt" %>
+      <span class="error"><%= resource.errors[:name].first %></span>
+    </p>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+    <p>
+      <%= f.label :email, 'Email:' %>
+      <%= f.text_field :email, :class => "standart_inptxt" %>
+      <span class="error"><%= resource.errors[:email].first %></span>
+    </p>
+    
+    <p>
+      <%= f.label :phone, 'Телефон:' %>
+      <%= f.text_field :phone, :class => "standart_inptxt" %>
+      <span class="error"><%= resource.errors[:phone].first %></span>
+    </p>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password %></div>
+    <p>
+      <%= f.submit "Изменить", :class => "blue_inp_bg" %>
+    </p>
+    
+  <% end %>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+  <h2>Смена пароля</h2>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => "yellow_form"}) do |f| %>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+    <p>
+      <%= f.label :password, 'Пароль:' %>
+      <%= f.password_field :password, :class => "standart_inptxt" %>
+      <span class="error"><%= resource.errors[:password].first %></span>
+    </p>
+    
+    <p>
+      <%= f.label :password_confirmation, 'Пароль еще раз:' %>
+      <%= f.password_field :password_confirmation, :class => "standart_inptxt" %>
+    </p>
 
-  <div><%= f.submit "Update" %></div>
-<% end %>
+    <p>
+      <%= f.label :current_password, 'Текущий пароль:' %>
+      <%= f.password_field :current_password, :class => "standart_inptxt" %>
+      <span class="error"><%= resource.errors[:current_password].first %></span>
+    </p>
 
-<h3>Cancel my account</h3>
+    <p>
+      <%= f.submit "Изменить", :class => "blue_inp_bg" %>
+    </p>
+    
+  <% end %>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>
+</div>

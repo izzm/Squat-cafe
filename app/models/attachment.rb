@@ -2,6 +2,11 @@ class Attachment < ActiveRecord::Base
   belongs_to :resource, :polymorphic => true
   default_scope order('position ASC')
 
+  before_save :check_main
+
+  scope :main, where(:main => true).limit(1)
+  scope :additional, where(:main => [false, nil])
+
   acts_as_list :scope => [:resource_type, :resource_id]
 
   has_attached_file :image, {
@@ -25,5 +30,11 @@ class Attachment < ActiveRecord::Base
 protected
   def set_name
     self.name = self.image_file_name if self.name.nil?
+  end
+
+  def check_main
+    if self.main
+      self.resource.attachments.update_all(:main => false)
+    end
   end
 end

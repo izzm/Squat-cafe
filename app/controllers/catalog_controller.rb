@@ -2,12 +2,14 @@ class CatalogController < ApplicationController
   def category
     @perpage = params[:perpage].to_i > 0 ? params[:perpage].to_i : 20
     @page = params[:page].to_i > 0 ? params[:page].to_i : 1
-    @search = params[:search] || {:meta_sort => 'name.desc'}
+    search_p = params[:search] || {:meta_sort => 'name.desc'}
+    @search_param = (search_p[:meta_sort] || "name.desc").split('.').first
   
     @category = Category.find(params[:category_id])
-    @goods = @category.site_goods.visible.includes(:category).
-                  page(@page).per(@perpage)#.
-                  #search(@search)
+    @goods = @category.site_goods.#unscoped.
+                  visible.includes(:category).
+                  page(@page).per(@perpage)
+    @search = @goods.search(search_p)
     params.delete(:category_id)
   end
 

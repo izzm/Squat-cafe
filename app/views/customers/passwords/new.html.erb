@@ -1,11 +1,10 @@
 <div class="password_recovery">
   <h2>Восстановление пароля</h2>
   <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => "yellow_form" }) do |f| %>
-    <%= devise_error_messages! %>
-    
   	<p>
       <%= f.label :email, 'Email:' %>
       <%= f.text_field :email, :class => "standart_inptxt" %>
+      <span class="error"><%= resource.errors[:email].first %></span>
     </p>
 
     <p>

@@ -180,7 +180,7 @@ textarea{
 	height:25px;
 	font-size:13px;
 	font-family:Georgia, "Times New Roman", Times, serif;
-	color:#333333;}
+/*	color:#333333;*/}
 p.checkbox_bl{
 	padding-top:7px;}
 p.checkbox_bl label{
@@ -1346,3 +1346,31 @@ textarea.fd_txtarea{
 	margin-left:21px;
 	vertical-align:top;
 	margin-top:130px;}
+
+.field_with_errors {
+  display: inline;
+}
+
+.field_with_errors input {
+  border: 1px solid red;
+}
+
+form span.error {
+  padding-left: 3px;
+
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  color: red;
+}
+
+label.capthca {
+  position: relative;
+}
+span.capthca {
+  position: absolute;
+  display: block;
+  top: 45px;
+  left: 0px;
+}

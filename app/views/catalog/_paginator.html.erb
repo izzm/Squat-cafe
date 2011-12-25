@@ -13,18 +13,20 @@
   <%= paginate @goods %>
   
   <div class="sorting">
-    <form action="">
+    <form action="<%= category_path(:path => @category.url_path, :page => @page, :perpage => @perpage) %>">
       <label>Сортировать</label>
-      <select name="standard-dropdown">
-        <option value="1">По цене</option>
-        <option value="2">Item 2</option>
-        <option value="3">Item 3</option>
-        <option value="4">Item 4</option>
+      <select class="sort_type">
+        <option value="price">По цене</option>
+        <option value="name">По названию</option>
       </select>
       
+      <%= hidden_field_tag 'page', @page  %>
+      <%= hidden_field_tag 'perpage', @perpage  %>
+      <input type="hidden" name="search[meta_sort]" class="meta_sort_hidden">
+      
       <span class="sorting_arrows">
-        <a href="#"><%= image_tag "site/arrow_top.jpg" %></a><br />
-        <a href="#"><%= image_tag "site/arrow_bottom.jpg" %></a>
+        <%= link_to image_tag("site/arrow_top.jpg"), '#', :rel => 'desc', :class => 'sort_link' %><br />
+        <%= link_to image_tag("site/arrow_bottom.jpg"), '#', :rel => 'asc', :class => 'sort_link' %>
       </span>
     </form>
   </div>

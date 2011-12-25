@@ -4,8 +4,8 @@
     <% vc = Category.virtual.all -%>
     <div class="form_left">
       <p>
-        <%= f.label :virtual_categories_id_in, vc[0].name %>
-        <%= f.collection_select :virtual_categories_id_in, vc[0].children, :id, :name, {}, {:name => "search[virtual_categories_id_in][]"} %>
+        <%= f.label :vc0_id_eq, vc[0].name %>
+        <%= f.collection_select :vc0_id_eq, vc[0].children, :id, :name, :prompt => "Все" %>
       </p>
       <p>
         <%= f.label :price_gte, "Цена от" %>
@@ -19,8 +19,8 @@
     
     <div class="form_right">
       <p>
-        <%= f.label :virtual_categories_id_in, vc[1].name %>
-        <%= f.collection_select :virtual_categories_id_in, vc[1].children, :id, :name, {}, {:name => "search[virtual_categories_id_in][]"} %>
+        <%= f.label :vc1_id_eq, vc[1].name %>
+        <%= f.collection_select :vc1_id_eq, vc[1].children, :id, :name, :prompt => "Все" %>
       </p>
       <p>
         <%= f.label :name_contains, "Название" %>
@@ -43,7 +43,7 @@
 
 <% if !params[:search].nil? || !params[:single_search].nil? -%>
 <div class="objects_found">
-  Найдено объектов: <%= @search.count %>
+  Найдено объектов: <%= @goods.count %>
 </div>
 
 <div class="catalog">

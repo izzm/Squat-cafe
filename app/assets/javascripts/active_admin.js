@@ -84,6 +84,10 @@ $(function(){
           if(data.thumb != false) {
             $row.find('.image img').attr('src', data.thumb);
           }
+          if(data.main) {
+            $('.attachment_main_input').removeAttr('checked');
+            $('#attachment_'+data.id+'_main_input').attr('checked', 'checked');
+          }
         }
       });
   

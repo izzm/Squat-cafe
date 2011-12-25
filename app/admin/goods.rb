@@ -1,16 +1,18 @@
 ActiveAdmin.register Good do
   belongs_to :category
   filter :name, :label => I18n.t('active_admin.filters.good.name')
+  filter :articul
 
   form :partial => 'form'
   #scope :sorted, :default => true
 
   index do
-    column I18n.t('activerecord.attributes.good.name') do |good|
+    column :name do |good|
       link_to good.name, edit_admin_category_good_path(category, good)
     end
-    column I18n.t('activerecord.attributes.good.price'), :price, :sortable => false
-    column I18n.t('activerecord.attributes.good.visible') do |good|
+    column :articul, :sortable => false
+    column :price, :sortable => false
+    column :visible do |good|
       status_tag(I18n.t("active_admin.status_tags.good.#{good.status}"), good.visible? ? :ok : :error)
     end
 

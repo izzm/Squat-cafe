@@ -2,7 +2,8 @@
   <%= f.inputs do %>
     <%= f.input :name  %>
     <%= f.input :link, :hint => false %>
-    <li>
+    <%= f.input :main, :input_html => {:id => "attachment_#{attachment.id}_main_input", :class => "attachment_main_input"} %>
+    <li class="attachment_submit">
       <%= f.submit t('formtastic.actions.attachment.update') %>
     </li>
   <% end %>

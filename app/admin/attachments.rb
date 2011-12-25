@@ -10,7 +10,9 @@ ActiveAdmin.register Attachment do
         data = {
           :thumb => @attachment.image.url(:thumb),
           :info => render_to_string(:partial => 'preferences', :locals => {:attachment => @attachment}),
-          :destroy_link => render_to_string(:partial => 'destroy_link', :locals => {:attachment => @attachment})
+          :destroy_link => render_to_string(:partial => 'destroy_link', :locals => {:attachment => @attachment}),
+          :main => @attachment.main,
+          :id => @attachment.id
         }
 
         render :json => data, :status => 201
@@ -18,7 +20,9 @@ ActiveAdmin.register Attachment do
         data = {
           :thumb => false,
           :info => 'error',
-          :destroy_link => 'error'
+          :destroy_link => 'error',
+          :main => false,
+          :id => 0
         }
 
         render :json => data, :status => 500
@@ -32,7 +36,9 @@ ActiveAdmin.register Attachment do
         data = {
           :thumb => @attachment.image.url(:thumb),
           :info => render_to_string(:partial => 'preferences', :locals => {:attachment => @attachment}),
-          :destroy_link => render_to_string(:partial => 'destroy_link', :locals => {:attachment => @attachment})
+          :destroy_link => render_to_string(:partial => 'destroy_link', :locals => {:attachment => @attachment}),
+          :main => @attachment.main,
+          :id => @attachment.id
         }
 
         render :json => data, :status => 201
@@ -40,7 +46,9 @@ ActiveAdmin.register Attachment do
         data = {
           :thumb => false,
           :info => 'error',
-          :destroy_link => 'error'
+          :destroy_link => 'error',
+          :main => false,
+          :id => 0
         }
 
         render :json => data, :status => 500

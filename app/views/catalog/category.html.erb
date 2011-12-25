@@ -1,9 +1,27 @@
+<% content_for :page_javascript do %>
+  $(document).ready(function() {
+    $('.sort_link').click(function() {
+      var $this = $(this);
+      var $form = $this.closest('form');
+      var $select = $form.find('.sort_type');
+      var $hidden = $form.find('.meta_sort_hidden');
+
+      $hidden.val($select.val() + '.' + $this.attr('rel'));
+      $form.submit();
+      return false;
+    });
+
+    //$('.sort_type option[value=<%= @search_param %>]').attr('selected', 'selected');
+  });
+<% end %>
+
+
 <div class="catalog">
   <%=raw @category.description %>
   <%= render :partial => 'paginator', :locals => {:nobg => false} %>
 
   <ul class="list_product">
-    <%= render :partial => 'good', :locals => {:category => @category}, :collection => @goods %>
+    <%= render :partial => 'good', :locals => {:category => @category}, :collection => @search.all %>
   </ul>
 
   <%= render :partial => 'paginator', :locals => {:nobg => true} %>

@@ -25,7 +25,8 @@
 
 <div class="item_cart">
   <div class="product_photo">
-    <% attachment = @good.attachments.first -%>
+    <% attachment = @good.attachments.main.first ||
+                    @good.attachments.first -%>
     <%= link_to image_tag(attachment.image.url(:big)), attachment.image.url(:original), :class => 'cloud-zoom', :id => 'good_image_zoom', :rel => "adjustX: 10, adjustY:-4, softFocus:true" %>
     
     <ul>
@@ -52,12 +53,12 @@
     <span class="articul">Артикул <%= @good.articul || "не задан" %></span>
     
     <% p = @good.parameters.first -%>
-    <p><strong><%= p['name'] %>:</strong> <%= "#{p['unit']}: " if !p['unit'].blank? %><%= p['value'] %></p>
+    <p><strong><%= p['name'] %><%= " (#{p['unit']})" if !p['unit'].blank? %>:</strong> <%= p['value'] %></p>
     
     <span class="price_block"><%= number_to_currency(@good.price) %></span>
     
     <% @good.parameters[1 .. -1].each do |p| -%>
-      <p><strong><%= p['name'] %>:</strong> <%= "#{p['unit']}: " if !p['unit'].blank? %><%= p['value'] %></p>
+      <p><strong><%= p['name'] %><%= " (#{p['unit']})" if !p['unit'].blank? %>:</strong> <%= p['value'] %></p>
     <% end -%>
     
     <%=raw @good.description %>

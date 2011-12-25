@@ -21,6 +21,7 @@ end
 gem 'jquery-rails'
 gem 'activeadmin'
 gem 'meta_search',    '>= 1.1.0.pre'
+#gem 'devise', '1.5.1'
 gem 'meta-tags', :require => 'meta_tags'
 gem 'kaminari'
 

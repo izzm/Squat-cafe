@@ -1,7 +1,6 @@
 <div class="login_memberarea">
   <h2>Вход в личный кабинет</h2>
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "yellow_form"}) do |f| %>
-    <%= devise_error_messages! %>
   
     <p>
       <%= f.label :email, 'Email:' %>

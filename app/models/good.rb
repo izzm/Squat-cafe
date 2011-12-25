@@ -18,14 +18,23 @@ class Good < ActiveRecord::Base
   has_many :order_goods,
            :dependent => :restrict
 
-  default_scope order('position ASC')
+  #default_scope order('position ASC')
   scope :visible, where(:visible => true)
   scope :random, lambda { |cnt|
     order('random()').limit(cnt)
   }
   scope :not, lambda { |id|
     where(['id <> ?', id])
-  }         
+  }
+  scope :vc0_id_eq, lambda { |id|
+    joins(:virtual_categories).where(['categories_goods.category_id = ?', id])
+  }
+  scope :vc1_id_eq, lambda { |id|
+    joins(:virtual_categories).where(['categories_goods.category_id = ?', id])
+  }
+  search_methods :vc0_id_eq
+  search_methods :vc1_id_eq
+
   
   validates :name, :presence => true, 
                    :length => { :maximum => 255 }

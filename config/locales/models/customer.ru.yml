@@ -14,7 +14,25 @@ ru:
         total_orders: "Всего заказов"
         total_value: "Общая стоимость"
         corporate: "Корпоративный клиент"
+    errors:
+      models:
+        customer:
+          attributes:
+            name: 
+              blank: "Поле обязательно для заполнения"
+            email:
+              blank: "Поле обязательно для заполнения"
+              invalid: "Введите Email в формате user@example.com"
+              not_found: "Пользователь не найден"
+            password:
+              blank: "Введите пароль"
+              confirmation: "Введённые пароли не совпадают"
+              too_short: "Длина пароля - минимум 6 символов"
   
+  simple_captcha:
+    message:
+      customer: "Неверно указан код"
+    
   active_admin:
     filters:
       customer:

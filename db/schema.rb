@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111216003236) do
+ActiveRecord::Schema.define(:version => 20111221104526) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(:version => 20111216003236) do
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "attachments", :force => true do |t|
-    t.integer  "resource_id",        :null => false
-    t.string   "resource_type",      :null => false
+    t.integer  "resource_id",                           :null => false
+    t.string   "resource_type",                         :null => false
     t.string   "name"
     t.string   "link"
     t.integer  "position"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20111216003236) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "image_fingerprint"
+    t.boolean  "main",               :default => false
   end
 
   create_table "categories", :force => true do |t|
@@ -216,6 +217,15 @@ ActiveRecord::Schema.define(:version => 20111216003236) do
 
   add_index "orders", ["checked_out_at"], :name => "index_orders_on_checked_out_at"
   add_index "orders", ["customer_id"], :name => "index_orders_on_customer_id"
+
+  create_table "simple_captcha_data", :force => true do |t|
+    t.string   "key",        :limit => 40
+    t.string   "value",      :limit => 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "simple_captcha_data", ["key"], :name => "idx_key"
 
   create_table "static_pages", :force => true do |t|
     t.string   "title"

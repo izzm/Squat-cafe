@@ -12,6 +12,9 @@ ru:
   add: Добавить
   choose: Выбрать
 
+  simple_captcha:
+    label: ""
+
   good:
     variants:
       color: "Цвет"
