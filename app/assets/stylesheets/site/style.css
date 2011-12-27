@@ -1365,6 +1365,16 @@ form span.error {
   color: red;
 }
 
+form span.notice {
+  padding-left: 3px;
+
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+}
+
+
 label.capthca {
   position: relative;
 }
@@ -1373,4 +1383,8 @@ span.capthca {
   display: block;
   top: 45px;
   left: 0px;
+}
+
+#login_message p {
+  margin: 20px;
 }

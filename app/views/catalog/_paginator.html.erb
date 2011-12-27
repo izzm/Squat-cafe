@@ -16,8 +16,8 @@
     <form action="<%= category_path(:path => @category.url_path, :page => @page, :perpage => @perpage) %>">
       <label>Сортировать</label>
       <select class="sort_type">
-        <option value="price">По цене</option>
-        <option value="name">По названию</option>
+        <option value="price"<%= ' selected' if @search_param == 'price' %>>По цене</option>
+        <option value="name"<%= ' selected' if @search_param == 'name' %>>По названию</option>
       </select>
       
       <%= hidden_field_tag 'page', @page  %>

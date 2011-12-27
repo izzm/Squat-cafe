@@ -26,3 +26,14 @@ ru:
       complete: "Выполенен"
       in_progress: "В процессе"
       canceled: "Отменён"
+
+  customer_email:
+    subject: Интернет-магазин Oltis-Lux.com
+    not_email_present:
+    delivery_success:
+      callback: Спасибо за Ваше сообщение. Мы перезвоним Вам в ближайшее время
+      email: Спасибо за Ваше сообщение. Вы получите ответ в ближашее время
+    delivery_error: Ошибка при отправке. Попробуйте позднее
+
+  admin_email:
+    subject: Сообщение обратной связи

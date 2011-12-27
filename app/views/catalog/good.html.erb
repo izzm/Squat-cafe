@@ -10,8 +10,30 @@
     $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
 
     $('#mycarousel a').lightBox();
+
+    <% if current_customer.nil? -%>
+    $('.add_wish').click(function() {
+      $.blockUI({ message: $('#login_message'), baseZ: 11000, css: {cursor: 'arrow'} });
+      $('.blockOverlay').attr('title','Click to unblock').click($.unblockUI);
+      return false;
+    });
+    $('.close_link').click(function() {
+      $.unblockUI();
+      return false;
+    });
+    <% end -%>
   });
 <% end %>
+
+<div id="login_message" style="display:none;">
+<p>
+  Для просмотра избранных квартир, вам необходимо<br>
+<%= link_to 'зарегистрироваться', new_customer_registration_path  %> или <%= link_to 'авторизоваться', new_customer_session_path %>
+</p>
+<p>
+  Вы можете <%= link_to "сделать это позже", "#", :class => "close_link" %>
+</p>
+</div>
 
 <div class="navigator">
   <ul>

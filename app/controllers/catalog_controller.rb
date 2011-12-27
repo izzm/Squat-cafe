@@ -2,6 +2,7 @@ class CatalogController < ApplicationController
   def category
     @perpage = params[:perpage].to_i > 0 ? params[:perpage].to_i : 20
     @page = params[:page].to_i > 0 ? params[:page].to_i : 1
+    @cat_filter = params[:cat_filter].to_i
     search_p = params[:search] || {:meta_sort => 'name.desc'}
     @search_param = (search_p[:meta_sort] || "name.desc").split('.').first
   
@@ -9,6 +10,7 @@ class CatalogController < ApplicationController
     @goods = @category.site_goods.#unscoped.
                   visible.includes(:category).
                   page(@page).per(@perpage)
+    @goods = @goods.where('category_id' => @cat_filter) if @cat_filter > 0
     @search = @goods.search(search_p)
     params.delete(:category_id)
   end
@@ -30,7 +32,7 @@ class CatalogController < ApplicationController
       session[:compare] << @good.id
     end
     
-    redirect_to catalog_compare_path
+    redirect_to request.referrer#catalog_compare_path
   end
 
   def remove_from_compare

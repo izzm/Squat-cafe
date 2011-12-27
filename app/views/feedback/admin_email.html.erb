@@ -1,0 +1,7 @@
+Пришло сообщение обратной связи магазина <%= link_to "Oltis-lux.com", root_url %>.<br>
+<br>
+Имя: <%= @data[:name] %><br>
+Телефон: <%= @data[:phone] %> <%= "(просьба перезвонить)" if @data[:callback] %><br>
+Email: <%= @data[:email] %><br>
+<br>
+Сообщение: <%= @data[:message] %>

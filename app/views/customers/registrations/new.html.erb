@@ -18,6 +18,7 @@
       <%= f.label :password, 'Пароль:' %>
       <%= f.password_field :password, :class => "standart_inptxt" %>
       <span class="error"><%= resource.errors[:password].first %></span>
+      <%=raw "<span class=\"notice\">Минимум 6 символов</span>" if resource.errors[:password].empty? %>
     </p>
     
     <p>

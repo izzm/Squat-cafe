@@ -56,14 +56,14 @@
         </p>
           <div class="feedback_block">
           	<h2><span>Форма быстрой связи</span><a href="#" class="close_fb"></a></h2>
-              <form action="">
-              	<p><input type="text" name="" value="Ваше имя" class="fb_inp inp_gray" onclick="if(this.value=='Ваше имя'){this.value='';}" onblur="if(this.value==''){this.value='Ваше имя';setcolor(this, '#afafaf')}" onkeydown="setcolor(this,'#000')"/></p>
-                  <p><input type="text" name="" value="Телефон  (+7 (xxx) xxx-xx-xx)" class="fb_inp inp_gray" onclick="if(this.value=='Телефон  (+7 (xxx) xxx-xx-xx)'){this.value='';}" onblur="if(this.value==''){this.value='Телефон  (+7 (xxx) xxx-xx-xx)';setcolor(this, '#afafaf')}" onkeydown="setcolor(this,'#000')"/></p>
-                  <p class="checkbox_bl"><input type="checkbox" id="check1" name="a" class="styled" /><label for="check1">Перезвоните мне</label></p>
-                  <p><input type="text" name="" value="E-mail (example@company.ru)" class="fb_inp inp_gray" onclick="if(this.value=='E-mail (example@company.ru)'){this.value='';}" onblur="if(this.value==''){this.value='E-mail (example@company.ru)';setcolor(this, '#afafaf')}" onkeydown="setcolor(this,'#000')"/></p>
-                  <p class="txtarea_bl"><label>Сообщение: </label><br /><textarea rows="" cols="" class=""></textarea></p>
+              <%= form_tag feedback_url, :method => :post do %>
+              	<p><input type="text" name="feedback[name]" value="Ваше имя" class="fb_inp inp_gray" onclick="if(this.value=='Ваше имя'){this.value='';}" onblur="if(this.value==''){this.value='Ваше имя';setcolor(this, '#afafaf')}" onkeydown="setcolor(this,'#000')"/></p>
+                  <p><input type="text" name="feedback[phone]" value="Телефон  (+7 (xxx) xxx-xx-xx)" class="fb_inp inp_gray" onclick="if(this.value=='Телефон  (+7 (xxx) xxx-xx-xx)'){this.value='';}" onblur="if(this.value==''){this.value='Телефон  (+7 (xxx) xxx-xx-xx)';setcolor(this, '#afafaf')}" onkeydown="setcolor(this,'#000')"/></p>
+                  <p class="checkbox_bl"><input type="checkbox" id="check1" name="feedback[callback]" class="styled" /><label for="check1">Перезвоните мне</label></p>
+                  <p><input type="text" name="feedback[email]" value="E-mail (example@company.ru)" class="fb_inp inp_gray" onclick="if(this.value=='E-mail (example@company.ru)'){this.value='';}" onblur="if(this.value==''){this.value='E-mail (example@company.ru)';setcolor(this, '#afafaf')}" onkeydown="setcolor(this,'#000')"/></p>
+                  <p class="txtarea_bl"><label>Сообщение: </label><br /><textarea rows="" cols="" class="" name="feedback[message]"></textarea></p>
                   <p class="fd_btn"><input type="submit" value="Отправить" class="blue_inp_bg" /></p>
-              </form>
+              <% end %>
           </div>
       </div><!--end_contacts-->
       
@@ -113,10 +113,16 @@
                   <%= link_to category.name, category_path(category.url_path) %>
                   <% if is_current -%>
                     <ul>
-                      <% category.children.visible.sorted.each do |sub_category| -%>
-                        <% is_current_s = (sub_category == anc[2]) -%>
+                      <% category_list = root_category.virtual ? 
+                            Category.find_all_by_id(category.virtual_goods.visible.group('goods.category_id').select('goods.category_id')) : 
+                            category.children.visible.sorted -%>
+                      <% category_list.each do |sub_category| -%>
+                        <% is_current_s = root_category.virtual ? 
+                              (sub_category.id == params[:cat_filter].to_i) : 
+                              (sub_category == anc[2]) -%>
                         <%= content_tag 'li' do %>
-                          <%= link_to sub_category.name, category_path(sub_category.url_path), :class => (is_current_s ? 'active_sub' : nil) %>
+                          <% url = root_category.virtual ? category_path(category.url_path, :cat_filter => sub_category.id) : category_path(sub_category.url_path) -%>
+                          <%= link_to sub_category.name, url, :class => (is_current_s ? 'active_sub' : nil) %>
                         <% end %>
                       <% end -%>
                     </ul>

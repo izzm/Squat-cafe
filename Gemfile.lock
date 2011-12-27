@@ -13,9 +13,9 @@ GIT
 
 GIT
   remote: git://github.com/izzm/simple-captcha.git
-  revision: 4669ee31ca3c4a266858c367acac60cdb5cba572
+  revision: afc9ed17129706b01f426dde8855a320fac7dd4b
   specs:
-    simple_captcha (0.1.5)
+    simple_captcha (0.1.6)
 
 GEM
   remote: http://rubygems.org/
@@ -179,7 +179,7 @@ GEM
     turn (0.8.2)
       ansi (>= 1.2.2)
     tzinfo (0.3.31)
-    uglifier (1.2.0)
+    uglifier (1.2.1)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
     warden (1.1.0)

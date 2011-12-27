@@ -8,6 +8,9 @@ RailsShop::Application.routes.draw do
   
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :customers
+  match '/customers/edit', 
+    :controller =>'Devise::RegistrationsController', 
+    :action => 'edit', :as => 'customer_root'
   
   scope '/wishlist', :controller => :wishlist do
     get   '', :action => :index,    :as => 'wishlist'
@@ -40,8 +43,10 @@ RailsShop::Application.routes.draw do
   end
 
   scope :controller => :site do
+    post '/feedback', :action => 'feedback', :as => 'feedback'
+
     # Constraint class in lib/StaticPageConstraint.rb
-    get '/page/*path', :action => :static_page,:as => 'static_page', :constraints => StaticPageConstraint
+    get '/page/*path', :action => :static_page, :as => 'static_page', :constraints => StaticPageConstraint
   end
   
   root :to => 'site#index'

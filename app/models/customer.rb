@@ -3,7 +3,7 @@ class Customer < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-  apply_simple_captcha :always_check => true
+  apply_simple_captcha :always_check => true, :on => [:create]
   validates :name, :presence => true
 
   # Setup accessible (or protected) attributes for your model
@@ -24,5 +24,14 @@ class Customer < ActiveRecord::Base
 
   def name_with_email
     "#{self.name} (#{self.email})"
+  end
+
+  def update_with_password(params={})
+    if params[:password].nil?
+      params.delete(:current_password)
+      self.update_without_password(params)
+    else
+      super params
+    end
   end
 end

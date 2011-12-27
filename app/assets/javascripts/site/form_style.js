@@ -123,3 +123,10 @@ var Custom = {
 	}
 }
 window.onload = Custom.init;
+
+
+function setcolor(elem,color) {
+ if(elem != null){
+   elem.style.color = color;
+	}
+}
