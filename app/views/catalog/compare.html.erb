@@ -1,13 +1,15 @@
 <div class="compare_item">
-  <h2>Сравнение товаров</h2>
+<h2>Сравнение товаров</h2>
+<% @categories.each do |name, goods| -%>
+  <h2><%= name %></h2>
   <% low = 0 -%>
-  <% high = [3, @goods.size].min -%>
-  <% while low < @goods.size -%>
+  <% high = [3, goods.size].min -%>
+  <% while low < goods.size -%>
     <ul class="compare_list">
       <!--<li><h4>Диваны</h4></li>-->
       <li>
         <span class="title_compare">&nbsp;</span>
-        <% @goods[low...high].each do |good| -%>
+        <% goods[low...high].each do |good| -%>
           <div class="items first_item">
             <% category = good.category -%>
             <% image_url = good.attachments.first.image.url(:compare) rescue nil -%>
@@ -20,15 +22,15 @@
       
       <li class="yellow_row">
         <span class="title_compare">Стиль</span>
-        <% @goods[low...high].each do |good| -%>
+        <% goods[low...high].each do |good| -%>
           <span class="items"><%= good.virtual_categories.first.try(:name) %></span>
         <% end -%>
       </li>
 
-      <% @goods[low].parameters.each do |p| -%>
+      <% goods[low].parameters.each do |p| -%>
       <li>
         <span class="title_compare"><%= p['name'] %><%=raw "<br>#{p['unit']}" if !p['unit'].blank? %></span>
-        <% @goods[low...high].each do |good| -%>
+        <% goods[low...high].each do |good| -%>
           <span class="items"><%= p['value'] %></span>
         <% end -%>
       </li>
@@ -36,14 +38,14 @@
 
       <li>
         <span class="title_compare">Цена</span>
-        <% @goods[low...high].each do |good| -%>
+        <% goods[low...high].each do |good| -%>
           <span class="items price"><%= number_to_currency(good.price) %></span>
         <% end -%>
       </li>
       <% if false -%>
       <li>
         <span class="title_compare">&nbsp;</span>
-        <% @goods[low...high].each do |good| -%>
+        <% goods[low...high].each do |good| -%>
           <span class="items price">
             <%= link_to content_tag(:span, 'Добавить к заказу'), "#", :class => 'blue_button' %>
           </span>
@@ -52,6 +54,7 @@
       <% end -%>
     </ul>
     <% low += 3 -%>
-    <% high = [high + 3, @goods.size].min -%>
+    <% high = [high + 3, goods.size].min -%>
   <% end -%>
+<% end-%>
 </div><!--end_compare_item-->

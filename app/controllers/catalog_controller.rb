@@ -21,15 +21,24 @@ class CatalogController < ApplicationController
   end
 
   def compare
-    @goods = Good.find(session[:compare], :include => :category)
+    @categories = {}
+
+    session[:compare].each { |category_id, good_ids|
+      name = Category.find_by_id(category_id).try(:name) || 'not'
+      @categories[name] = Good.find(good_ids, :include => :category)
+    }
   end
 
   def add_to_compare
     @good = Good.visible.find(params[:good_id])
     
-    if @good && @good.category.visible &&
-       !session[:compare].include?(@good.id)
-      session[:compare] << @good.id
+    if @good && @good.category.visible
+      @category = @good.category.self_and_ancestors[1]
+      session[:compare][@category.id] ||= []
+
+      if @category && !session[:compare][@category.id].include?(@good.id)
+        session[:compare][@category.id] << @good.id
+      end
     end
     
     redirect_to request.referrer#catalog_compare_path
@@ -37,7 +46,16 @@ class CatalogController < ApplicationController
 
   def remove_from_compare
     good_id = params[:good_id].to_i
-    session[:compare].delete(good_id)
+    
+    @good = Good.find(good_id)
+    if @good
+      @category = @good.category.self_and_ancestors[1]
+      session[:compare][@category.id] ||= []
+
+      if @category
+        session[:compare][@category.id].delete(good_id)
+      end
+    end
     
     redirect_to catalog_compare_path
   end
