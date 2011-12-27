@@ -82,7 +82,7 @@
     <% @good.parameters[1 .. -1].each do |p| -%>
       <p>
         <% if p['name'] == 'Размеры' -%>
-          <strong><%= p['name'] %> (мм)</strong><br>
+          <strong><%= p['name'] %> (мм):</strong><br>
           <% sizes = p['value'].split('*') -%>
           <strong>Ширина</strong>: <%= sizes[0] %>&nbsp;
           <strong>Глубина</strong>: <%= sizes[1] %>&nbsp;
