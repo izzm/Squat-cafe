@@ -25,6 +25,6 @@ protected
   end
   
   def init_compare
-    session[:compare] ||= []
+    session[:compare] ||= {}
   end
 end

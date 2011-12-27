@@ -23,9 +23,11 @@ class CatalogController < ApplicationController
   def compare
     @categories = {}
 
+    ActiveRecord::Base.logger.info session[:compare].to_yaml
+
     session[:compare].each { |category_id, good_ids|
       name = Category.find_by_id(category_id).try(:name) || 'not'
-      @categories[name] = Good.find(good_ids, :include => :category)
+      @categories[name] = Good.find_all_by_id(good_ids, :include => :category)
     }
   end
 

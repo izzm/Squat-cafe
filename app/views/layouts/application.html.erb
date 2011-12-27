@@ -24,7 +24,7 @@
     <% if current_customer.nil? -%>
       <li class="name_person"><%= image_tag "site/flower.png" %></li>
       <li class="first"><%= link_to "Вход в личный кабинет", new_customer_session_path %></li>
-      <%= content_tag :li, link_to("Cравнение: #{session[:compare].size}", catalog_compare_path) if !session[:compare].empty? %>
+      <%= content_tag :li, link_to("Cравнение: #{session[:compare].values.flatten.size}", catalog_compare_path) if !session[:compare].empty? %>
     <% else -%>
       <li class="name_person"><%= image_tag "site/flower.png" %><%= current_customer.name %></li>
       <li class="first"><%= link_to "Личный кабинет", edit_customer_registration_path %></li>
