@@ -23,7 +23,21 @@ ActiveAdmin.register Category do
 
     render :action => 'blank' if @categories.blank?
   end
-  
+ 
+  member_action :move_higher, :method => :put do
+    category = Category.find(params[:id])
+    category.move_higher
+    
+    redirect_to index_tree_admin_categories_path
+  end
+
+  member_action :move_lower, :method => :put do
+    category = Category.find(params[:id])
+    category.move_lower
+    
+    redirect_to index_tree_admin_categories_path
+  end
+ 
   sidebar I18n.t('active_admin.titles.category.tree'),  
           :only => [:edit]  do |page|
     render :partial => 'category_tree',

@@ -3,6 +3,12 @@ ru:
     models:
       extra_attachment: "Цвета и материалы"
 
+  helpers:
+    submit:
+      extra_attachment:
+        create: "Сохранить"
+        update: "Сохранить"
+
   active_admin:
     actions:
       extra_attachment:

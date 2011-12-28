@@ -1,9 +1,18 @@
 <div class="file ui-state-default" <%= 'id=file_tmp_${id}' if attachment.nil? %>>
-  <% if attachment.nil? -%>
-    <%= image_tag "image_processing_small.gif" %>
-  <% else -%>
-    <%= image_tag attachment.file.url(:color) %>
-  <% end -%>
+
+  <%= form_for [:admin, (attachment || ExtraAttachment.new)] do |f| %>
+    <% if attachment.nil? -%>
+      <%= image_tag "image_processing_small.gif" %>
+    <% else -%>
+      <%= image_tag attachment.file.url(:color) %>
+    <% end -%>
+    
+    <%= f.text_field :name, 
+            :class => 'name', 
+            :style => (attachment.nil? ? 'display: none;' : '') %>
+    <%= f.submit :class => 'submit',
+            :style => (attachment.nil? ? 'display: none;' : '') %>
+  <% end  %>
 
   <%= content_tag(:span, "", :rel => url_for(admin_extra_attachment_path(attachment.try(:id) || '${id}')), :class => 'ui-icon ui-icon-close close') if show_delete %>
 </div>

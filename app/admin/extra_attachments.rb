@@ -10,7 +10,8 @@ ActiveAdmin.register ExtraAttachment do
         data = {
           :url => @attachment.file.url(:color),
           :id => @attachment.id,
-          :destroy_url => admin_extra_attachment_path(@attachment.id)
+          :destroy_url => admin_extra_attachment_path(@attachment.id),
+          :update_url => admin_extra_attachment_path(@attachment.id)
         }
 
         render :json => data, :status => 201
@@ -21,6 +22,29 @@ ActiveAdmin.register ExtraAttachment do
         }
 
         render :json => data, :status => 500
+      end
+    end
+
+    def update
+      @attachment = ExtraAttachment.find(params[:id])
+
+      if @attachment.update_attributes(params[:extra_attachment])
+        data = {
+          :url => @attachment.file.url(:color),
+          :id => @attachment.id,
+          :destroy_url => admin_extra_attachment_path(@attachment.id),
+          :update_url => admin_extra_attachment_path(@attachment.id)
+        }
+
+        render :json => data, :status => 201
+      else
+        data = {
+          :url => false,
+          :id => false
+        }
+
+        render :json => data, :status => 500
+
       end
     end
 

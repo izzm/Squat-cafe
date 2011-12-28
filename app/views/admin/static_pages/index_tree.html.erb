@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th><%= StaticPage.human_attribute_name(:title) %></th>
+      <th></th>
       <th><%= StaticPage.human_attribute_name(:link) %></th>
       <th><%= StaticPage.human_attribute_name(:visible) %></th>
       <th></th>
@@ -14,8 +15,21 @@
                        :sort => lambda{|x| x.position} do |page, child| %>
     <tr class="<%= (odd = !odd) ? 'odd' : 'even' %>" id="static_page_#{page_id}">
       <td>
-        <%=raw ('|'+('&nbsp'*5)) * (page.depth || 0) %>|-
+        <%=raw (('&nbsp'*8)) * (page.depth || 0) %>|-
         <%= link_to page.title, edit_admin_static_page_path(page) %>
+      </td>
+      <td>
+        <%=raw (('&nbsp'*10)) * (page.depth || 0) %>
+        <%= page.first? ? 
+              image_tag('arrow_up_notactive.png') :  
+              link_to(image_tag('arrow_up.png'), 
+                move_higher_admin_static_page_path(page), 
+                :method => :put) %>
+        <%= page.last? ?
+              image_tag('arrow_down_notactive.png') :
+              link_to(image_tag('arrow_down.png'), 
+                move_lower_admin_static_page_path(page), 
+                :method => :put) %>
       </td>
       <td><%= page.url_path %></td>
       <td>

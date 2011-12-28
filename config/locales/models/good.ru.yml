@@ -31,6 +31,7 @@ ru:
       similar_goods: "Похожие товары"
     labels:
       good:
+        category: "Категория"
         name: "Название товара"
         description: "Описание товара"
         articul: "Артикул"

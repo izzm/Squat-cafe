@@ -62,7 +62,7 @@
       <ul id="mycarousel" class="jcarousel-skin-tango">
         <% @good.extra_attachments.each do |attachment| -%>
           <li>
-            <%= link_to image_tag(attachment.file.url(:color)), attachment.file.url(:original) %>
+            <%= link_to image_tag(attachment.file.url(:color)), attachment.file.url(:original), :title => attachment.name %>
           </li>
         <% end -%>
       </ul>
@@ -112,7 +112,7 @@
   <div class="clear"></div>
 </div><!--end_item_cart-->
 
-<% similar = Good.visible.find_all_by_articul( (@good.similar || []).delete_if { |o| o.strip.empty? } ) -%>
+<% similar = Good.visible.includes(:category).find_all_by_articul( (@good.similar || []).delete_if { |o| o.strip.empty? } ) -%>
 <% if similar.count > 0 -%>
 <div class="similar_items">
   <h2>Похожие изделия</h2>
@@ -122,8 +122,8 @@
       <li>
         <% image_url = good.attachments.first.image.url(:preview) rescue nil -%>
         <%= link_to image_tag(image_url || "site/similar.jpg", :alt => good.name), 
-                               good_url(:path => @category.url_path, :id => good.id) %><br />
-        <%= link_to good.name, good_url(:path => @category.url_path, :id => good.id) %><br />
+                               good_url(:path => good.category.url_path, :id => good.id) %><br />
+        <%= link_to good.name, good_url(:path => good.category.url_path, :id => good.id) %><br />
         <% p = good.parameters[1] || good.parameters[0] -%>
         <%= p['name'] %>, <%= p['unit'] %>: <%= p['value'] %>
         <span class="price"><%= number_to_currency(good.price) %></span>

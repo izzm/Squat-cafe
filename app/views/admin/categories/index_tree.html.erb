@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th><%= t('activerecord.attributes.category.title') %></th>
+      <th></th>
       <th><%= t('activerecord.attributes.category.goods') %></th>
       <th><%= t('activerecord.attributes.category.link') %></th>
       <th><%= t('activerecord.attributes.category.visible') %></th>
@@ -15,8 +16,21 @@
                        :sort => lambda{|x| x.position} do |cat, child| %>
     <tr class="<%= (odd = !odd) ? 'odd' : 'even' %>" id="category_#{cat.id}">
       <td>
-        <%=raw ('|'+('&nbsp'*5)) * (cat.depth || 0) %>|-
+        <%=raw (('&nbsp'*8)) * (cat.depth || 0) %>|-
         <%= link_to cat.name, edit_admin_category_path(cat) %>
+      </td>
+      <td>
+        <%=raw (('&nbsp'*10)) * (cat.depth || 0) %>
+        <%= cat.first? ? 
+              image_tag('arrow_up_notactive.png') :  
+              link_to(image_tag('arrow_up.png'), 
+                move_higher_admin_category_path(cat),
+                :method => :put) %>
+        <%= cat.last? ?
+              image_tag('arrow_down_notactive.png') :
+              link_to(image_tag('arrow_down.png'), 
+                move_lower_admin_category_path(cat),
+                :method => :put) %>
       </td>
       <td>
         <%= link_to t('active_admin.actions.category.show', :count => cat.goods.count), admin_category_goods_path(cat) if cat.can_have_goods?  %>

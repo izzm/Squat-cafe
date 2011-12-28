@@ -16,4 +16,5 @@
 
 # Ignore uploads
 /public/system
+/public/files
 /public/ckeditor_assets

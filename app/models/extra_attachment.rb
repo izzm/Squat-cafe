@@ -12,7 +12,7 @@ class ExtraAttachment < ActiveRecord::Base
 
   validates_attachment_presence :file
 
-  before_save :set_name
+#  before_save :set_name
 
 protected
   def set_name

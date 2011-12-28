@@ -77,9 +77,35 @@ $(function() {
         $form.find('input[type="submit"]').removeAttr('disabled');
         if(data.id != false) {
           var $file = $images.find('#file_tmp_'+tmp_id)
+          var $eform = $file.children('form');
 
           $file.children('.close').attr('rel', data.destroy_url).show(); 
-          $file.children('img').attr('src', data.url);
+          $eform.children('img').attr('src', data.url);
+          $eform.children('.name, .submit').show();
+          $eform.attr('action', data.update_url); 
+
+          $eform.find('input.name').change(function() {
+            $(this).closest('form').submit();
+          });
+
+          $eform.submit(function() {
+            var $form = $(this);
+
+            $form.ajaxSubmit({
+              dataType: 'json',
+              data: {
+                _method: 'put'
+              },
+              beforeSubmit: function() {
+                $form.find('img').attr('src', '/assets/image_processing_small.gif');
+              },
+              success: function(data) {
+                $form.find('img').attr('src', data.url)
+              }
+            });
+
+            return false; 
+          });
         }
       }
     });
@@ -96,6 +122,29 @@ $(function() {
     $.post($this.attr('rel'), {'_method': 'delete'}, function(data) {
       $this.closest('.file').remove();
     });
+  });
+
+  $('#extra_attachments_files input.name').change(function() {
+    $(this).closest('form').submit();
+  });
+
+  $('#extra_attachments_files form').submit(function() {
+    var $form = $(this);
+
+    $form.ajaxSubmit({
+      dataType: 'json',
+      data: {
+        _method: 'put'
+      },
+      beforeSubmit: function() {
+        $form.find('img').attr('src', '/assets/image_processing_small.gif');
+      },
+      success: function(data) {
+        $form.find('img').attr('src', data.url)
+      }
+    });
+
+    return false; 
   });
 });
 <% end %>

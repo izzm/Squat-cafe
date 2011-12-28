@@ -26,6 +26,21 @@ ActiveAdmin.register StaticPage do
 
     render :action => 'blank' if @static_pages.blank?
   end
+
+  member_action :move_higher, :method => :put do
+    static_page = StaticPage.find(params[:id])
+    static_page.move_higher
+    
+    redirect_to index_tree_admin_static_pages_path
+  end
+
+  member_action :move_lower, :method => :put do
+    static_page = StaticPage.find(params[:id])
+    static_page.move_lower
+    
+    redirect_to index_tree_admin_static_pages_path
+  end
+
   
   sidebar I18n.t('active_admin.titles.static_page.tree'), :only => [:edit]  do |page|
     render :partial => 'page_tree',

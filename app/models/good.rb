@@ -41,6 +41,7 @@ class Good < ActiveRecord::Base
   search_methods :vc1_id_eq
 
   
+  validates :category, :presence => true
   validates :name, :presence => true, 
                    :length => { :maximum => 255 }
   validates :price, :presence => true,
@@ -77,6 +78,10 @@ class Good < ActiveRecord::Base
 
   def status
     self.visible ? VISIBLE : INVISIBLE
+  end
+
+  def move_possible?(category)
+    !category.virtual
   end
 
 end
