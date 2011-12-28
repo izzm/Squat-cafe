@@ -5,12 +5,20 @@ class CatalogController < ApplicationController
     @cat_filter = params[:cat_filter].to_i
     search_p = params[:search] || {:meta_sort => 'name.desc'}
     @search_param = (search_p[:meta_sort] || "name.desc").split('.').first
-  
+
     @category = Category.find(params[:category_id])
-    @goods = @category.site_goods.#unscoped.
-                  visible.includes(:category).
-                  page(@page).per(@perpage)
-    @goods = @goods.where('category_id' => @cat_filter) if @cat_filter > 0
+    if @cat_filter > 0
+      @filter_category = Category.find(@cat_filter)
+      @goods = @filter_category.site_goods.
+                visible.includes(:category).
+                page(@page).per(@perpage).
+                has_virtual_category(@category)
+    else
+      @goods = @category.site_goods.#unscoped.
+                    visible.includes(:category).
+                    page(@page).per(@perpage)
+    end
+    
     @search = @goods.search(search_p)
     params.delete(:category_id)
   end
@@ -72,7 +80,7 @@ class CatalogController < ApplicationController
       @search = Good.search(params[:search])
     end
     
-    if !params[:search].nil?
+    if !params[:search].nil? || !params[:single_search].nil?
       @goods = @search.relation.visible#.page(@page).per(@perpage)
     else
       @goods = []

@@ -26,6 +26,11 @@ class Good < ActiveRecord::Base
   scope :not, lambda { |id|
     where(['id <> ?', id])
   }
+  scope :has_virtual_category, lambda { |category|
+    joins(:virtual_categories).
+    where('categories_goods.category_id' => category.id)
+  }
+
   scope :vc0_id_eq, lambda { |id|
     joins(:virtual_categories).where(['categories_goods.category_id = ?', id])
   }

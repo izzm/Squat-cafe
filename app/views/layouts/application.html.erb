@@ -114,7 +114,7 @@
                   <% if is_current -%>
                     <ul>
                       <% category_list = root_category.virtual ? 
-                            Category.find_all_by_id(category.virtual_goods.visible.group('goods.category_id').select('goods.category_id')) : 
+                            Category.find_all_by_id(category.virtual_goods.visible.group('goods.category_id').select('goods.category_id')).map{ |c| c.self_and_ancestors[1] } : 
                             category.children.visible.sorted -%>
                       <% category_list.each do |sub_category| -%>
                         <% is_current_s = root_category.virtual ? 
