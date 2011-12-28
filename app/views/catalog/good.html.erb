@@ -112,7 +112,7 @@
   <div class="clear"></div>
 </div><!--end_item_cart-->
 
-<% similar = Good.visible.find_all_by_articul(@good.similar || []) -%>
+<% similar = Good.visible.find_all_by_articul( (@good.similar || []).delete_if { |o| o.strip.empty? } ) -%>
 <% if similar.count > 0 -%>
 <div class="similar_items">
   <h2>Похожие изделия</h2>
