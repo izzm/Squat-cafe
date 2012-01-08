@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <%= display_meta_tags :site => 'Oltis-lux - мебельный интернет-магазин' %>
+  <link rel="icon" href="<%= image_path 'site/favicon.ico' %>" type="image/x-icon">
   <%= stylesheet_link_tag    "application" %>
   <!--[if lte IE 6]>
   <%= javascript_include_tag "DD_belatedPNG.js" %>
@@ -179,7 +180,7 @@
       
       <% site_catalog_menu.each do |root_category| -%>
         <ul class="foot_list">
-          <li class="list_title"><%= link_to root_category.name, category_path(root_category.url_path) %></li>
+          <li class="list_title"><%= content_tag 'span', root_category.name, :class => 'nolink' %></li>
           <% root_category.children.visible.sorted.each do |category| -%>
             <li>
               <%= link_to category.name, category_path(category.url_path) %>

@@ -209,11 +209,12 @@
 			var intHeight = (intImageHeight + (settings.containerBorderSize * 2)); // Plus the imageŽs height and the left and right padding value
 			// Fit In Window
 			if ( settings.fitInWindow ) {
+        var arrPageSizes = ___getPageSize();
 				var hRatio = intWidth / $(window).width();
 				var vRatio = intHeight / ($(window).height() - 
-					parseInt($('#jquery-lightbox').css('top')) - 
+					Math.floor(arrPageSizes[3] / 10) - 
 					$('#lightbox-container-image-data-box').height());
-
+        
 				var maxRatio = Math.max(hRatio, vRatio);
 				
 				if ( maxRatio > 1 ) {

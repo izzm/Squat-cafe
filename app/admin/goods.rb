@@ -1,5 +1,5 @@
 ActiveAdmin.register Good do
-  belongs_to :category
+  belongs_to :category#, :optional => true
   filter :name, :label => I18n.t('active_admin.filters.good.name')
   filter :articul
 

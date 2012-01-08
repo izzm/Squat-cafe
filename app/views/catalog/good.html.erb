@@ -9,7 +9,12 @@
     
     $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
 
+    $('.cloud-zoom-gallery').click(function() {
+      $('#big_lightbox_link').attr('href', $(this).attr('href'));
+    });
+
     $('#mycarousel a').lightBox();
+    $('#big_lightbox_link').lightBox();
 
     <% if current_customer.nil? -%>
     $('.add_wish').click(function() {
@@ -51,6 +56,7 @@
                     @good.attachments.first -%>
     <%= link_to image_tag(attachment.image.url(:big)), attachment.image.url(:original), :class => 'cloud-zoom', :id => 'good_image_zoom', :rel => "adjustX: 10, adjustY:-4, softFocus:true" %>
     
+    <%= link_to image_tag('site/zoom_icon.png'), attachment.image.url(:original), :id => 'big_lightbox_link' %>
     <ul>
       <% @good.attachments.each do |attachment| -%>
         <li><%= link_to image_tag(attachment.image.url(:small)), attachment.image.url(:original), :class => 'cloud-zoom-gallery', :rel => "useZoom: 'good_image_zoom', smallImage: '#{attachment.image.url(:big)}' " %></li>

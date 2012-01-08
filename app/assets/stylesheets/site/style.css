@@ -332,7 +332,7 @@ ul.list_catalog ul li{
 ul.list_catalog ul li a{
 	color:#003b78 !important;}
 ul.list_catalog ul li a.active_sub{
-	color:#656565 !important;
+	color:#945206 !important;
 	font-weight:bold;}
 
 .content{
@@ -552,7 +552,8 @@ ul.foot_list li.list_title{
 ul.foot_list li a{
 	color:#fff;
 	text-decoration:none;}
-ul.foot_list li.list_title a{
+ul.foot_list li.list_title a,
+ul.foot_list li.list_title span.nolink{
 	color:#94c9ff;
 	font-size:14px;
 	font-family:Georgia, "Times New Roman", Times, serif;}
@@ -1387,4 +1388,14 @@ span.capthca {
 
 #login_message p {
   margin: 20px;
+}
+
+#big_lightbox_link {
+  display: block;
+  float: right;
+  margin-top: 10px;
+}
+
+#big_lightbox_link img {
+  border: 0px none;
 }
