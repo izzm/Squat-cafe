@@ -9,7 +9,3 @@ ru:
         variant: "Вариант товара"
         count: "Количество"
         price: "Стоимость"
-  active_admin:
-    titles:
-      order_good:
-        total: "Итого:"

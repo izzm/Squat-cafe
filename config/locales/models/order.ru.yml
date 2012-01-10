@@ -24,6 +24,8 @@ ru:
         customer_information: "Покупатель"
         info: "Информация о заказе"
         invoice: "Состав заказа"
+        discount: "Скидка:"
+        total_price: "Итого:"
     filters:
       order:
         articul: "Артикул товара"

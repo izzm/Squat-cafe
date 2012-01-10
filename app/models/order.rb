@@ -65,6 +65,10 @@ class Order < ActiveRecord::Base
     ActionController::Base.helpers.number_to_currency(total_price) + 
        " - Order ##{number} (#{customer.try(:name)})"
   end
+  
+  def total_price_with_discount
+    self.total_price * (1 - (self.discount.to_i / 100.0))
+  end
 
 protected
   def assign_number

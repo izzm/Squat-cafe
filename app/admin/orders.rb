@@ -67,9 +67,16 @@ ActiveAdmin.register Order do
         t.column :count
         t.column(:price) { |item| number_to_currency item.price }
         
+        if order.discount > 0
+          tr :class => "odd" do
+            td I18n.t('active_admin.titles.order.discount'), :colspan => 4, :style => "text-align: right;"
+            td number_to_percentage(order.discount, :precision => 0)
+          end
+        end
+
         tr :class => "odd" do
-          td I18n.t('active_admin.titles.order_good.total'), :colspan => 4, :style => "text-align: right;"
-          td number_to_currency(order.total_price)
+          td I18n.t('active_admin.titles.order.total_price'), :colspan => 4, :style => "text-align: right;"
+          td number_to_currency(order.total_price_with_discount)
         end
       end
     end
