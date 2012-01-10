@@ -10,7 +10,9 @@ ActiveAdmin.register Customer do
   actions :index, :show, :edit, :update, :destroy
 
   index do
-    column :name
+    column :name do |customer| 
+      link_to customer.name, admin_customer_path(customer)
+    end
     column :company
     column :phone
     column :email do |customer|

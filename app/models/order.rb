@@ -14,6 +14,11 @@ class Order < ActiveRecord::Base
   scope :new_orders, where("orders.checked_out_at IS NULL and orders.delivery_at IS NULL").active
   scope :in_progress,  where("orders.checked_out_at IS NULL and orders.delivery_at IS NOT NULL").active
   scope :complete, where("orders.checked_out_at IS NOT NULL").active
+  
+  scope :articul_contains, lambda { |articul|
+    joins(:goods).where(["goods.articul ilike ?", '%'+articul+'%'])
+  }
+  search_methods :articul_contains
 
   before_save :assign_number
   after_create :set_customer_first_order
@@ -22,6 +27,10 @@ class Order < ActiveRecord::Base
   validates :address, :length => { :maximum => 255 }
   validates :comment, :length => { :maximum => 1000 }
   validates :customer, :presence => true
+  validates :discount, :numericality => {
+    :greater_than_or_equal_to => 0, 
+    :less_than_or_equal_to    => 100
+  }
   
   NEW_ORDER = "new_orders"
   COMPLETE = "complete"

@@ -11,12 +11,26 @@ ru:
         customer: "Покупатель"
         created_at: "Дата заказа"
         total_price: "Общая стоимость"
-  
+        delivery_type: "Тип доставки"
+        address: "Адрес доставки"
+        comment: "Комментарий покупателя"
+        canceled: "Заказ отменён"
+        discount: "Скидка (%)"
   active_admin:
     titles:
       order:
         recent_order: "Новые заказы"
         show: "Заказ #%{number}"
+        customer_information: "Покупатель"
+        info: "Информация о заказе"
+        invoice: "Состав заказа"
+    filters:
+      order:
+        articul: "Артикул товара"
+    status_tags:
+      order:
+        delivery: "Доставка"
+        manual: "Самовывоз"
     scopes:
       all_orders: "Все"
       new_orders: "Новые"

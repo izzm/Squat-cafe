@@ -1,0 +1,15 @@
+ru:
+  activerecord:
+    models:
+      order_good: "Позиция заказа"
+    attributes:
+      order_good:
+        articul: "Артикул"
+        product: "Название"
+        variant: "Вариант товара"
+        count: "Количество"
+        price: "Стоимость"
+  active_admin:
+    titles:
+      order_good:
+        total: "Итого:"

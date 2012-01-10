@@ -2,6 +2,8 @@ ActiveAdmin.register Order do
   actions :index, :show, :edit, :update
 
   filter :total_price
+  filter :number
+  filter :articul, :as => :string, :label => I18n.t('active_admin.filters.order.articul')
   #filter :checked_out_at
 
   scope :all_orders
@@ -30,26 +32,55 @@ ActiveAdmin.register Order do
     }
   end
 
+  form do |f|
+    f.inputs :process do
+      f.input :delivery_at, :as => :datepicker, :format => "%d.%m.%Y"
+      f.input :checked_out_at, :as => :datepicker, :format => "%d.%m.%Y"
+    end
+
+    f.inputs :info do
+      f.input :address
+      f.input :discount
+      f.input :comment
+    end
+
+    f.inputs :control do
+      f.input :canceled
+    end
+
+    f.buttons
+  end
+
   show :title => lambda{ |order| I18n.t('active_admin.titles.order.show', :number => order.number) } do
-    panel "Invoice" do
-      table_for(order.order_goods) do |t|
-        t.column("Product") {|item| auto_link item.good           }
-        t.column("Price")   {|item| number_to_currency item.price }
+    panel I18n.t('active_admin.titles.order.invoice') do
+      table_for(order.order_goods, :i18n => OrderGood) do |t|
+        t.column(:articul) { |item| item.good.articul }
+        t.column(:product) { |item|
+          link_to item.good, edit_admin_category_good_path(
+              item.good.category, item.good)
+        }
+        t.column(:variant) { |item|
+          raw item.variant.map{ |variant_type, variant|
+            content_tag :nobr, "#{t("good.variants.#{variant_type}")}: #{variant}"
+          }.join(", ")
+        }
+        t.column :count
+        t.column(:price) { |item| number_to_currency item.price }
         
         tr :class => "odd" do
-          td "Total:", :style => "text-align: right;"
+          td I18n.t('active_admin.titles.order_good.total'), :colspan => 4, :style => "text-align: right;"
           td number_to_currency(order.total_price)
         end
       end
     end
 
-    panel "Info" do
+    panel I18n.t('active_admin.titles.order.info') do
       attributes_table_for order do
-        row("Created") { order.created_at }
-        row("Delivery") { order.delivery_at }
-        row("Complete") { order.checked_out_at }
-
-        row :delivery_type
+        row :created_at
+        row :delivery_at
+        row :checked_out_at
+        row(:state) { I18n.t("active_admin.scopes.#{order.state}") }
+        row(:delivery_type) { I18n.t("active_admin.status_tags.order.#{order.delivery_type}") }
         row :address
         row :comment
       end
@@ -58,10 +89,16 @@ ActiveAdmin.register Order do
     active_admin_comments
   end
 
-  sidebar :customer_information, :only => :show do
+  sidebar I18n.t('active_admin.titles.order.customer_information'), :only => :show do
     attributes_table_for order.customer do
-      row("User") { auto_link order.customer }
-      row :email
+      row(:name) { link_to order.customer.name, 
+                           admin_customer_path(order.customer) }
+      row :company
+      row :phone
+      row(:email) { link_to order.customer.email,
+                            admin_customer_path(order.customer) }
+      row :created_at
+      row :first_order
     end
   end  
 end

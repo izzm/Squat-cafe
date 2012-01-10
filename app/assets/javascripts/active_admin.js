@@ -2,6 +2,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require jquery-ui-ru
 //= require jquery_plugins/jquery.cookie
 //= require jquery_plugins/jquery.treeview
 //= require jquery_plugins/jquery.chosen
@@ -11,7 +12,8 @@
 /* Active Admin JS */
 /* copied from 'app/assets/javascripts/base.js in active_admin source code */
 $(function(){
-  $(".datepicker").datepicker({dateFormat: 'yy-mm-dd'});
+  $.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
+  $(".datepicker").datepicker({dateFormat: 'yy-mm-dd 00:00:00'});
   
   $(".clear_filters_btn").click(function(){
     window.location.search = "";

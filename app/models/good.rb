@@ -64,7 +64,7 @@ class Good < ActiveRecord::Base
 	end
 
   def to_s
-    self.title
+    self.name
   end
 
   def present_in?(category)

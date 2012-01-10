@@ -18,7 +18,7 @@ class Customer < ActiveRecord::Base
   has_many :goods, :through => :wishlist_goods
   
   def set_first_order!(order)
-    self.first_order || order.created_at
+    self.first_order ||= order.created_at
     self.save
   end
 
