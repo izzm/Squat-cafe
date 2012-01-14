@@ -70,7 +70,12 @@ class CartController < ApplicationController
       redirect_to cart_path
     else
       @order = Order.find(flash[:order_id])
-      redirect_to cart_path if @order.nil?
+
+      if @order.nil?
+        redirect_to cart_path
+      else
+        OrderMailer.customer_email(current_customer, @order).deliver
+      end
     end
   end
   

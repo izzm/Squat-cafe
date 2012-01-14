@@ -1,0 +1,40 @@
+<p>
+  Здравствуйте!
+  Благодарим Вас за сделанный заказ в интернет-магазине мебели OLTIS.
+<p>
+
+<p>
+  Номер Вашего заказа: <%= @order.number %>
+</p>
+
+<p>
+Информация о заказе:
+<table>
+  <tr>
+    <th>АРТИКУЛ</th>
+    <th>НАЗВАНИЕ</th> 
+    <th>ВАРИАНТ ТОВАРА</th>
+    <th>КОЛИЧЕСТВО</th>
+    <th>СТОИМОСТЬ</th>
+  </tr>
+
+  <% @order.order_goods.each do |item| -%>
+    <tr>
+      <td><%= item.good.articul %></td>
+      <td><%= item.good %></td>
+      <td><%=raw item.variant.map{ |variant_type, variant|
+        content_tag :nobr, "#{t("good.variants.#{variant_type}")}: #{variant}"
+      }.join(", ") %></td>
+      <td><%= item.count %></td>
+      <td><%= item.price * item.count %></td>
+    </tr>
+  <% end -%>
+</table>
+</p>
+
+<p>В течение рабочего дня наши менеджеры свяжутся с Вами для уточнения деталей.</p>
+
+<p>
+  Ваш интернет-магазин мебели<br>
+  <%= link_to root_url, image_tag('site/logo_email.jpg'), :alt => "Oltis" %>
+</p>

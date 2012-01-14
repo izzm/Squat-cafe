@@ -36,8 +36,8 @@ ru:
       unlocked: 'Ваша учётная запись успешно разблокирована. Вы сейчас вошли.'
     mailer:
       confirmation_instructions:
-        subject: 'Инструкции по подтверждению'
+        subject: 'Интернет-магазин мебели OLTIS - благодарим за регистрацию'
       reset_password_instructions:
-        subject: 'Инструкции по сбросу пароля'
+        subject: 'Восстановление пароля'
       unlock_instructions:
         subject: 'Инструкции по разблокировке'

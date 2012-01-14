@@ -1,5 +1,13 @@
-<p>Welcome <%= @resource.email %>!</p>
+<p>Добро пожаловать и благодарим Вас за регистрацию!</p>
 
-<p>You can confirm your account through the link below:</p>
+<p>Ваш аккаунт создан и Вы можете войти, используя свой E-mail и пароль, по ссылке: <%= link_to nil, confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p>После регистрации на сайте Вы сможете воспользоваться дополнительными возможностями: просмотр  заказов, просмотр листа желаний, изменение информации Вашей учетной записи (адресов доставки, телефона для связи) и др.</p>
+
+<p>Вы также сможете накапливать при покупках призовые баллы, а для постоянных покупателей у нас предусмотрены скидки!</p>
+
+<p>
+  Спасибо,
+  Ваш интернет-магазин мебели<br>
+  <%= link_to root_url, image_tag('site/logo_email.jpg'), :alt => "Oltis" %>
+</p>

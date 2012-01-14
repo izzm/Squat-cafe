@@ -65,7 +65,7 @@ ActiveAdmin.register Order do
           }.join(", ")
         }
         t.column :count
-        t.column(:price) { |item| number_to_currency item.price }
+        t.column(:price) { |item| number_to_currency(item.price*item.count) }
         
         if order.discount > 0
           tr :class => "odd" do

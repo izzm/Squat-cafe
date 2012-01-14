@@ -1,4 +1,4 @@
-class Feedback < ActionMailer::Base
+class FeedbackMailer < ActionMailer::Base
   default from: "feedback@oltis-lux.com"
 
   def customer_email(data = {})

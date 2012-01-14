@@ -29,7 +29,8 @@ ru:
 
   customer_email:
     subject: Интернет-магазин Oltis-Lux.com
-    not_email_present:
+    order_subject: "Интернет-магазин мебели OLTIS - спасибо за  Ваш заказ"
+    not_email_present: ""
     delivery_success:
       callback: Спасибо за Ваше сообщение. Мы перезвоним Вам в ближайшее время
       email: Спасибо за Ваше сообщение. Вы получите ответ в ближашее время
