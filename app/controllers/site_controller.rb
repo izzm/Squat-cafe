@@ -21,8 +21,8 @@ class SiteController < ApplicationController
       flash[:error] = I18n.t('customer_email.not_email_present')
     else
       begin
-        Feedback.customer_email(data).deliver
-        Feedback.admin_email(data).deliver
+        FeedbackMailer.customer_email(data).deliver
+        FeedbackMailer.admin_email(data).deliver
   
         flash[:notice] = I18n.t("customer_email.delivery_success.#{data[:callback] ? 'callback' : 'email'}")
       rescue Exception => e
