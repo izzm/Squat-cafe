@@ -75,15 +75,38 @@ class CatalogController < ApplicationController
     @page = params[:page].to_i > 0 ? params[:page].to_i : 1
 
     if params[:single_search] && params[:single_search].size >= 3
-      @search = Good.search :name_contains => params[:single_search]
+      @search_goods_name = Good.search :name_contains => params[:single_search]
+      @search_goods_description = Good.search :description_contains => params[:single_search]
+      
+      @search_category_name = Category.search :name_contains => params[:single_search]
+      @search_category_description = Category.search :description_contains => params[:single_search]
+      
+      @search_static_page_title = StaticPage.search :title_contains => params[:single_search]
+      @search_static_page_content = StaticPage.search :content_contains => params[:single_search]
     else
       @search = Good.search(params[:search])
     end
     
-    if !params[:search].nil? || !params[:single_search].nil?
-      @goods = @search.relation.visible#.page(@page).per(@perpage)
+    if params[:single_search].nil?
+      if params[:search].nil?
+        @goods = []
+      else
+        @goods = @search.relation.visible#.page(@page).per(@perpage)
+      end
     else
-      @goods = []
+      # site wide search
+      if defined? @search_goods_name
+        @search = @search_goods_name
+        @goods = @search_goods_name.relation.visible#.page(@page).per(@perpage)
+        @goods += @search_goods_description.relation.visible
+
+        @categories = @search_category_name.relation.visible
+        @categories += @search_category_description.relation.visible
+        @pages = @search_static_page_title.relation.visible
+        @pages = @search_static_page_content.relation.visible
+      else
+        @goods = []
+      end
     end
   end
 
