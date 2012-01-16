@@ -1,24 +1,24 @@
 ru:
   activerecord:
     models:
-      category: "Каталог"
+      category: "Меню"
     attributes:
       category:
         title: "Заголовок"
-        goods: "Товары"
+        goods: "Позиции"
         link: "Ссылка"
         visible: "Отображается"
 
   active_admin:
     titles:
       category:
-        index_tree: "Структура каталога"
-        tree: "Структура каталога"
+        index_tree: "Структура меню"
+        tree: "Структура меню"
         edit: "Редактирование раздела"
     actions:
       category:
         destroy: "Удалить"
-        show: "Товаров: %{count}"
+        show: "Позиций: %{count}"
     status_tags:
       category:
         visible: "Да"
@@ -27,10 +27,10 @@ ru:
   formtastic:
     labels:
       category:
-        name: "Название категории"
-        description: "Описание категории"
-        virtual: "Виртуальная категория?"
-        parent: "Родительская категория"
+        name: "Название раздела"
+        description: "Описание раздела"
+        virtual: "Виртуальный раздел?"
+        parent: "Родительский раздел"
     hints:
       category:
         new:
@@ -41,5 +41,5 @@ ru:
           description: "Отредактируйте описание раздела"
     actions:
       category:
-        create: "Создать категорию"
+        create: "Создать раздел"
     

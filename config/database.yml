@@ -15,9 +15,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: oltis
+  database: squat
   pool: 5
-  username: oltis
+  username: squat
   password: 1q2w3e
 
   # Connect on a TCP socket. Omitted by default since the client uses a

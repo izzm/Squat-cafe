@@ -14,6 +14,7 @@
 $(function(){
   $.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
   $(".datepicker").datepicker({dateFormat: 'yy-mm-dd 00:00:00'});
+  $('#ui-datepicker-div').hide();
   
   $(".clear_filters_btn").click(function(){
     window.location.search = "";

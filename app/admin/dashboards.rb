@@ -14,12 +14,12 @@ ActiveAdmin::Dashboards.build do
   #       end
   #     end
   #   end
-  section I18n.t('active_admin.titles.order.recent_order') do
-    table_for(Order.new_orders) do |t|
-      t.column(I18n.t('activerecord.attributes.order.number')) {|item| link_to item.display_name, admin_order_path(item) }
-      t.column(I18n.t('activerecord.attributes.order.created_at'), :created_at)
-    end
-  end
+  #section I18n.t('active_admin.titles.order.recent_order') do
+  #  table_for(Order.new_orders) do |t|
+  #    t.column(I18n.t('activerecord.attributes.order.number')) {|item| link_to item.display_name, admin_order_path(item) }
+  #    t.column(I18n.t('activerecord.attributes.order.created_at'), :created_at)
+  #  end
+  #end
   
   # == Render Partial Section
   # The block is rendered within the context of the view, so you can

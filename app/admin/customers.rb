@@ -77,4 +77,4 @@ ActiveAdmin.register Customer do
   end  
  
  
-end
+end if false
