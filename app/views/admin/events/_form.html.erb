@@ -1,0 +1,31 @@
+<%= semantic_form_for [:admin, @event] do |f| %>
+  <%= f.inputs :process do %>
+    <%= f.input :date %>
+  <% end %>
+
+  <%= f.inputs :info do %>
+    <%= f.input :name %>
+    <%= f.input :price %>
+    <%= f.input :short_description, :as => :ckeditor,
+                :input_html => { :cols => 0,
+                                 :width => '77%',
+                                 :resize_dir => 'vertical' } %>
+
+    <%= f.input :description, :as => :ckeditor,
+                :input_html => { :cols => 0,
+                                 :width => '77%',
+                                 :resize_dir => 'vertical' } %>
+
+  <% end %>
+
+  <%= f.inputs :control do %>
+    <%= f.input :featured %>
+    <%= f.input :visible %>
+  <% end %>
+
+  <%= f.buttons %>
+<% end %>
+
+<%= render(:partial => 'admin/attachments/list',
+           :locals => { :object => @event }) if !@event.new_record?  %>
+
