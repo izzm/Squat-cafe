@@ -42,7 +42,7 @@ gem "simple_captcha", :git => 'git://github.com/izzm/simple-captcha.git'
 gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano'
+# gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
