@@ -1,7 +1,7 @@
 # У вас должна быть настроена авторизация ssh по сертификатам
 
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
-use 'rvm/capistrano'
+require 'rvm/capistrano'
 set :rvm_ruby_string, '1.9.3'
 
 set :application, "squat-cafe"
