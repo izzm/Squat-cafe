@@ -1,5 +1,9 @@
 # У вас должна быть настроена авторизация ssh по сертификатам
 
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+use 'rvm/capistrano'
+set :rvm_ruby_string, '1.9.3'
+
 set :application, "squat-cafe"
 
 # настройка системы контроля версий и репозитария, по умолчанию - git, если используется иная система версий, нужно изменить значение scm
