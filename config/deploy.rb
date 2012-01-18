@@ -26,12 +26,19 @@ role :db,  "lithium.locum.ru", :primary => true # This is where Rails migrations
 
 # Если хотите поместить конфиг в shared и не хранить его в системе контроя версий - раскомментируйте следующие строки
 
-#after "deploy:update_code", :copy_database_config
+after "deploy:update_code", :copy_database_config
 
-#task :copy_database_config, roles => :app do
-#  db_config = "#{shared_path}/database.yml"
-#  run "cp #{db_config} #{release_path}/config/database.yml"
-#end
+task :copy_database_config, roles => :app do
+  db_config = "#{shared_path}/database.yml"
+  run "cp #{db_config} #{release_path}/config/database.yml"
+end
+
+after "deploy:update_code", :copy_bundler_config
+
+task :copy_bundler_config, roles => :app do
+  bundler_config = "#{shared_path}/.bundle"
+  run "cp -r #{bundler_config} #{release_path}"
+end
 
 set :unicorn_conf, "/etc/unicorn/squat-cafe.squat.rb"
 set :unicorn_pid, "/var/run/unicorn/squat-cafe.squat.pid"
