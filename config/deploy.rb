@@ -5,8 +5,8 @@ require 'rvm/capistrano'
 set :application, "squat-cafe"
 set :repository,  "git://github.com/izzm/Squat-cafe.git"
 
-set :scm, :none
-set :repository, "/home/vizoria/squat/rails_shop"
+set :scm, :git
+#set :repository, "/home/vizoria/squat/rails_shop"
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 set :rvm_ruby_string, '1.9.3'
