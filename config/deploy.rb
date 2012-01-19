@@ -2,7 +2,7 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require 'bundler/capistrano'
 require 'rvm/capistrano'
 
-set :application, "Rails Shop"
+set :application, "squat-cafe"
 set :repository,  "git://github.com/izzm/Squat-cafe.git"
 
 set :scm, :git
@@ -15,6 +15,8 @@ set :use_sudo, false
 role :web, "62.76.191.136"                          # Your HTTP server, Apache/etc
 role :app, "62.76.191.136"                          # This may be the same as your `Web` server
 role :db,  "62.76.191.136", :primary => true # This is where Rails migrations will run
+
+set :deploy_to, "/home/vizoria/www/#{application}"
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
@@ -32,8 +34,16 @@ namespace :deploy do
     run "mkdir -p #{shared_path}/config"
     run "mkdir -p #{shared_path}/tmp"
     run "mkdir -p #{shared_path}/log"
+    run "mkdir -p #{shared_path}/system"
     put '', "#{shared_path}/config/database.yml"
-    put '', "#{shared_path}/config/production.rb"
+  end
+
+  desc "Create links to database.yml, tmp and system"                 
+  task :finalize_update do                                            
+    run "ln -nfs #{shared_path}/log #{release_path}/log"
+    run "ln -nfs #{shared_path}/system #{release_path}/public/system"
+    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/tmp #{release_path}/tmp"
   end
 
   desc 'Runs rake db:migrate'
