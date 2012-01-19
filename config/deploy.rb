@@ -39,7 +39,7 @@ namespace :deploy do
 
     run "mkdir -p #{shared_path}/public/system"
     run "mkdir -p #{shared_path}/public/files"
-    run "mkdir -p #{shared_path}/system/ckeditor_assets"
+    run "mkdir -p #{shared_path}/public/ckeditor_assets"
 
     put '', "#{shared_path}/config/database.yml"
   end
@@ -53,7 +53,7 @@ namespace :deploy do
 
     run "ln -nfs #{shared_path}/public/system #{release_path}/public/system"
     run "ln -nfs #{shared_path}/public/files #{release_path}/public/files"
-    run "ln -nfs #{shared_path}/system/ckeditor_assets #{release_path}/system/ckeditor_assets"
+    run "ln -nfs #{shared_path}/public/ckeditor_assets #{release_path}/public/ckeditor_assets"
   end
 
   desc 'Runs rake db:migrate'
