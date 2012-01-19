@@ -42,14 +42,14 @@ namespace :deploy do
     run "mkdir -p #{shared_path}/public/ckeditor_assets"
 
     put '', "#{shared_path}/config/database.yml"
-    put '', "#{shared_path}/log/development.yml"
-    put '', "#{shared_path}/log/production.yml"
+    put '', "#{shared_path}/log/development.log"
+    put '', "#{shared_path}/log/production.log"
   end
 
   desc "Create links to database.yml, tmp and system"                 
   task :finalize_update do                                            
-    run "ln -nfs #{shared_path}/log/development.yml #{release_path}/log/development.yml"
-    run "ln -nfs #{shared_path}/log/production.yml #{release_path}/log/production.yml"
+    run "ln -nfs #{shared_path}/log/development.log #{release_path}/log/development.log"
+    run "ln -nfs #{shared_path}/log/production.log #{release_path}/log/production.log"
 
     run "ln -nfs #{shared_path}/system #{release_path}/public/system"
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
