@@ -4,7 +4,9 @@
       <th><%= StaticPage.human_attribute_name(:title) %></th>
       <th></th>
       <th><%= StaticPage.human_attribute_name(:link) %></th>
+      <th><%= StaticPage.human_attribute_name(:redirect_url) %></th>
       <th><%= StaticPage.human_attribute_name(:visible) %></th>
+      <th><%= StaticPage.human_attribute_name(:show_in_nav) %></th>
       <th></th>
     </tr>
   </thead>
@@ -32,8 +34,12 @@
                 :method => :put) %>
       </td>
       <td><%= page.url_path %></td>
+      <td><%= page.redirect_url %></td>
       <td>
         <span class="status <%= page.visible ? 'ok' : 'error' %>"><%= t("active_admin.status_tags.static_page.#{page.status}") %></span>
+      </td>
+      <td>
+        <span class="status <%= page.show_in_nav ? 'ok' : 'error' %>"><%= t("active_admin.status_tags.static_page.#{page.show_in_nav_status}") %></span>
       </td>
       <td>
         <%= link_to t('active_admin.actions.static_page.destroy'), admin_static_page_path(page), :method => :delete, :confirm => t('are_you_shure') %>

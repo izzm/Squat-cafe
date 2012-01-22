@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120115162942) do
+ActiveRecord::Schema.define(:version => 20120122123838) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -232,6 +232,8 @@ ActiveRecord::Schema.define(:version => 20120115162942) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "url_path",        :limit => 2000
+    t.boolean  "show_in_nav",                     :default => false
+    t.string   "redirect_url"
   end
 
   add_index "static_pages", ["parent_id"], :name => "index_static_pages_on_parent_id"

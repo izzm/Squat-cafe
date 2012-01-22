@@ -16,7 +16,7 @@ RailsShop::Application.routes.draw do
     get   '', :action => :index,    :as => 'wishlist'
     post  '/add_good',              :as => 'wishlist_add_good'
     post  '/remove_good',           :as => 'wishlist_remove_good'
-  end
+  end if false
 
   scope '/cart', :controller => :cart do 
     get   '', :action => :index,    :as => 'cart'
@@ -27,7 +27,7 @@ RailsShop::Application.routes.draw do
     post  '/purchase',              :as => 'cart_purchase'
     get   '/purchase/complete', :action => :purchase_complete,
                                     :as => 'cart_purchase_complete'
-  end
+  end if false
 
   scope '/catalog', :controller => :catalog do
     #get   '', :action => :index

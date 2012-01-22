@@ -9,11 +9,10 @@ module ApplicationHelper
   
   # METHODS FOR SITE FRONTEND
   
-  def site_main_menu
-    StaticPage.find_by_link('oltis').children.sorted.visible
+  def static_page(page)
+    page.use_absolute_path? ? 
+      page.redirect_url :
+      static_page_path(page.url_path)
   end
   
-  def site_catalog_menu
-    Category.visible.sorted.roots
-  end
 end

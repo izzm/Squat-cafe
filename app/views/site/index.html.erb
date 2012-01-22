@@ -1,46 +1,66 @@
-<div class="slider_wrapper">
-  <div class="ribbon"></div>
-  <div id="slider" class="nivoSlider">
-    <% @page.children.find_by_link('slider').attachments.each do |attachment| -%>
-      <% if attachment.link.blank? -%>
-        <%= image_tag attachment.image.url(:slider), :alt => attachment.name %>
-      <% else -%>
-        <%= link_to image_tag(attachment.image.url(:slider), :alt => attachment.name), attachment.link %>
-      <% end -%>
-    <% end -%>
-  </div>
-</div><!--end_slider-->
-<div class="banners">
-  <ul>
-    <% @page.children.find_by_link('images').attachments.each do |attachment| -%>
-      <li>
-        <% if attachment.link.blank? -%>
-          <%= image_tag attachment.image.url(:main_page_images), :alt => attachment.name %>
-        <% else -%>
-          <%= link_to image_tag(attachment.image.url(:slider), :alt => attachment.name), attachment.link %>
-        <% end -%>
-      </li>
-    <% end -%>
-  </ul>
-</div><!--end_banners-->
-  
-<%=raw @page.content %>
+<div class="today">
+					<div class="today-title">
+						СЕГОДНЯ
+					</div>
+					<ul>
+						<li>18:00 <a href="#">ПЕСНЯРЫ ДЯДИ ВАСИ | FREE</a></li>
+						
+						<li class="last">22:00 <a href="#">КРУТАЯ МЕГАТУСОВКА | FREE</a></li>
+					</ul>
+				</div>
+				<div class="featured">
+					<div class="fName">АФИША</div>
+					<div class="fImage"><img src="img/photo_b.jpg"></div>
+					<div class="fTitle">12.01 20:00<br> Квартет имени Александра Дульмана</div>
+					<div class="fText">Цена:200р</div>
+				</div>
+				<div class="featured">
+					<div class="fName">МЕНЮ</div>
+					<div class="fImage"><img src="img/alco.jpg"></div>
+					<div class="fTitle">Алко АКЦИЯ!</div>
+					<div class="fText">Только по четвергам!
+Целый день и всю ночь!<br>
+При заказе любого коктейля - второй FREE!<br>
+(в другие дни акция действует с 23:00, кроме пт. и сб.)</div>
+				</div>
+				
+				<div class="featured featured-last">
+					<div class="fName">БУТИК</div>
+					<div class="fImage"><img src="img/sumka.jpg"></div>
+					<div class="fTitle">Сумка </div>
+					<div class="fText">Новая сумка от SquatShop. Сделана из высококачественной кожи. Стоимость: 990 руб.</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="fName">СКОРО</div>
+				<div class="events">
+					<a href="#" class="arrow-left"></a>
+					
+					<ul class="block-ul slider">
+						<li class="slider-item">
+							<a class="slider-item-a" href="#">
+							<div class="slider-item-img "> <img src="img/slider.jpg"/></div>
+							<div class="slider-item-date ">12.01 22:00</div>
+							<div class="slider-item-title">Блюзменшуз шоу в сквоте</div>
+							<div class="slider-item-more">подробнее</div>
+							<div class="clearfix"></div></a>
+						</li>
+						<li class="slider-item">
+							<a class="slider-item-a" href="#">
+							<div class="slider-item-img "> <img src="img/slider.jpg"/></div>
+							<div class="slider-item-date ">12.01 22:00</div>
+							<div class="slider-item-title">Блюзменшуз шоу в сквоте</div>
+							<div class="slider-item-more">подробнее</div>
+							<div class="clearfix"></div></a>
+						</li>
+						<li class="slider-item">
+							<a class="slider-item-a" href="#">
+							<div class="slider-item-img "> <img src="img/slider.jpg"/></div>
+							<div class="slider-item-date ">12.01 22:00</div>
+							<div class="slider-item-title">Блюзменшуз шоу в сквоте</div>
+							<div class="slider-item-more">подробнее</div>
+							<div class="clearfix"></div></a>
+						</li>
+					</ul>
+					<a href="#" class="arrow-right"></a>
+				</div>
 
-<%= javascript_tag do %>
-  $(function() {
-      $('#slider').nivoSlider({
-        effect:"fade",
-        animSpeed:500,
-        pauseTime:3000,
-        startSlide:0,
-        directionNav:true,
-        directionNavHide:true,
-        controlNav:true,
-        controlNavThumbs:false,
-        controlNavThumbsFromRel:true,
-        keyboardNav:true,
-        pauseOnHover:true,
-        manualAdvance:false
-    });
-  });
-<% end %>
