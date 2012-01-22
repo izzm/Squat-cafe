@@ -29,15 +29,15 @@ RailsShop::Application.routes.draw do
                                     :as => 'cart_purchase_complete'
   end if false
 
-  scope '/catalog', :controller => :catalog do
-    #get   '', :action => :index
-    get   '/compare',                         :as => 'catalog_compare'
-    post  '/add_to_compare',                  :as => 'catalog_add_to_compare'
-    post  '/remove_from_compare',             :as => 'catalog_remove_from_compare'
-    match '/search', :via => [:get, :post],   :as => 'catalog_search'
+  scope '/menu', :controller => :catalog do
+    get   '', :action => :index
+    #get   '/compare',                         :as => 'catalog_compare'
+    #post  '/add_to_compare',                  :as => 'catalog_add_to_compare'
+    #post  '/remove_from_compare',             :as => 'catalog_remove_from_compare'
+    #match '/search', :via => [:get, :post],   :as => 'catalog_search'
     
     # Constraint class in lib/GoodConstraint.rb
-    get '/*path/goods/:id', :action => :good, :as => 'good', :constraints => GoodConstraint
+    #get '/*path/goods/:id', :action => :good, :as => 'good', :constraints => GoodConstraint
     # Constraint class in lib/CategoryConstraint.rb
     get '/*path', :action => :category,       :as => 'category', :constraints => CategoryConstraint
   end

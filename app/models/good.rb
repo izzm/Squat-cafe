@@ -20,6 +20,9 @@ class Good < ActiveRecord::Base
 
   #default_scope order('position ASC')
   scope :visible, where(:visible => true)
+  scope :sorted, order('position asc')
+  scope :site, visible.sorted
+
   scope :random, lambda { |cnt|
     order('random()').limit(cnt)
   }

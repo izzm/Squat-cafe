@@ -543,6 +543,7 @@ margin-left: 5px;}
 	color: #1e1e1e;
 	text-decoration:none;
 	display: block;
+		margin-bottom: 4px;
 }
 
 .afisha-item-header-selected, .prices-cat-selected, .afisha-item-header:hover, .prices-cat:hover{

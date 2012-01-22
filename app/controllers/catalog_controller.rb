@@ -1,4 +1,19 @@
 class CatalogController < ApplicationController
+  def index
+    if Category.site_roots.navigation.count > 0
+      redirect_to category_path(Category.site_roots.navigation.first.url_path)
+    else
+      redirect_to root_path
+    end
+  end
+
+  def category
+    @category = Category.find(params[:category_id])
+    @roots = Category.site_roots.navigation
+    
+    @subcats = Category.site_children(@category).navigation
+  end
+=begin
   def category
     @perpage = params[:perpage].to_i > 0 ? params[:perpage].to_i : 20
     @page = params[:page].to_i > 0 ? params[:page].to_i : 1
@@ -22,7 +37,7 @@ class CatalogController < ApplicationController
     @search = @goods.search(search_p)
     params.delete(:category_id)
   end
-
+=end
   def good
     @category = Category.find(params[:category_id])
     @good = Good.find(params[:good_id])

@@ -1,37 +1,58 @@
-<% content_for :page_javascript do %>
-  $(document).ready(function() {
-    $('.sort_link').click(function() {
-      var $this = $(this);
-      var $form = $this.closest('form');
-      var $select = $form.find('.sort_type');
-      var $hidden = $form.find('.meta_sort_hidden');
+<ul class="submenu">
+  <% @roots.each do |cat| -%>
+  <li>
+    <%= link_to cat.name, category_path(cat.url_path) %>
+	</li>
+  <% end -%>
+</ul>	
 
-      $hidden.val($select.val() + '.' + $this.attr('rel'));
-      $form.submit();
+<% if @subcats.count > 0 -%>
+<div class="prices">
+  <ul class="block-ul">
+    <% @subcats.each do |cat| -%>
+	  <li id="cat_<%= cat.id %>_goods">
+		  <a href="#" class="prices-cat"><%= cat.name %></a>
+			<ul class="block-ul" style="display: none;">
+        <% cat.goods.site.each do |good| -%>
+			  <li>
+          <div class="food">
+            <span>
+              <%= good.name %>
+              <% if good.parameters.count > 0 -%>
+                <% good.parameters.each do |p| -%>
+                  (<%= p['name'] %>: <%= p['value'] %> <%= p['unit'] %>)
+                <% end -%>
+              <% end-%>
+            </span>
+            <div class="food-price"><%= number_to_currency good.price %></div>
+          </div>
+				  <div class="food-desc"><%=raw good.description %></div>
+				</li>
+        <% end -%>
+      </ul>
+		</li>
+		<% end -%>
+    <!--
+    <li >
+		  <a class="prices-cat prices-cat-selected">123</a>
+		</li>
+    -->
+	</ul>
+</div>
+
+<% content_for :page_javascript do %>
+  $(function() {
+    $('.prices-cat').click(function() {
+      $(this).next().toggle('blind', {}, 100, function () {
+        if($(this).css('display') != 'none') {
+          $.scrollTo($(this).closest('li'));
+        }
+      });
+
       return false;
     });
-
-    $('.sort_type').change(function() {
-      var $select = $(this);
-      var $form = $select.closest('form');
-      var $hidden = $form.find('.meta_sort_hidden');
-
-      $hidden.val($select.val() + '.asc');
-      $form.submit();
-    });
-
-    //$('.sort_type option[value=<%= @search_param %>]').attr('selected', 'selected');
   });
 <% end %>
-
-
-<div class="catalog">
+<% else -%>
   <%=raw @category.description %>
-  <%= render :partial => 'paginator', :locals => {:nobg => false} %>
-
-  <ul class="list_product">
-    <%= render :partial => 'good', :locals => {:category => @category}, :collection => @search.all %>
-  </ul>
-
-  <%= render :partial => 'paginator', :locals => {:nobg => true} %>
-</div><!--end_catalog-->
+<% end -%>

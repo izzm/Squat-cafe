@@ -5,6 +5,12 @@ class Category < ActiveRecord::Base
 
   scope :visible, where(:visible => true)
   scope :sorted,  order('position ASC')
+  scope :navigation, visible.sorted
+  scope :site_roots, where(:parent_id => nil)
+  scope :site_children, lambda { |cat|
+    where(:parent_id => cat.id)
+  }
+
   #scope :nested_set,          order('lft ASC')
   #scope :reversed_nested_set, order('lft DESC')
   scope :virtual, where(:virtual => true)
