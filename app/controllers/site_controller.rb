@@ -10,7 +10,7 @@ class SiteController < ApplicationController
       set_meta(@page)
     
       begin
-        render :action => @page.link
+        render :action => @page.self_and_ancestors[0].link
       rescue ActionView::MissingTemplate => e
         logger.info "Use default StaticPage template"
       end

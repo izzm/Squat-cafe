@@ -45,7 +45,7 @@
     $('.prices-cat').click(function() {
       $(this).next().toggle('blind', {}, 100, function () {
         if($(this).css('display') != 'none') {
-          $.scrollTo($(this).closest('li'));
+          $.scrollTo($(this).closest('li'), 200);
         }
       });
 

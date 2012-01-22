@@ -7,6 +7,10 @@ class StaticPage < ActiveRecord::Base
   scope :sorted,  order('position ASC')
   scope :navigation, visible.where(:show_in_nav => true).sorted
   scope :site_roots, where(:parent_id => nil)
+  scope :site_children, lambda { |page|
+    where(:parent_id => page.id).sorted.navigation
+  }
+
   #scope :nested_set,          order('lft ASC')
   #scope :reversed_nested_set, order('lft DESC')
 

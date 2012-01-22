@@ -8,7 +8,7 @@ class Category < ActiveRecord::Base
   scope :navigation, visible.sorted
   scope :site_roots, where(:parent_id => nil)
   scope :site_children, lambda { |cat|
-    where(:parent_id => cat.id)
+    where(:parent_id => cat.id).sorted
   }
 
   #scope :nested_set,          order('lft ASC')
