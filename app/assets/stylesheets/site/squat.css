@@ -451,14 +451,21 @@ font-weight: bold;;}
 	margin-left: 0px;
 	margin-top: 140px;
 }
-.events .slider
+
+.events #carousel
 {
-	width:585px;
+  width:585px;
 	float:left;
-	padding-left: 20px;
-	padding-right: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
 	padding-top: 20px;
 	height: 280px;
+	overflow: hidden;
+}
+
+.events .slider
+{
+  float: left;	
 }
 .slider-item
 {

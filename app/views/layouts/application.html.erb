@@ -31,7 +31,7 @@
 	  <div class="menu">
     	<div class="menu-cont">
     		<ul class="menu-main">
-          <% StaticPage.roots.navigation.each do |page| -%>
+          <% StaticPage.site_roots.navigation.each do |page| -%>
             <li>
               <%= link_to page.title, static_page(page), :class => (page == @page ? 'selected' : '') %>
             </li>
@@ -113,7 +113,7 @@
     <footer>
       <div class="footer-cont">
         <ul class="footer-c1">
-          <% StaticPage.roots.navigation.each do |page| -%>
+          <% StaticPage.site_roots.navigation.each do |page| -%>
             <li>
               <%= link_to page.title, static_page(page), :class => (page == @page ? 'selected' : '') %>
             </li>
