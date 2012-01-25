@@ -28,7 +28,7 @@
       </div>
     </div>
 
-	  <div class="menu">
+	  <div class="menu" id="menu_fixed_scroll">
     	<div class="menu-cont">
     		<ul class="menu-main">
           <% StaticPage.site_roots.navigation.each do |page| -%>
@@ -54,7 +54,7 @@
 			<div class="inner">
         <%= yield %>
 			</div>
-			<div class="right-column">
+			<div class="right-column" id="sidebar_fixed_scroll">
 				<!--BLOCK START !-->
 				<div class="block">
 					<div class="block-header"> 

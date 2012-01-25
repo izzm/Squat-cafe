@@ -128,6 +128,11 @@ border:none;
 	font-size:14px;
 }
 
+#menu_fixed_scroll, #sidebar_fixed_scroll {
+  position: relative;
+  top: 0px;
+}
+
 .menu-cont{
 	padding-left: 0px;
 	
