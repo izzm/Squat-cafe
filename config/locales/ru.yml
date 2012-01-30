@@ -5,6 +5,11 @@ ru:
         format: "%n %u"
         unit: "руб."
         precision: 0
+
+  errors:
+    messages:
+      not_saved: "Невозможно сохранить запись"
+  
   visible: отображается
   invisible: скрыта
   are_you_shure: Вы уверены?
