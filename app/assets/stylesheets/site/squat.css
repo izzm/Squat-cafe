@@ -631,6 +631,12 @@ margin-left: 5px;}
 	margin-top: 2px;
 }
 
+.food-desc p
+{
+	margin:0px;
+	padding:0px;
+	}
+
 .food-price
 {
 	
