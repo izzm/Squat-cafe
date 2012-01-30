@@ -645,3 +645,13 @@ margin-left: 5px;}
 	
 	float: right;
 }
+
+/* Photos */
+.image-list li
+{
+	float:left;
+	margin-right:10px;
+}
+.image-list{
+	overflow:hidden;
+}
