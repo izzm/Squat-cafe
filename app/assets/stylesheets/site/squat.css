@@ -234,7 +234,7 @@ float:left}
 	color: black;
 	text-decoration: none;
 	padding: 2px 10px;
-	font-size: 16px;	
+	font-size: 12px;	
 }
 
 .submenu a:hover
@@ -242,6 +242,10 @@ float:left}
 	background: #F3E93F;
 	
 }
+.submenu a:visited
+{	color: black;
+	}
+
 .today{
 	width: 670px;
 	height: 65px;
