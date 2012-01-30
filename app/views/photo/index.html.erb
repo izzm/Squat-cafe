@@ -3,7 +3,7 @@
     <% @photo_albums.each do |album| -%>
 	  <li id="album_<%= album.id %>_photos">
 		  <a href="#" class="prices-cat"><%= album.name %></a>
-			<ul class="block-ul image-list" style="display: none;">
+			<ul class="block-ul image-list folded">
         <% album.attachments.each do |photo| -%>
 			  <li>
           <%= link_to image_tag(photo.image.url(:site)), photo.image.url %>
@@ -25,11 +25,11 @@
     $('.image-list a').lightBox();
 
     $('.prices-cat').click(function() {
-      $(this).next().toggle('blind', {}, 100, function () {
+      $(this).next().toggleClass('folded', 200, function () {
         var $li = $(this).closest('li');
         var $a_pc = $li.children('a.prices-cat');
 
-        if($(this).css('display') != 'none') {
+        if(!$(this).hasClass('folded')) {
           $.scrollTo($li, 200);
           $a_pc.addClass('prices-cat-selected');
         } else {

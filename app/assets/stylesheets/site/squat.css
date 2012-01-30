@@ -654,4 +654,9 @@ margin-left: 5px;}
 }
 .image-list{
 	overflow:hidden;
+  margin-left: 10px;
+}
+
+.image-list.folded {
+  height: 105px;
 }
