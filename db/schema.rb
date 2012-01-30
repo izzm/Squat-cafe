@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120122143308) do
+ActiveRecord::Schema.define(:version => 20120130165308) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -206,6 +206,16 @@ ActiveRecord::Schema.define(:version => 20120122143308) do
 
   add_index "orders", ["checked_out_at"], :name => "index_orders_on_checked_out_at"
   add_index "orders", ["customer_id"], :name => "index_orders_on_customer_id"
+
+  create_table "photo_albums", :force => true do |t|
+    t.string   "name"
+    t.integer  "event_id"
+    t.boolean  "visible"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photo_albums", ["event_id"], :name => "index_photo_albums_on_event_id"
 
   create_table "simple_captcha_data", :force => true do |t|
     t.string   "key",        :limit => 40

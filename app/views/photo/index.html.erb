@@ -1,0 +1,44 @@
+<div class="prices">
+  <ul class="block-ul">
+    <% @photo_albums.each do |album| -%>
+	  <li id="album_<%= album.id %>_photos">
+		  <a href="#" class="prices-cat"><%= album.name %></a>
+			<ul class="block-ul image-list" style="display: none;">
+        <% album.attachments.each do |photo| -%>
+			  <li>
+          <%= link_to image_tag(photo.image.url(:site)), photo.image.url %>
+				</li>
+        <% end -%>
+      </ul>
+		</li>
+		<% end -%>
+    <!--
+    <li >
+		  <a class="prices-cat prices-cat-selected">123</a>
+		</li>
+    -->
+	</ul>
+</div>
+
+<% content_for :page_javascript do %>
+  $(function() {
+    $('.image-list a').lightBox();
+
+    $('.prices-cat').click(function() {
+      $(this).next().toggle('blind', {}, 100, function () {
+        var $li = $(this).closest('li');
+        var $a_pc = $li.children('a.prices-cat');
+
+        if($(this).css('display') != 'none') {
+          $.scrollTo($li, 200);
+          $a_pc.addClass('prices-cat-selected');
+        } else {
+          $a_pc.removeClass('prices-cat-selected');
+        }
+      });
+
+      return false;
+    });
+  });
+<% end %>
+

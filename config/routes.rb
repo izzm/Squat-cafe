@@ -4,6 +4,8 @@ Dir["#{::Rails.root.to_s}/lib/route_constraints/*"].each { |path|
 }
 
 RailsShop::Application.routes.draw do
+  get "photo/index"
+
   ActiveAdmin.routes(self)
   
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -40,6 +42,10 @@ RailsShop::Application.routes.draw do
     #get '/*path/goods/:id', :action => :good, :as => 'good', :constraints => GoodConstraint
     # Constraint class in lib/CategoryConstraint.rb
     get '/*path', :action => :category,       :as => 'category', :constraints => CategoryConstraint
+  end
+
+  scope :controller => :photo do
+    get '/photo', :action => :index, :as => 'photo'
   end
 
   scope :controller => :site do

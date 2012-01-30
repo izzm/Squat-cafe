@@ -44,8 +44,14 @@
   $(function() {
     $('.prices-cat').click(function() {
       $(this).next().toggle('blind', {}, 100, function () {
+        var $li = $(this).closest('li');
+        var $a_pc = $li.children('a.prices-cat');
+
         if($(this).css('display') != 'none') {
-          $.scrollTo($(this).closest('li'), 200);
+          $.scrollTo($li, 200);
+          $a_pc.addClass('prices-cat-selected');
+        } else {
+          $a_pc.removeClass('prices-cat-selected');
         }
       });
 

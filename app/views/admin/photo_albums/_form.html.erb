@@ -1,0 +1,24 @@
+<%= semantic_form_for [:admin, @photo_album] do |f| %>
+  <%= f.inputs :info do %>
+    <%= f.input :name %>
+    <%= f.input :event,
+                :input_html => { 
+                  :style => 'width: 78%;',
+                } %>
+  <% end %>
+
+  <%= f.inputs :control do %>
+    <%= f.input :visible %>
+  <% end %>
+  
+  <%= f.buttons %>
+<% end %>
+
+<%= render(:partial => 'admin/attachments/list',
+           :locals => { :object => @photo_album }) if !@photo_album.new_record?  %>
+
+<%= javascript_tag do %>
+$(function() {
+  $('#photo_album_event_id').chosen();
+});
+<% end %>

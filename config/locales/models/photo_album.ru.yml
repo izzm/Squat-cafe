@@ -1,0 +1,37 @@
+ru:
+  activerecord:
+    models:
+      photo_album: "Фотоальбомы"
+    attributes:
+      photo_album:
+        name: "Название"
+        event: "Событие"
+        visible: "Отображается"
+        photo_count: "Количество фотографий"
+        created_at: "Дата создания"
+
+  active_admin:
+    actions:
+      photo_album:
+        destroy: "Удалить"
+    status_tags:
+      photo_album:
+        visible: "Да"
+        invisible: "Нет"
+
+  formtastic:
+    labels:
+      photo_album:
+        name: "Название альбома"
+        event: "Прикрепленное событие"
+    hints:
+      photo_album:
+        new:
+          name: "Введите название фотоальбма"
+          event: "При необходимости альбом можно прикрепить к событию"
+        edit:
+          name: "Измените при желании название фотоальбома"
+          event: "При необходимости альбом можно прикрепить к событию"
+    actions:
+      photo_album:
+        create: "Создать фотоальбом"
