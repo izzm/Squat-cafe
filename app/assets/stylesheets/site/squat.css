@@ -624,6 +624,11 @@ margin-left: 5px;}
 	border-bottom: dotted 1px #444444;
 	
 }
+
+.prices {
+  margin-top: 20px;
+}
+
 .prices ul ul{
 	padding-top:10px;
 	margin-bottom: 10px;
