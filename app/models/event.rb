@@ -11,6 +11,9 @@ class Event < ActiveRecord::Base
   scope :featured, where(:featured => true)
 
   scope :today, where("date_trunc('day', date) = date_trunc('day', current_timestamp)").visible
+  scope :of_current_year, where("extract(year from date) = extract(year from current_timestamp)")
+  scope :for_calendar, select("max(name) as name, date_trunc('day', date) as date").group("date_trunc('day', date)")
+
   scope :on_site, visible.sorted
   scope :site_future, future.on_site
   scope :site_featured, featured.on_site
@@ -30,6 +33,10 @@ class Event < ActiveRecord::Base
 
   def to_s
     name
+  end
+
+  def date_json
+    [date.month, date.day, date.year]
   end
 
   def attachment_styles

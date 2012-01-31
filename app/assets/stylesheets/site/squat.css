@@ -14,6 +14,10 @@
 	list-style: none;
 }
 
+.menu_wrapper {
+  height: 38px;
+}
+
 .menu a, a:visited{
 	text-decoration:none;
 	color:black;
@@ -403,6 +407,10 @@ float: left;
 {
 	background-color: gray;
 	padding: 5px;
+}
+
+#calendar {
+  padding: 1px;
 }
 
 /* INDEX */

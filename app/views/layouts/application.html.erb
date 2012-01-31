@@ -15,6 +15,9 @@
   <%= javascript_tag do %>
     <%= yield :page_javascript %>
   <% end %>
+  <%= javascript_tag do %>
+    window.events = <%=raw Event.of_current_year.visible.for_calendar.to_json(:only => [:name], :methods =>[:date_json]) %>;
+  <% end %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -27,7 +30,8 @@
         <%= link_to image_tag('site/squatcafe.png'), root_path, :class => 'head-right' %>
       </div>
     </div>
-
+    
+    <div class="menu_wrapper">
 	  <div class="menu" id="menu_fixed_scroll">
     	<div class="menu-cont">
     		<ul class="menu-main">
@@ -44,7 +48,8 @@
 		       </form>
             </div>
         </div>
-	</div>
+	    </div>
+      </div>
     </header>
     
     
@@ -63,44 +68,7 @@
 						<div class="clearfix"></div></a> 
 					</div>
 					
-					<div class="block-content">
-						123
-					</div>
-				</div>
-				<!--BLOCK END !-->
-				<div class="block">
-					<div class="block-header"> 
-						<a href="#"><div class="block-header-title">КАЛЕНДАРЬ</div>
-						<div class="block-header-arrow"><a class="arrow-down"></a></div>
-						<div class="clearfix"></div></a> 
-					</div>
-					
-					<div class="block-content">
-						123
-					</div>
-				</div>
-				<!--BLOCK END !-->
-				<div class="block">
-					<div class="block-header"> 
-						<a href="#"><div class="block-header-title">КАЛЕНДАРЬ</div>
-						<div class="block-header-arrow"><a class="arrow-down"></a></div>
-						<div class="clearfix"></div></a> 
-					</div>
-					
-					<div class="block-content">
-						123
-					</div>
-				</div>
-				<!--BLOCK END !-->
-				<div class="block">
-					<div class="block-header"> 
-						<a href="#"><div class="block-header-title">КАЛЕНДАРЬ</div>
-						<div class="block-header-arrow"><a class="arrow-down"></a></div>
-						<div class="clearfix"></div></a> 
-					</div>
-					
-					<div class="block-content">
-						123
+					<div class="block-content" id="calendar">
 					</div>
 				</div>
 				<!--BLOCK END !-->
