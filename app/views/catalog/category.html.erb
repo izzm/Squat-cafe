@@ -48,7 +48,7 @@
         var $a_pc = $li.children('a.prices-cat');
 
         if($(this).css('display') != 'none') {
-          $.scrollTo($li, 500, {offset: 50});
+          $.scrollTo($li, 500, {offset: -50});
           $a_pc.addClass('prices-cat-selected');
         } else {
           $a_pc.removeClass('prices-cat-selected');

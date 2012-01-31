@@ -22,6 +22,7 @@ $(function() {
       $fixed.css({top: '0px', position: 'relative'});
       $slave_fixed.css({top: '0px', left: '0px', position: 'relative'});
     }
-
+    
+    return true;
   });
 });
