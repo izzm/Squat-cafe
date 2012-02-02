@@ -46,6 +46,7 @@
     $image.delay(base_duration - duration).animate({top: $image.attr('data-top')}, duration);
 
     $scon.show();
+    $scon.attr('data-height', '100px');
     $scon.animate({height: $scon.attr('data-height'), top: '0px', 'padding-top': $scon.attr('data-padding-top')}, base_duration);
       
     $opened.animate({height: $scon.attr('data-height')}, base_duration, function() {
