@@ -714,6 +714,10 @@ div.event_content {
   padding: 0px 20px 20px 0px;
 }
 
+div.event_content p {
+  margin: 0px;
+}
+
 div.event_content .short_content {
   padding-top: 10px;
   height: 100px;
