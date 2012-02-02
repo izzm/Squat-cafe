@@ -1,10 +1,5 @@
 @charset "utf-8";
 /* CSS Document */
-#container{
-	height:100%;
-	min-height: 100%;
-	position: relative;
-}
 .nounder a
 {text-decoration: none;}
 
@@ -59,13 +54,6 @@
 	display: block;
 }
 
-html, body
-{
-	margin:0px;
-	padding:0px;
-	font-family:Verdana, Geneva, sans-serif;
-}
-
 ul{
 display: block;
 list-style-type: disc;
@@ -102,6 +90,44 @@ border:none;
 	margin-left:20px;
 }
 
+/* LAYOUT */
+
+html, body
+{
+	margin:0px;
+	padding:0px;
+	font-family:Verdana, Geneva, sans-serif;
+  height: 100%;
+}
+
+#container{
+  position: relative;
+  min-height: 100%;
+}
+
+* html #container {
+   height: 100%;
+}
+
+#main
+{
+	padding-bottom: 165px;
+}
+
+footer{
+	background-color: #1d1d1d;
+	border-top:3px solid #f08245;
+	color: white;
+	font-size: 12px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+  position: relative;
+  height: 107px;
+  margin-top: -150px;
+}
+
+
 /* HEADER STYLE*/
 .head{
 	background-image:url(/assets/site/dots.png);
@@ -113,7 +139,7 @@ border:none;
 	
 
 }
-#container{height: 100%;}
+
 .head-cont, .head{
 	background-color:#1d1d1d;
 	min-height: 124px;
@@ -140,6 +166,7 @@ border:none;
 #menu_fixed_scroll, #sidebar_fixed_scroll {
   position: relative;
   top: 0px;
+  z-index: 9999;
 }
 
 .menu-cont{
@@ -301,13 +328,6 @@ border-bottom: dashed 1px black;}
 	text-decoration: underline;
 }
 /* CONTENT */
-#main
-{
-	height: 100%;
-	min-height: 200px;
-	margin-bottom: 25px;
-}
-
 .inner
 {
 	width: 670px;
@@ -333,14 +353,6 @@ border-bottom: dashed 1px black;}
 }
 
 /* FOOTER */
-footer{
-	background-color: #1d1d1d;
-	border-top:3px solid #f08245;
-	color: white;
-	font-size: 12px;
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
 footer a{
 	color:white;
 	cursor: pointer;
@@ -678,3 +690,59 @@ margin-left: 5px;}
 .image-list.folded {
   height: 105px;
 }
+
+/* EVENTS */
+
+div.event {
+  overflow: hidden;
+  position: relative;
+}
+
+div.event.closed {
+  height: 100px;
+}
+
+div.event.closed img,
+div.event.opened img {
+  position: relative;
+  left: 0px;
+  float: left;
+}
+
+div.event_content {
+  margin-left: 260px;
+  padding: 0px 20px 20px 0px;
+}
+
+div.event_content .short_content {
+  padding-top: 10px;
+  height: 100px;
+  position: relative;
+  line-height: 1.5em;
+}
+
+div.event_content .full_content {
+  line-height: 1.5em;
+  padding: 20px;
+}
+
+div.read_more {
+  padding: 0px 10px;
+  border-top: 1px solid black;
+  position: absolute;
+  bottom: 0px;
+  left: 260px;
+  height: 20px;
+  width: 100%;
+  padding-top: 4px;
+}
+
+div.read_more a:visited {
+  color: black;
+}
+
+a.afisha-item-header:visited,
+a.prices-cat:visited {
+  color: black;
+}
+

@@ -48,6 +48,10 @@ RailsShop::Application.routes.draw do
     get '/photo', :action => :index, :as => 'photo'
   end
 
+  scope :controller => :events do
+    get '/events', :action => :index, :as => 'events'
+  end
+
   scope :controller => :site do
     post '/feedback', :action => 'feedback', :as => 'feedback'
 

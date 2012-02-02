@@ -1,0 +1,68 @@
+<!--<div class="page-header">
+	123
+</div>-->
+<div class="afisha">
+<!--	<a class="afisha-pager" href="#"><div class="arrow-up"></div></a>-->
+	<ul>
+	  <% @events.each do |event| -%>
+		<li>
+			<%= link_to '#', :class => 'afisha-item-header', '-data-name' => Russian.strftime(event.date, '%d.%m.%Y') do %>
+			  <%=raw Russian.strftime(event.date, '%A | <strong>%d %B</strong> | %H:%M').mb_chars.downcase %> -
+			  <%= event.name %> | <%= event.price %>
+			<% end %>
+			
+			<div class="event closed">
+        <% if event.attachments.count > 0 -%>
+          <%= image_tag event.attachments.first.image.url(:event), :class => 'main', :style => 'top: -42px;' %>
+        <% end -%>
+        <div class="event_content">
+          <div class="short_content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et magna nulla, vitae ullamcorper massa. Suspendisse laoreet gravida faucibus. Praesent sed dapibus nunc.
+          </div>
+
+          <div class="full_content">
+            Donec eget massa sapien, nec mollis sapien. Maecenas suscipit euismod eros, quis tempus mi imperdiet suscipit. Nullam sollicitudin mauris eget metus dapibus vulputate. Fusce laoreet enim ut dui congue id facilisis leo vestibulum. Aenean in elit a mi molestie ultricies quis a ante. Maecenas convallis rutrum feugiat. Curabitur convallis volutpat quam at gravida. Proin mollis ligula orci, sit amet hendrerit mi. Nunc ac odio dolor, a condimentum erat. Nunc viverra, metus rhoncus dignissim volutpat, augue neque venenatis lectus, blandit blandit ligula risus at orci. Cras hendrerit risus et sapien pharetra tincidunt.<br><br>
+            Nam auctor rhoncus erat, sit amet consectetur odio consectetur eget. Ut convallis leo nec dui euismod posuere. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec facilisis condimentum commodo. In ut tellus leo, quis auctor orci. Aenean tempus, augue at molestie auctor, orci risus volutpat odio, sed molestie ligula ipsum et neque. Etiam id diam augue. Praesent suscipit auctor nunc et blandit. Phasellus dictum odio id odio lobortis adipiscing. Praesent metus felis, scelerisque vitae placerat sed, feugiat quis lorem. Aenean purus elit, scelerisque eu facilisis sit amet, vestibulum quis quam. Cras dui odio, rutrum et viverra id, sodales sit amet metus.
+          </div>
+        </div>
+
+        <div class="read_more">
+          <a href="#" class="read_more_link">Далее</a>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+			
+		</li>
+		<% end -%>
+	</ul>
+<!--	<a class="afisha-pager" href="#"><div class="arrow-down"></div></a>-->
+</div>
+
+
+<% content_for :page_javascript do %>
+  $(function() {
+    $('.read_more_link').click(function() {
+      $(this).closest('.event').squatEvent('open');
+      return false; 
+    });
+    
+    $('.afisha-item-header').click(function() {
+      var $event= $(this).parent().children('.event');
+      var $li = $(this).closest('li');
+      
+      if($event.hasClass('animated')) {
+        return false;
+      }
+      
+      if($event.hasClass('closed')) {
+        $event.squatEvent('open');
+        $.scrollTo($li, 500, {offset: -50});
+      } else if($event.hasClass('opened'))  {
+        $event.squatEvent('close');
+      }
+      return false; 
+    });
+  });
+<% end %>
+
