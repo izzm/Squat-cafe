@@ -71,7 +71,9 @@
       var $event = $('.today:first');
       var $li = $event.closest('li');
 
-      $event.squatEvent('open', void, 0);
+      $event.squatEvent('open', function() {
+        return;
+      }, 0);
       $.scrollTo($li, 0, {offset: -50});
     }, 200);
 
