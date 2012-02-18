@@ -63,6 +63,10 @@
   };
 
   $.fn.squatEvent = function(action, callback) {
+    if($(this).size() == 0 && $.isFunction(callback)) {
+      callback();
+    }
+
     return $(this).each(function() {
       var $this = $(this);
 
