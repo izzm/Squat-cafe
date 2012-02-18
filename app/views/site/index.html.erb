@@ -79,7 +79,7 @@
   	<ul class="block-ul slider">
       <% Event.site_future.limit(12).each do |event| -%>
   	  <li class="slider-item">
-  		  <a class="slider-item-a" href="#">
+        <%= link_to events_path(:anchor => Russian.strftime(event.date, '%d.%m.%Y') ), :class => 'slider-item-a' do %>
   			  <div class="slider-item-img ">
             <% if event.attachments.count > 0 -%>
               <%= image_tag event.attachments.first.image.url(:main_page_images_small) %>
@@ -91,7 +91,7 @@
   				<div class="slider-item-title"><%= event.name %></div>
   				<div class="slider-item-more">подробнее</div>
   				<div class="clearfix"></div>
-        </a>
+        <% end %>
   		</li>
       <% end -%>
   	</ul>
