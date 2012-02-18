@@ -573,13 +573,13 @@ margin-left: 5px;}
 	width: 100%;
 	background-color: #cecece;
 	text-align: center;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	font-size: 16px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	font-size: 12px;
 	color: #1e1e1e;
 	text-decoration:none;
 	display: block;
-		margin-bottom: 4px;
+	margin-bottom: 4px;
 }
 
 .afisha-item-header-selected, .prices-cat-selected, .afisha-item-header:hover, .prices-cat:hover{
