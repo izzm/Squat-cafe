@@ -9,11 +9,15 @@ class SiteController < ApplicationController
     if @page.redirect_url.blank?
       set_meta(@page)
       
+      template = @page.link
       begin
-        render :action => @page.link
+        logger.info "Try #{template} template ..."
+        render :action => template
       rescue ActionView::MissingTemplate => e1
         begin
-          render :action => @page.self_and_ancestors[0].link
+          template = @page.self_and_ancestors[0].link
+          logger.info "Try #{template} template ..."
+          render :action => template
         rescue ActionView::MissingTemplate => e2
           logger.info "Use default StaticPage template"
         end
