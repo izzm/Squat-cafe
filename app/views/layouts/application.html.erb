@@ -64,7 +64,7 @@
 				<div class="block">
 					<div class="block-header"> 
 						<a href="#"><div class="block-header-title">КАЛЕНДАРЬ</div>
-						<div class="block-header-arrow"><a class="arrow-down"></a></div>
+<!--						<div class="block-header-arrow"><a class="arrow-down"></a></div>-->
 						<div class="clearfix"></div></a> 
 					</div>
 					
@@ -72,6 +72,27 @@
 					</div>
 				</div>
 				<!--BLOCK END !-->
+
+				<!--BLOCK START !-->
+				<div class="block">
+					<div class="block-header"> 
+						<a href="#"><div class="block-header-title">МЕНЮ</div>
+<!--						<div class="block-header-arrow"><a class="arrow-down"></a></div>-->
+						<div class="clearfix"></div></a> 
+					</div>
+					
+					<div class="block-content" id="quickmenu">
+            <ul class="quickmenu_list">
+              <% Category.site_roots.navigation.each do |cat| -%>
+                <li>
+                  <%= link_to cat.name, category_path(cat.url_path) %>
+              	</li>
+              <% end -%>
+            </ul>	
+					</div>
+				</div>
+				<!--BLOCK END !-->
+
 			</div>
 		</div>
 		<!--End of Content!-->	
