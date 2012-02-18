@@ -67,7 +67,12 @@
     });
     
     window.setTimeout(function() {
-      $('.today:first').parent().find('.afisha-item-header').click();
+      //$('.today:first').parent().find('.afisha-item-header').click();
+      var $event = $('.today:first');
+      var $li = $event.closest('li');
+
+      $event.squatEvent('open');
+      $.scrollTo($li, 0, {offset: -50});
     }, 200);
 
   });
