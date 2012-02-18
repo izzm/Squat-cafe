@@ -12,6 +12,8 @@
     var base_duration = 1000;
     var hc = $image.height() / $fcon.outerHeight();
     var duration = hc <= 1 ? base_duration * hc : base_duration;
+
+    var content_height = Math.max($fcon.outerHeight(), $image.outerHeight());
     
     $closed.addClass('animated');
     
@@ -23,7 +25,7 @@
     $scon.animate({height: '0px', top: '-' + $scon.height() + 'px', 'padding-top': '0px'}, base_duration, function() {
       $(this).hide();
     });
-    $closed.animate({height: $fcon.outerHeight()}, base_duration, function() {
+    $closed.animate({height: content_height}, base_duration, function() {
       $closed.switchClass('closed', 'opened');
       $closed.removeClass('animated');
     });
