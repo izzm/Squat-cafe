@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
            :as => :resource,
            :dependent => :destroy
   scope :sorted, order('date desc')
+  scope :inv_sorted, order('date asc')
   scope :visible, where(:visible => true)
 
   scope :all_events, where('1=1')
@@ -15,7 +16,7 @@ class Event < ActiveRecord::Base
   scope :for_calendar, select("max(name) as name, date_trunc('day', date) as date").group("date_trunc('day', date)")
 
   scope :on_site, visible.sorted
-  scope :site_future, future.on_site
+  scope :site_future, future.visible.inv_sorted
   scope :site_featured, featured.on_site
 
   validates :name, :presence => true, 

@@ -3,11 +3,11 @@ $(function() {
   var $slave_fixed = $('#sidebar_fixed_scroll');
   var menu_offset = $fixed.offset().top;
   var menu_height = $fixed.outerHeight();
-  var sidebar_offset = $slave_fixed.offset().left;
 
-  $(window).scroll(function() {
+  var check_position = function() {
     var page_scroll = $(this).scrollTop();
     var offset = page_scroll - menu_offset;
+    var sidebar_offset = $('#keyword').offset().left;
 
     if(page_scroll > menu_offset) {
       $fixed.css({
@@ -24,7 +24,9 @@ $(function() {
     }
     
     return true;
-  });
+  };
+
+  $(window).resize(check_position).scroll(check_position);
 
   $('#calendar').datepicker({
     onSelect: function(dateText, inst) {
