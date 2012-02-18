@@ -12,7 +12,7 @@
 			  <%= event.name %> | <%= event.price %>
 			<% end %>
 			
-			<div class="event closed<%= ' today' if event.date.today? %>">
+			<div class="today event closed<%= ' today' if event.date.today? %>">
         <% if event.attachments.count > 0 -%>
           <%= image_tag event.attachments.first.image.url(:event), :class => 'main', :style => 'top: -42px;' %>
         <% end -%>
@@ -75,7 +75,7 @@
         return;
       }, 0);
       $.scrollTo($li, 0, {offset: -50});
-    }, 200);
+    }, 500);
 
   });
 <% end %>
