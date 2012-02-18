@@ -20,7 +20,9 @@
               <%= good.name %>
               <% if good.parameters.count > 0 -%>
                 <% good.parameters.each do |p| -%>
+                  <% unless p['value'].blank? -%>
                   (<%= p['name'] %>: <%= p['value'] %> <%= p['unit'] %>)
+                  <% end -%>
                 <% end -%>
               <% end-%>
             </span>

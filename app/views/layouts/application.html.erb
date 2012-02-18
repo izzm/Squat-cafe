@@ -82,7 +82,7 @@
 					</div>
 					
 					<div class="block-content" id="quickmenu">
-            <ul class="quickmenu_list">
+            <ul class="quickmenu_list block-ul">
               <% Category.site_roots.navigation.each do |cat| -%>
                 <li>
                   <%= link_to cat.name, category_path(cat.url_path) %>
