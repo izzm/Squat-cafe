@@ -33,7 +33,7 @@ class StaticPage < ActiveRecord::Base
   end
   
   def attachment_styles
-    { :main_page_images => "200x240#" } 
+    { :main_page_images => "200x240#", :site => "100x100#" } 
   end
 
   def status
