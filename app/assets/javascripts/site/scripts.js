@@ -39,7 +39,7 @@ $(function() {
         if(date.getMonth() == window.events[i].date_json[0] - 1
           && date.getDate() == window.events[i].date_json[1]
           && date.getFullYear() == window.events[i].date_json[2]) {
-          return [true,"ui-state-active", window.events[i].name];
+          return [true,"", window.events[i].name];
         }
       }
       
