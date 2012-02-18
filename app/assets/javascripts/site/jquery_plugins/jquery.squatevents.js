@@ -1,11 +1,11 @@
 ;(function($) {
-  var open = function($closed, callback) {
+  var open = function($closed, callback, speed) {
     var $image = $closed.find('img.main')
     var $con = $closed.find('.event_content');
     var $scon = $closed.find('.short_content');
     var $fcon = $closed.find('.full_content');
       
-    var base_duration = 1000;
+    var base_duration = speed == null ? 1000 : speed;
     var hc = $image.height() / $fcon.outerHeight();
     var duration = hc <= 1 ? base_duration * hc : base_duration;
 
@@ -33,13 +33,13 @@
     $closed.find('.read_more').hide();
   };
 
-  var close = function($opened, callback) {
+  var close = function($opened, callback, speed) {
     var $image = $opened.find('img.main')
     var $con = $opened.find('.event_content');
     var $scon = $opened.find('.short_content');
     var $fcon = $opened.find('.full_content');
 
-    var base_duration = 1000;
+    var base_duration = speed == null ? 1000 : speed;
     var hc = $image.height() / $fcon.outerHeight();
     var duration = hc <= 1 ? base_duration * hc : base_duration;
     
@@ -62,7 +62,7 @@
     });
   };
 
-  $.fn.squatEvent = function(action, callback) {
+  $.fn.squatEvent = function(action, callback, speed) {
     if($(this).size() == 0 && $.isFunction(callback)) {
       callback();
     }
@@ -71,9 +71,9 @@
       var $this = $(this);
 
       if(action == 'open') {
-        open($this, callback);
+        open($this, callback, speed);
       } else {
-        close($this, callback);
+        close($this, callback, speed);
       }
     });
   };
