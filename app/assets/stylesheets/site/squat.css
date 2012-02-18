@@ -35,12 +35,14 @@
 
 .quickmenu_list li a:hover
 {
-	color:white;
+	color:#F08245;
 }
 
 #quickmenu
 {
 	background-color:#F3E93F;
+	padding-top:10px;
+	padding-bottom:10px;
 }
 
 .arrow-down
