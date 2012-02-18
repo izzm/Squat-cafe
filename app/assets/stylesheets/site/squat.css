@@ -23,6 +23,26 @@
 	color:black;
 }
 
+.quickmenu_list li
+{
+	padding-left:10px;
+}
+.quickmenu_list li a, .quickmenu_list li a:visited
+{
+	color:black;
+	text-decoration:none;
+}
+
+.quickmenu_list li a:hover
+{
+	color:white;
+}
+
+#quickmenu
+{
+	background-color:#F3E93F;
+}
+
 .arrow-down
 {
 	width: 25px;
