@@ -6,7 +6,7 @@
 	<ul>
 	  <% @events.each do |event| -%>
 		<li>
-			<%= link_to '#', :class => 'afisha-item-header', 'rel' => Russian.strftime(event.date, '%d.%m.%Y') do %>
+			<%= link_to '#', :class => 'afisha-item-header', 'data-hash' => "##{Russian.strftime(event.date, '%d.%m.%Y')}" do %>
         <%=raw Russian.strftime(event.date, '%a').mb_chars.upcase %>
 			  <%=raw Russian.strftime(event.date, '| <strong>%d %B</strong> | %H:%M').mb_chars.downcase %> -
 			  <%= event.name %> | <%= event.price %>
@@ -69,7 +69,7 @@
     window.setTimeout(function() {
       var $event = $('.today:first');
       if(location.hash != "") {
-        $event = $('a[rel='+location.hash+']').parent().children('.event');
+        $event = $('a.afisha-item-header[data-hash="'+location.hash+'"]').parent().children('.event');
       }
       var $li = $event.closest('li');
 
