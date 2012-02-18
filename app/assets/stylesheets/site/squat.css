@@ -33,7 +33,10 @@
 	text-decoration:none;
 }
 
-.quickmenu_list li a:hover
+
+
+
+.quickmenu_list li a:hover, .search li a:hover
 {
 	color:#F08245;
 }
@@ -44,6 +47,24 @@
 	padding-top:10px;
 	padding-bottom:10px;
 }
+
+.search
+{
+	margin-top:20px;
+}
+
+.search li
+{
+	margin-bottom:10px;
+}
+
+.search li a, .search li a:visited
+{
+	color:black;
+	
+}
+
+
 
 .arrow-down
 {
