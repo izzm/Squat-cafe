@@ -1,0 +1,25 @@
+<ul class="submenu">
+  <% StaticPage.site_children(@page.self_and_ancestors[0]).each do |page| -%>
+  <li>
+    <%= link_to page.title, static_page(page) %>
+	</li>
+  <% end -%>
+</ul>	
+
+<div class="text-wrapper">
+  <%=raw @page.content %>
+  <ul class="block-ul image-list">
+    <% @page.attachments.each do |photo| -%>
+		<li>
+      <%= link_to image_tag(photo.image.url(:site)), photo.image.url %>
+		</li>
+    <% end -%>
+  </ul>
+
+</div>
+
+<% content_for :page_javascript do %>
+  $(function() {
+    $('.image-list a').lightBox();
+  });
+<% end %>
