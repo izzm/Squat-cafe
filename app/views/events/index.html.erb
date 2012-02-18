@@ -6,13 +6,13 @@
 	<ul>
 	  <% @events.each do |event| -%>
 		<li>
-			<%= link_to '#', :class => 'afisha-item-header', 'name' => Russian.strftime(event.date, '%d.%m.%Y') do %>
+			<%= link_to '#', :class => 'afisha-item-header', 'rel' => Russian.strftime(event.date, '%d.%m.%Y') do %>
         <%=raw Russian.strftime(event.date, '%a').mb_chars.upcase %>
 			  <%=raw Russian.strftime(event.date, '| <strong>%d %B</strong> | %H:%M').mb_chars.downcase %> -
 			  <%= event.name %> | <%= event.price %>
 			<% end %>
 			
-			<div class="event closed">
+			<div class="event closed<%= ' today' if event.date.today? %>">
         <% if event.attachments.count > 0 -%>
           <%= image_tag event.attachments.first.image.url(:event), :class => 'main', :style => 'top: -42px;' %>
         <% end -%>
@@ -65,6 +65,9 @@
       }
       return false; 
     });
+    
+    $('.today:first').closest('.afisha-item-header').click();
+
   });
 <% end %>
 
