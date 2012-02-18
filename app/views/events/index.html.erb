@@ -7,7 +7,8 @@
 	  <% @events.each do |event| -%>
 		<li>
 			<%= link_to '#', :class => 'afisha-item-header', 'name' => Russian.strftime(event.date, '%d.%m.%Y') do %>
-			  <%=raw Russian.strftime(event.date, '%a | <strong>%d %B</strong> | %H:%M').mb_chars.downcase %> -
+        <%=raw Russian.strftime(event.date, '%a').mb_chars.upcase %>
+			  <%=raw Russian.strftime(event.date, '| <strong>%d %B</strong> | %H:%M').mb_chars.downcase %> -
 			  <%= event.name %> | <%= event.price %>
 			<% end %>
 			
