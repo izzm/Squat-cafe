@@ -57,8 +57,9 @@
       
       if($event.hasClass('closed')) {
         $event.squatEvent('open');
-        $('.event.opened').squatEvent('close');
-        $.scrollTo($li, 500, {offset: -50});
+        $('.event.opened').squatEvent('close', function() {  
+          $.scrollTo($li, 500, {offset: -50});
+        });
       } else if($event.hasClass('opened'))  {
         $event.squatEvent('close');
       }

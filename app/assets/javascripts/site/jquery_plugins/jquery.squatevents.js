@@ -1,9 +1,5 @@
 ;(function($) {
-  $.squatEvents = {
-    defaults: {}
-  };
-
-  var open = function($closed) {
+  var open = function($closed, callback) {
     var $image = $closed.find('img.main')
     var $con = $closed.find('.event_content');
     var $scon = $closed.find('.short_content');
@@ -28,12 +24,16 @@
     $closed.animate({height: content_height}, base_duration, function() {
       $closed.switchClass('closed', 'opened');
       $closed.removeClass('animated');
+
+      if($.isFunction(callback)) {
+        callback();
+      }
     });
     //$closed.switchClass('closed', 'opened', base_duration);
     $closed.find('.read_more').hide();
   };
 
-  var close = function($opened) {
+  var close = function($opened, callback) {
     var $image = $opened.find('img.main')
     var $con = $opened.find('.event_content');
     var $scon = $opened.find('.short_content');
@@ -55,20 +55,21 @@
       $opened.switchClass('opened', 'closed');
       $opened.find('.read_more').show('blind', 100);
       $opened.removeClass('animated');
+
+      if($.isFunction(callback)) {
+        callback();
+      }
     });
   };
 
-  $.fn.squatEvent = function(action, settings) {
-    $.extend((settings == null ? {} : settings), $.squatEvents.defaults);
-    var s = settings;
-
+  $.fn.squatEvent = function(action, callback) {
     return $(this).each(function() {
       var $this = $(this);
 
       if(action == 'open') {
-        open($this);
+        open($this, callback);
       } else {
-        close($this);
+        close($this, callback);
       }
     });
   };
