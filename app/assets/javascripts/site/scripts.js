@@ -30,7 +30,7 @@ $(function() {
 
   $('#calendar').datepicker({
     onSelect: function(dateText, inst) {
-      window.location = "/page/afisha#" + dateText;
+      window.location = "/events/bydate/" + dateText;
     },
     numberOfMonths: [1, 1],
     showCurrentAtPos: 0,

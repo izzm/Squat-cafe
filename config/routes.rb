@@ -49,6 +49,7 @@ RailsShop::Application.routes.draw do
   end
 
   scope :controller => :events do
+    get '/events/bydate/:date', :action => :bydate, :as => 'events_bydate', :date => /\d{2}\.\d{2}\.\d{4}/
     get '/events', :action => :index, :as => 'events'
   end
 
