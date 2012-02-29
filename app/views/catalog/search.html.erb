@@ -1,3 +1,9 @@
+<% if @goods.empty? && @categories.empty? && @pages.empty? && @events.empty? -%>
+  <div class="not_found">
+    Ничего не найдено
+  </div>
+<% end -%>
+
 <% if !params[:keyword].nil? -%>
 
 <% if @goods.count > 0-%>
