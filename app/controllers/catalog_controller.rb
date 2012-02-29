@@ -86,42 +86,46 @@ class CatalogController < ApplicationController
   end
 
   def search
-    @perpage = params[:perpage].to_i > 0 ? params[:perpage].to_i : 20
-    @page = params[:page].to_i > 0 ? params[:page].to_i : 1
+    #@perpage = params[:perpage].to_i > 0 ? params[:perpage].to_i : 20
+    #@page = params[:page].to_i > 0 ? params[:page].to_i : 1
 
-    if params[:single_search] && params[:single_search].size >= 3
-      @search_goods_name = Good.search :name_contains => params[:single_search]
-      @search_goods_description = Good.search :description_contains => params[:single_search]
+    if params[:keyword].size >= 3
+      @search_goods_name = Good.search :name_contains => params[:keyword]
+      @search_goods_description = Good.search :description_contains => params[:keyword]
       
-      @search_category_name = Category.search :name_contains => params[:single_search]
-      @search_category_description = Category.search :description_contains => params[:single_search]
+      @search_category_name = Category.search :name_contains => params[:keyword]
+      @search_category_description = Category.search :description_contains => params[:keyword]
       
-      @search_static_page_title = StaticPage.search :title_contains => params[:single_search]
-      @search_static_page_content = StaticPage.search :content_contains => params[:single_search]
-    else
-      @search = Good.search(params[:search])
+      @search_static_page_title = StaticPage.search :title_contains => params[:keyword]
+      @search_static_page_content = StaticPage.search :content_contains => params[:keyword]
+
+      @search_event_name = Event.search :name_contains => params[:keyword]
+      @search_event_short_description = Event.search :short_description_contains => params[:keyword]
+      @search_event_description = Event.search :description_contains => params[:keyword]
+
     end
     
-    if params[:single_search].nil?
-      if params[:search].nil?
-        @goods = []
-      else
-        @goods = @search.relation.visible#.page(@page).per(@perpage)
-      end
-    else
-      # site wide search
-      if defined? @search_goods_name
-        @search = @search_goods_name
-        @goods = @search_goods_name.relation.visible#.page(@page).per(@perpage)
-        @goods += @search_goods_description.relation.visible
+    # site wide search
+    if defined? @search_goods_name
+      #.page(@page).per(@perpage)
+      @goods = @search_goods_name.relation.visible
+      @goods += @search_goods_description.relation.visible
+      @goods.uniq!
+      
+      @categories = @search_category_name.relation.visible
+      @categories += @search_category_description.relation.visible
+      @categories.uniq!
 
-        @categories = @search_category_name.relation.visible
-        @categories += @search_category_description.relation.visible
-        @pages = @search_static_page_title.relation.visible
-        @pages = @search_static_page_content.relation.visible
-      else
-        @goods = []
-      end
+      @pages = @search_static_page_title.relation.visible
+      @pages += @search_static_page_content.relation.visible
+      @pages.uniq!
+
+      @events = @search_event_name.relation.visible
+      @events += @search_event_short_description.relation.visible
+      @events += @search_event_description.relation.visible
+      @events.uniq!
+    else
+      @goods = @categories = @pages = @events = []
     end
   end
 

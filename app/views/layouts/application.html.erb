@@ -24,31 +24,32 @@
 
   <div id="container">
     <header>
-		<div class="head">
-		  <div class="head-cont">
-        <%= link_to image_tag('site/logo.png'), root_path, :class => 'head-left' %>
-        <%= link_to image_tag('site/squatcafe.png'), root_path, :class => 'head-right' %>
-      </div>
-    </div>
-    
-    <div class="menu_wrapper">
-	  <div class="menu" id="menu_fixed_scroll">
-    	<div class="menu-cont">
-    		<ul class="menu-main">
-          <% StaticPage.site_roots.navigation.each do |page| -%>
-            <li>
-              <%= link_to page.title, static_page(page), :class => (page == @page ? 'selected' : '') %>
-            </li>
-          <% end -%>    
-        </ul>
-            <div class="right-column">
-            	 <form name="quicksearch" method="post" action="search">
-			        <input type="text" name="keyword" id="keyword" value="Поиск" />
-			        <input type="submit" name="ok_search" id="ok_search" value="OK" class="button" />
-		       </form>
-            </div>
+		  <div class="head">
+		    <div class="head-cont">
+          <%= link_to image_tag('site/logo.png'), root_path, :class => 'head-left' %>
+          <%= link_to image_tag('site/squatcafe.png'), root_path, :class => 'head-right' %>
         </div>
-	    </div>
+      </div>
+    
+      <div class="menu_wrapper">
+    	  <div class="menu" id="menu_fixed_scroll">
+    	    <div class="menu-cont">
+    		    <ul class="menu-main">
+              <% StaticPage.site_roots.navigation.each do |page| -%>
+              <li>
+                <%= link_to page.title, static_page(page), :class => (page == @page ? 'selected' : '') %>
+              </li>
+              <% end -%>    
+            </ul>
+        
+            <div class="right-column">
+              <%= form_tag catalog_search_path, :method => :get do  %>
+			          <input type="text" name="keyword" id="keyword" value="" class="placeholder" placeholder="Поиск" />
+			          <input type="submit" id="ok_search" value="OK" class="button" />
+		          <% end %>
+            </div>
+          </div>
+	      </div>
       </div>
     </header>
     

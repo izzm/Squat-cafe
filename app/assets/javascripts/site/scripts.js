@@ -28,6 +28,8 @@ $(function() {
 
   $(window).resize(check_position).scroll(check_position);
 
+  $('input[placeholder]').placeholder();
+
   $('#calendar').datepicker({
     onSelect: function(dateText, inst) {
       window.location = "/events/bydate/" + dateText;

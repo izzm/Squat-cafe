@@ -1,82 +1,58 @@
-<div class="adv_search">
-  <h2>Расширенный поиск</h2>
-  <%= form_for @search, :url => catalog_search_path, :html => {:method => :get, :class => "yellow_form"} do |f| %>
-    <% vc = Category.virtual.all -%>
-    <div class="form_left">
-      <p>
-        <%= f.label :vc0_id_eq, vc[0].name %>
-        <%= f.collection_select :vc0_id_eq, vc[0].children, :id, :name, :prompt => "Все" %>
-      </p>
-      <p>
-        <%= f.label :price_gte, "Цена от" %>
-        <%= f.text_field :price_gte, :class => "standart_inptxt" %>
-      </p>
-      <p>
-        <%= f.label :price_lte, "Цена до" %>
-        <%= f.text_field :price_lte, :class => "standart_inptxt" %>
-      </p>
-    </div>
-    
-    <div class="form_right">
-      <p>
-        <%= f.label :vc1_id_eq, vc[1].name %>
-        <%= f.collection_select :vc1_id_eq, vc[1].children, :id, :name, :prompt => "Все" %>
-      </p>
-      <p>
-        <%= f.label :name_contains, "Название" %>
-        <%= f.text_field :name_contains, :class => "standart_inptxt" %>
-      </p>
-      <p>
-        <%= f.label :articul_contains, "Артикул" %>
-        <%= f.text_field :articul_contains, :class => "standart_inptxt" %>
-      </p>
-      
-      <p class="adv_search_btn">
-        <%= link_to "Новый поиск", catalog_search_path %>
-        <%= f.submit "Искать", :class => "blue_inp_bg" %>
-      </p>
-    </div>
-    
-    <div class="clear"></div>
-  <% end %>
-</div><!--end_adv_search-->
-
-<% if !params[:search].nil? || !params[:single_search].nil? -%>
+<% if !params[:keyword].nil? -%>
 <div class="objects_found">
-  Найдено объектов: <%= @goods.count %>
+  Найдено блюд: <%= @goods.try(:count) || 0 %>
 </div>
 
-<div class="catalog">
-  <%= render :partial => 'paginator', :locals => {:nobg => false} if false %>
+<ul class="search block-ul">
+  <% @goods.each do |good| -%>
+    <li>
+      <%= link_to "#{good.category.name} / #{good.name}", category_path(good.category.self_and_ancestors[0].url_path) %>
+      <span><% raw good.description %></span>
+  </li>
+  <% end -%>
+</ul>
 
-  <ul class="list_product">
-    <%= render :partial => 'good', :locals => {:category => nil}, :collection => @goods %>
-  </ul>
-
-  <%= render :partial => 'paginator', :locals => {:nobg => true} if false%>
-</div><!--end_catalog-->
-<% end -%>
-
-<% if !params[:single_search].nil? -%>
+<!-- -->
 <div class="objects_found">
-  Найдено страниц: <%= (@categories.try(:count) || 0) + 
-                       (@pages.try(:count) || 0) %>
+  Найдено разделов меню: <%= @categories.try(:count) || 0 %>
 </div>
 
-<div class="catalog"> 
-  <div class="list_categories">
-    <% (@categories || []).each do |cat| -%>
-      <div class="category_title"><%= cat.name %></div>
-      <div class="category_preview"><%= link_to strip_tags(cat.description)[0..100], category_path(cat.url_path) %>...</div>
-    <% end -%>
-  </div>
+<ul class="search block-ul">
+  <% @categories.each do |category| -%>
+    <li>
+      <%= link_to category.name, category_path(category.self_and_ancestors[0].url_path) %>
+      <span><%=raw "#{strip_tags(category.description)[0..100]}..." %></span>
+  </li>
+  <% end -%>
+</ul>
 
-  <div class="list_pages">
-    <% (@pages || []).each do |page| -%>
-      <div class="category_title"><%= page.title %></div>
-      <div class="category_preview"><%= link_to strip_tags(page.content)[0..100], static_page_path(page.url_path) %>...</div>
-    <% end -%>
-  </div>
+<!-- -->
+<div class="objects_found">
+  Найдено страниц: <%= @pages.try(:count) || 0 %>
+</div>
 
-</div><!--end_catalog-->
+<ul class="search block-ul">
+  <% @pages.each do |page| -%>
+    <li>
+      <%= link_to page.title, static_page_path(page.url_path) %>
+      <span><%=raw "#{strip_tags(page.content)[0..100]}..." %></span>
+  </li>
+  <% end -%>
+</ul>
+
+<!-- -->
+<div class="objects_found">
+  Найдено событий: <%= @events.try(:count) || 0 %>
+</div>
+
+<ul class="search block-ul">
+  <% @events.each do |event| -%>
+    <li>
+      <%= link_to "#{event.name} @ #{Russian.strftime(event.date, '%d %B %Y')}", events_bydate_path(:date => Russian.strftime(event.date, '%d.%m.%Y')) %>
+      <span><%=raw "#{strip_tags(event.short_description)[0..100]}..." %></span>
+  </li>
+  <% end -%>
+</ul>
+
+
 <% end -%>

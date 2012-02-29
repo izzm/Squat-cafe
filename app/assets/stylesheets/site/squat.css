@@ -794,3 +794,15 @@ a.prices-cat:visited {
   color: black;
 }
 
+::-webkit-input-placeholder {
+  color: #999;
+}
+
+:-moz-placeholder {
+  color: #999;
+}
+
+input:placeholder {
+  color: #999;
+}
+
