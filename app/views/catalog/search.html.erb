@@ -1,58 +1,66 @@
 <% if !params[:keyword].nil? -%>
-<div class="objects_found">
-  Найдено блюд: <%= @goods.try(:count) || 0 %>
-</div>
 
-<ul class="search block-ul">
-  <% @goods.each do |good| -%>
-    <li>
-      <%= link_to "#{good.category.name} / #{good.name}", category_path(good.category.self_and_ancestors[0].url_path) %>
-      <span><% raw good.description %></span>
-  </li>
-  <% end -%>
-</ul>
+<% if @goods.count > 0-%>
+  <div class="objects_found">
+    Найдено блюд: <%= @goods.count %>
+  </div>
 
-<!-- -->
-<div class="objects_found">
-  Найдено разделов меню: <%= @categories.try(:count) || 0 %>
-</div>
-
-<ul class="search block-ul">
-  <% @categories.each do |category| -%>
-    <li>
-      <%= link_to category.name, category_path(category.self_and_ancestors[0].url_path) %>
-      <span><%=raw "#{strip_tags(category.description)[0..100]}..." %></span>
-  </li>
-  <% end -%>
-</ul>
+  <ul class="search block-ul">
+    <% @goods.each do |good| -%>
+      <li>
+        <%= link_to "#{good.category.name} / #{good.name}", category_path(good.category.self_and_ancestors[0].url_path) %>
+        <span><% raw good.description %></span>
+    </li>
+    <% end -%>
+  </ul>
+<% end -%>
 
 <!-- -->
-<div class="objects_found">
-  Найдено страниц: <%= @pages.try(:count) || 0 %>
-</div>
+<% if @categories.count > 0 -%>
+  <div class="objects_found">
+    Найдено разделов меню: <%= @categories.count %>
+  </div>
 
-<ul class="search block-ul">
-  <% @pages.each do |page| -%>
-    <li>
-      <%= link_to page.title, static_page_path(page.url_path) %>
-      <span><%=raw "#{strip_tags(page.content)[0..100]}..." %></span>
-  </li>
-  <% end -%>
-</ul>
+  <ul class="search block-ul">
+    <% @categories.each do |category| -%>
+      <li>
+        <%= link_to category.name, category_path(category.self_and_ancestors[0].url_path) %>
+        <span><%=raw "#{strip_tags(category.description)[0..100]}..." %></span>
+    </li>
+    <% end -%>
+  </ul>
+<% end -%>
 
 <!-- -->
-<div class="objects_found">
-  Найдено событий: <%= @events.try(:count) || 0 %>
-</div>
+<% if @pages.count > 0 -%>
+  <div class="objects_found">
+    Найдено страниц: <%= @pages.count %>
+  </div>
 
-<ul class="search block-ul">
-  <% @events.each do |event| -%>
-    <li>
-      <%= link_to "#{event.name} @ #{Russian.strftime(event.date, '%d %B %Y')}", events_bydate_path(:date => Russian.strftime(event.date, '%d.%m.%Y')) %>
-      <span><%=raw "#{strip_tags(event.short_description)[0..100]}..." %></span>
-  </li>
-  <% end -%>
-</ul>
+  <ul class="search block-ul">
+    <% @pages.each do |page| -%>
+      <li>
+        <%= link_to page.title, static_page_path(page.url_path) %>
+        <span><%=raw "#{strip_tags(page.content)[0..100]}..." %></span>
+    </li>
+    <% end -%>
+  </ul>
+<% end -%>
 
+<!-- -->
+<% if @events.count > 0 -%>
+  <div class="objects_found">
+    Найдено событий: <%= @events.count %>
+  </div>
+
+  <ul class="search block-ul">
+    <% @events.each do |event| -%>
+      <li>
+        <%= link_to "#{event.name} @ #{Russian.strftime(event.date, '%d %B %Y')}", events_bydate_path(:date => Russian.strftime(event.date, '%d.%m.%Y')) %>
+        <span><%=raw "#{strip_tags(event.short_description)[0..100]}..." %></span>
+    </li>
+    <% end -%>
+  </ul>
+<% end -%>
 
 <% end -%>
