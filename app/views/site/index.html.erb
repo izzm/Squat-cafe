@@ -37,7 +37,7 @@
 <% menu_page = @page.children.visible.find_by_link('menu') -%>
 <% if menu_page-%>
 <div class="featured">
-  <div class="fName">МЕНЮ</div>
+  <div class="fName"><%= link_to "МЕНЮ", static_page_path('menu') %></div>
 	<div class="fImage">
     <% if menu_page.attachments.count > 0 -%>
       <%= image_tag menu_page.attachments.first.image.url(:main_page_images) %>
