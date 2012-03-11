@@ -613,9 +613,10 @@ margin-left: 5px;}
 }
 
 .afisha-item-header , .prices-cat{
-	width: 100%;
+	width: 660px;
 	background-color: #cecece;
-	text-align: center;
+	text-align: left;
+	padding-left:10px;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	font-size: 12px;
