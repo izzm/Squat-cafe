@@ -23,8 +23,17 @@
 
           <div class="full_content">
             <%=raw event.description %>
+            
+            <% like_url =  url_for :host =>'http://www.facebook.com/sharer.php',
+                        :s => 100,
+                        :p => {
+                          :title => event.name,
+                          :summary => strip_tags(event.short_description),
+                          :url => events_bydate_url(:date => Russian.strftime(event.date, '%d.%m.%Y')),
+                          :images => [event.attachments.first.image.url(:event)]
+                        } %>
           
-            <div class="fb-like" data-href="<%= events_bydate_url(:date => Russian.strftime(event.date, '%d.%m.%Y')) %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+            <a onClick="window.open('<%= like_url %>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)">like</a>
           </div>
         </div>
 
