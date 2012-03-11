@@ -30,6 +30,7 @@
       }
     });
     //$closed.switchClass('closed', 'opened', base_duration);
+    $closed.parent().children('a').addClass('afisha-item-header-selected');
     $closed.find('.read_more').hide();
   };
 
@@ -60,6 +61,8 @@
         callback();
       }
     });
+
+    $opened.parent().children('a').removeClass('afisha-item-header-selected');
   };
 
   $.fn.squatEvent = function(action, callback, speed) {
