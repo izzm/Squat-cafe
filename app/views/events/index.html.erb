@@ -23,14 +23,14 @@
 
           <div class="full_content">
             <%=raw event.description %>
+          
+            <div class="fb-like" data-href="<%= events_bydate_url(:date => Russian.strftime(event.date, '%d.%m.%Y')) %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
           </div>
         </div>
 
         <div class="read_more">
           <a href="#" class="read_more_link">Далее</a>
         </div>
-        
-        <div class="fb-like" data-href="http://squatcafe.ru" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 
         <div class="clearfix"></div>
       </div>
