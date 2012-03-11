@@ -1,6 +1,13 @@
 <!--<div class="page-header">
 	123
 </div>-->
+<% content_for :fb_meta do -%>
+  <meta property="og:title" content="<%= @current_event.name %>" />
+  <meta property="og:url" content="<%= events_bydate_url(:date => Russian.strftime(@current_event.date, '%d.%m.%Y')) %>" />
+  <meta property="og:image" content="<%= @current_event.attachments.first.image.url(:event) %>" />
+  <meta property="og:site_name" content="Squat cafe" />
+<% end if @current_event -%>
+
 <div class="afisha">
 <!--	<a class="afisha-pager" href="#"><div class="arrow-up"></div></a>-->
 	<ul>
@@ -23,17 +30,7 @@
 
           <div class="full_content">
             <%=raw event.description %>
-            
-            <% like_url =  url_for :host =>'http://www.facebook.com/sharer.php',
-                        :s => 100,
-                        :p => {
-                          :title => event.name,
-                          :summary => strip_tags(event.short_description),
-                          :url => events_bydate_url(:date => Russian.strftime(event.date, '%d.%m.%Y')),
-                          :images => [event.attachments.first.image.url(:event)]
-                        } %>
-          
-            <a onClick="window.open('<%= like_url %>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" style="width:200px; height: 40px; display: block; cursor: pointer;"><%= image_tag 'site/like.png', :style => 'line-height: 40px; display: block;' %></a>
+            <div class="fb-like" data-href="<%= events_bydate_path(:date => Russian.strftime(event.date, '%d.%m.%Y')) %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
           </div>
         </div>
 
