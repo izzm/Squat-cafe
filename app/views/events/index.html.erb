@@ -33,7 +33,7 @@
                           :images => [event.attachments.first.image.url(:event)]
                         } %>
           
-            <a onClick="window.open('<%= like_url %>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)">like</a>
+            <a onClick="window.open('<%= like_url %>','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)" style="width:200px; height: 40px; display: block; cursor: pointer;"><%= image_tag 'site/like.png', :style => 'line-height: 40px; display: block;' %></a>
           </div>
         </div>
 
