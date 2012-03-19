@@ -198,6 +198,18 @@ footer{
 	margin-top:40px;
 	}
 	
+#head_address_bar {
+  display: none;
+}
+
+#head_address_bar #head_address {
+  
+}
+
+#head_address_bar #head_phone {
+  
+}
+	
 /* MENU */
 .menu{
 	border-top:3px solid #f08245;

@@ -21,7 +21,7 @@
            Event.site_future.first -%>
 <% if event -%>
 <div class="featured">
-  <div class="fName">АФИША</div>
+  <div class="fName"><%= link_to "АФИША", static_page_path('afisha') %></div>
 	<div class="fImage">
     <% if event.attachments.count > 0 -%>
       <%= link_to image_tag(event.attachments.first.image.url(:main_page_images)), events_bydate_path(:date => Russian.strftime(event.date, '%d.%m.%Y')) %>
@@ -37,12 +37,12 @@
 <% menu_page = @page.children.visible.find_by_link('menu') -%>
 <% if menu_page-%>
 <div class="featured">
-  <div class="fName"><%= link_to "МЕНЮ", static_page_path('menu') %></div>
+  <div class="fName"><%= link_to "МЕНЮ", static_page(menu_page) %></div>
 	<div class="fImage">
     <% if menu_page.attachments.count > 0 -%>
-      <%= image_tag menu_page.attachments.first.image.url(:main_page_images) %>
+      <%= link_to image_tag(menu_page.attachments.first.image.url(:main_page_images)), static_page(menu_page) %>
     <% else -%>
-      <%= image_tag 'site/alco.jpg'%>
+      <%= link_to image_tag('site/alco.jpg'), static_page(menu_page) %>
     <% end -%>
   </div>
 	<div class="fTitle"><%= menu_page.title %></div>
@@ -55,12 +55,12 @@
 <% botique_page = @page.children.visible.find_by_link('botique') -%>
 <% if botique_page -%>
 <div class="featured featured-last">
-	<div class="fName">БУТИК</div>
+	<div class="fName"><%= link_to "БУТИК", static_page(botique_page) %></div>
 	<div class="fImage">
     <% if botique_page.attachments.count > 0 -%>
-      <%= image_tag botique_page.attachments.first.image.url(:main_page_images) %>
+      <%= link_to image_tag(botique_page.attachments.first.image.url(:main_page_images)), static_page(botique_page) %>
     <% else -%>
-      <%= image_tag 'site/sumka.jpg'%>
+      <%= link_to image_tag('site/sumka.jpg'), static_page(botique_page) %>
     <% end -%>
   </div>
 	<div class="fTitle"><%= botique_page.title %></div>
