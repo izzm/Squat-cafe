@@ -28,11 +28,10 @@
 		  <div class="head">
 		    <div class="head-cont">
           <%= link_to image_tag('site/logo.png'), root_path, :class => 'head-left' %>
-          <%= link_to image_tag('site/squatcafe.png'), root_path, :class => 'head-right' %>
           
-          <div id="head_address_bar">
-            <span id="head_address">Москва, м. Кузнецкий мост, ул. Рождественка 12/1</span>
-            <span id="head_phone">(495) 625 6990</span>
+          <div class="head-right">
+            <%= link_to image_tag('site/squatcafe.png'), root_path %>
+            <span id="head_phone"><span id="head_phone_small">+7 (495)</span> 625 6990</span>
           </div>
         </div>
       </div>
