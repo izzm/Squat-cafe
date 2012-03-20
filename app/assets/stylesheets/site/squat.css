@@ -211,6 +211,11 @@ footer{
   color:yellow;
   font-size:20px;
 }
+
+#head_phone_small {
+  color:yellow;
+  font-size:14px;
+}
 	
 /* MENU */
 .menu{
