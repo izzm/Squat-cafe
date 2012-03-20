@@ -208,13 +208,18 @@ footer{
 }
 
 #head_phone {
-  color:yellow;
-  font-size:20px;
 }
 
 #head_phone_small {
   color:yellow;
   font-size:14px;
+  vertical-align: top;
+  line-height: 24px;
+}
+
+#head_phone_big {
+  color: white;
+  font-size:24px;
 }
 	
 /* MENU */
@@ -509,10 +514,10 @@ width: 100px;
 margin-left: 0px;
 height: 20px;
 text-align: center;
-font-weight: bold;
+/*font-weight: bold;*/
 font-size: 18px;
 color: white;
-padding: 5px;
+padding: 3px;
 }
 
 .fName a, .fName a:hover, .fName a:visited, .fName a:active {
