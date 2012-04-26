@@ -37,6 +37,7 @@ RailsShop::Application.routes.draw do
     #post  '/add_to_compare',                  :as => 'catalog_add_to_compare'
     #post  '/remove_from_compare',             :as => 'catalog_remove_from_compare'
     get '/search', :action => :search,         :as => 'catalog_search'
+    get '/export', :action => :export
     
     # Constraint class in lib/GoodConstraint.rb
     #get '/*path/goods/:id', :action => :good, :as => 'good', :constraints => GoodConstraint

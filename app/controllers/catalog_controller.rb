@@ -13,6 +13,10 @@ class CatalogController < ApplicationController
     
     @subcats = Category.site_children(@category).navigation
   end
+  
+  def export
+    @category = Category.find_by_link('kitchen')
+  end
 =begin
   def category
     @perpage = params[:perpage].to_i > 0 ? params[:perpage].to_i : 20
