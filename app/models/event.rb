@@ -18,6 +18,12 @@ class Event < ActiveRecord::Base
   scope :on_site, visible.sorted
   scope :site_future, future.visible.inv_sorted
   scope :site_featured, featured.on_site
+  
+  scope :by_year_and_month, lambda { |year, month|
+    events_date = Date.new(year.to_i, month.to_i) rescue Date.today
+    
+    where(["date_trunc('month', date) = date_trunc('month', TIMESTAMP ?)", events_date])
+  }
 
   validates :name, :presence => true, 
                    :length => { :maximum => 255 }
@@ -38,6 +44,10 @@ class Event < ActiveRecord::Base
 
   def date_json
     [date.month, date.day, date.year]
+  end
+  
+  def self.months
+    Event.on_site.select("DISTINCT date_trunc('month', date) as date").collect(&:date).sort
   end
 
   def attachment_styles

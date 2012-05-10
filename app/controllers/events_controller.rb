@@ -1,6 +1,10 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.on_site
+    redirect_to :action => :bymonth, :year => Date.today.year, :month => ("%02d" % Date.today.month)
+  end
+  
+  def bymonth
+    @events = Event.on_site.by_year_and_month(params[:year], params[:month])
     @current_event = Event.find_by_id(flash[:current_event_id])
   end
 

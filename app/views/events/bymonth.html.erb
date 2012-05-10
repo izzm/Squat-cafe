@@ -11,6 +11,14 @@
   <meta property="fb:admins" content="100001286098583" />
 <% end if @current_event -%>
 
+<ul class="submenu">
+  <% Event.months.each do |month| -%>
+    <li>
+      <%= link_to Russian.strftime(month, "%B %Y"), events_bymonth_path(:year => month.year, :month => ("%02d" % month.month)) %>
+  	</li>
+	<% end %>
+</ul>
+
 <div class="afisha">
 <!--	<a class="afisha-pager" href="#"><div class="arrow-up"></div></a>-->
 	<ul>
