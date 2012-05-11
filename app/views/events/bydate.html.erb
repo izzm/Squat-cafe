@@ -9,7 +9,8 @@
 <% end if @current_event -%>
 
 <% content_for :page_javascript do -%>
-  window.location.href = "<%= events_url(:anchor => "#{params[:date]}#{params[:id].nil? ? "" : "-#{@current_event.id}"}") %>";
+  <% event_month, event_year = params[:date].split('.')[-2..-1] %>
+  window.location.href = "<%= events_bymonth_url(:year => event_year, :month => event_month, :anchor => "#{params[:date]}#{params[:id].nil? ? "" : "-#{@current_event.id}"}") %>";
 <% end -%>
 
 <div class="event">
