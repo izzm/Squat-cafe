@@ -50,6 +50,10 @@ class Category < ActiveRecord::Base
 
     Good.where(:category_id => ids)
   end
+  
+  def self.of_goods(goods)
+    Category.find_all_by_id goods.map(&:category_id).uniq
+  end
 
   def can_be_virtual?
     (self.parent.nil? || !self.parent.virtual) && !self.new_record?

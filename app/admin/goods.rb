@@ -15,6 +15,9 @@ ActiveAdmin.register Good do
     column :visible do |good|
       status_tag(I18n.t("active_admin.status_tags.good.#{good.status}"), good.visible? ? :ok : :error)
     end
+    column :export do |good|
+      status_tag(I18n.t("active_admin.status_tags.good.#{good.export_status}"), good.export? ? :ok : :error)
+    end
 
     column do |good|
       link_to I18n.t('active_admin.actions.good.destroy'), admin_category_good_path(category, good), :method => :delete, :confirm => t('are_you_shure')

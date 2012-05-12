@@ -33,6 +33,7 @@ class Good < ActiveRecord::Base
     joins(:virtual_categories).
     where('categories_goods.category_id' => category.id)
   }
+  scope :to_export, where(:export => true)
 
   scope :vc0_id_eq, lambda { |id|
     joins(:virtual_categories).where(['categories_goods.category_id = ?', id])
@@ -52,6 +53,8 @@ class Good < ActiveRecord::Base
   
   VISIBLE = "visible"
   INVISIBLE = "invisible"
+  IN_EXPORT = "in_export"
+  NOT_IN_EXPORT = "not_in_export"
 
   def variants
     {
@@ -81,6 +84,10 @@ class Good < ActiveRecord::Base
 
   def status
     self.visible ? VISIBLE : INVISIBLE
+  end
+  
+  def export_status
+    self.export ? IN_EXPORT : NOT_IN_EXPORT
   end
 
   def move_possible?(category)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130165308) do
+ActiveRecord::Schema.define(:version => 20120512195621) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(:version => 20120130165308) do
     t.string   "articul"
     t.text     "variants"
     t.text     "similar"
+    t.boolean  "export"
   end
 
   add_index "goods", ["category_id"], :name => "index_goods_on_category_id"

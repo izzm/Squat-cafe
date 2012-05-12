@@ -7,6 +7,7 @@ ru:
         name: "Наименование"
         price: "Цена"
         visible: "Отображается"
+        export: "Экспортировать"
         articul: "Артикул"
 
   active_admin:
@@ -23,6 +24,8 @@ ru:
       good:
         visible: "Да"
         invisible: "Нет"
+        in_export: "Экспортировать"
+        not_in_export: "Не экспортировать"
   
   formtastic:
     titles:

@@ -15,7 +15,8 @@ class CatalogController < ApplicationController
   end
   
   def export
-    @category = Category.find_by_link('kitchen')
+    @goods = Good.to_export.sorted
+    @categories = Category.of_goods(@goods)
   end
 =begin
   def category
