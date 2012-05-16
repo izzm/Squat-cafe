@@ -1,4 +1,5 @@
 xml.instruct! :xml
+xml.declare! :DOCTYPE, :dc_catalog, :SYSTEM, "http://www.delivery-club.ru/xml/dc.dtd"
 
 xml.dc_catalog :last_update => DateTime.now.strftime("%Y-%m-%d %H:%M") do
   xml.delivery_service do
