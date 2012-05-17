@@ -15,7 +15,7 @@ xml.dc_catalog :last_update => DateTime.now.strftime("%Y-%m-%d %H:%M") do
           xml.category_id good.category_id
           xml.name good.name
           unless good.description.blank?
-            xml.description good.description
+            xml.description strip_tags(good.description)
           end
           xml.price good.price
           unless good.attachments.blank?

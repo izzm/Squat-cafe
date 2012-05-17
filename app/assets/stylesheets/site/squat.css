@@ -194,10 +194,15 @@ footer{
 	float:left;
 	}
 .head-banner{
-	margin-top: 12px;
-	margin-left: 20px;
+	margin-top: 18px;
+	margin-left: 24px;
 	float:left;
 }
+
+.head-banner img{
+  width: 600px;
+}
+
 .head-right{
 	float:right;
 	margin-top:10px;
