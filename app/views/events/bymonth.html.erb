@@ -6,7 +6,9 @@
   <meta property="og:description" content="<%= strip_tags(@current_event.short_description).strip %>" />
   <meta property="og:type" content="band" />
   <meta property="og:url" content="<%= events_bydate_and_id_url(:date => Russian.strftime(@current_event.date, '%d.%m.%Y'), :id => @current_event.id) %>" />
-  <meta property="og:image" content="<%= image_path @current_event.attachments.first.image.url(:event) %>" />
+  <% if @current_event.attachments.count > 0 -%>
+    <meta property="og:image" content="<%= image_path @current_event.attachments.first.image.url(:event) %>" />
+  <% end -%>
   <meta property="og:site_name" content="Squat cafe" />
   <meta property="fb:admins" content="100001286098583" />
 <% end if @current_event -%>
