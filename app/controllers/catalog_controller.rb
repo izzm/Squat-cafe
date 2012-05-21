@@ -16,7 +16,7 @@ class CatalogController < ApplicationController
   
   def export
     @goods = Good.to_export.sorted
-    @categories = Category.of_goods(@goods)
+    @categories = Category.of_goods(@goods).sort_by!(&:position)
   end
 =begin
   def category
