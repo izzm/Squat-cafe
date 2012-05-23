@@ -7,60 +7,31 @@
 </ul>	
 
 <% if @subcats.count > 0 -%>
-<div class="prices">
-  <ul class="block-ul">
-    <% @subcats.each do |cat| -%>
-	  <li id="cat_<%= cat.id %>_goods">
-		  <a href="#" class="prices-cat"><%= cat.name %></a>
-			<ul class="block-ul" style="display: none;">
-        <% cat.goods.site.each do |good| -%>
-			  <li>
-          <div class="food">
-            <span>
-              <%= good.name %>
-              <% if good.parameters.count > 0 -%>
-                <% good.parameters.each do |p| -%>
-                  <% unless p['value'].blank? -%>
-                  (<%= p['name'] %>: <%= p['value'] %> <%= p['unit'] %>)
-                  <% end -%>
-                <% end -%>
-              <% end-%>
-            </span>
-            <div class="food-price"><%= number_to_currency good.price %></div>
-          </div>
-				  <div class="food-desc"><%=raw good.description %></div>
-				</li>
-        <% end -%>
-      </ul>
-		</li>
-		<% end -%>
-    <!--
-    <li >
-		  <a class="prices-cat prices-cat-selected">123</a>
-		</li>
-    -->
-	</ul>
-</div>
+  <div class="prices">
+    <ul class="block-ul">
+  		<%= render :partial => 'category', :collection => @subcats, :as => :cat %>
+  	</ul>
+  </div>
 
-<% content_for :page_javascript do %>
-  $(function() {
-    $('.prices-cat').click(function() {
-      $(this).next().toggle('blind', {}, 100, function () {
-        var $li = $(this).closest('li');
-        var $a_pc = $li.children('a.prices-cat');
+  <% content_for :page_javascript do %>
+    $(function() {
+      $('.prices-cat').click(function() {
+        $(this).next().toggle('blind', {}, 100, function () {
+          var $li = $(this).closest('li');
+          var $a_pc = $li.children('a.prices-cat');
 
-        if($(this).css('display') != 'none') {
-          $.scrollTo($li, 500, {offset: -50});
-          $a_pc.addClass('prices-cat-selected');
-        } else {
-          $a_pc.removeClass('prices-cat-selected');
-        }
+          if($(this).css('display') != 'none') {
+            $.scrollTo($li, 500, {offset: -50});
+            $a_pc.addClass('prices-cat-selected');
+          } else {
+            $a_pc.removeClass('prices-cat-selected');
+          }
+        });
+
+        return false;
       });
-
-      return false;
     });
-  });
-<% end %>
+  <% end %>
 <% else -%>
   <%=raw @category.description %>
 <% end -%>

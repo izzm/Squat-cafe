@@ -719,7 +719,20 @@ margin-left: 5px;}
 /*MENU PRICES*/
 .food{
 	border-bottom: dotted 1px #444444;
-	
+	margin-left: 68px;
+}
+
+.food-image {
+  margin-top: 3px;
+  width: 66px;
+  height: 30px;
+  float: left;
+  overflow: hidden;
+}
+
+.food-image img {
+  position: relative;
+  top: -50%;
 }
 
 .prices {
@@ -744,7 +757,7 @@ margin-left: 5px;}
 	font-size: 12px;
 	font-style: italic;
 	margin-top: 2px;
-	margin-left:10px;
+	margin-left: 76px;
 }
 
 .food-desc p

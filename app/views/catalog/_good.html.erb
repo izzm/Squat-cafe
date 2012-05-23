@@ -1,0 +1,23 @@
+<li>
+  <% if good.attachments.count > 0 -%>
+    <div class="food-image">
+      <% att = good.attachments.main.first || good.attachments.first %>
+      <%= image_tag att.image.url(:small) %>
+    </div>
+  <% end -%>
+  <div class="food">
+    <span>
+      <%= good.name %>
+      <% if good.parameters.count > 0 -%>
+        <% good.parameters.each do |p| -%>
+          <% unless p['value'].blank? -%>
+          (<%= p['name'] %>: <%= p['value'] %> <%= p['unit'] %>)
+          <% end -%>
+        <% end -%>
+      <% end-%>
+    </span>
+    <div class="food-price"><%= number_to_currency good.price %></div>
+  </div>
+  <div class="food-desc"><%=raw good.description %></div>
+  <div class="clearfix"></div>
+</li>
