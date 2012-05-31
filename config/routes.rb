@@ -59,7 +59,8 @@ RailsShop::Application.routes.draw do
 
   scope :controller => :site do
     post '/feedback', :action => 'feedback', :as => 'feedback'
-
+    
+    match "/butik" => redirect("/page/butik")
     # Constraint class in lib/StaticPageConstraint.rb
     get '/page/*path', :action => :static_page, :as => 'static_page', :constraints => StaticPageConstraint
   end
