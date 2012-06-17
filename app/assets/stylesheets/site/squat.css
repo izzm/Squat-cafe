@@ -4,7 +4,7 @@
 {text-decoration: none;}
 
 .green{background-color:RGB(23,165,89) !important}
-.red{background-color:RGB(228,18,45) !important}
+.red{background-color: RGB(255,134,13) !important}
 .blue{background-color:RGB(16,170,219) !important}
 
 .block-ul
@@ -379,7 +379,7 @@ float:left}
 }
 .today-title{
 	float: left;
-	background-color: RGB(255,134,13);
+	background-color: RGB(228,18,45);
 	color: white;
 	font-weight: bold;
 	padding: 5px 10px;
@@ -523,7 +523,7 @@ float: left;
 	margin-right: 0px;	
 }
 .fName{
-	background-color: RGB(255,134,13);
+	background-color:RGB(228,18,45);
 width: 100px;
 margin-left: 0px;
 height: 20px;
