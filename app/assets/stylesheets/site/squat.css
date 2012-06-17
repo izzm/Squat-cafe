@@ -3,6 +3,10 @@
 .nounder a
 {text-decoration: none;}
 
+.green{background-color:RGB(23,165,89)}
+.red{background-color:RGB(228,18,45)}
+.blue{background-color:RGB(16,170,219)}
+
 .block-ul
 {
 	display: block;
