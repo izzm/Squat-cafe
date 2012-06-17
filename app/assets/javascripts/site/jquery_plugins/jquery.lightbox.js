@@ -45,7 +45,8 @@
 			keyToNext:				'n',		// (string) (n = next) Letter to show the next image.
 			// DonŽt alter these variables in any way
 			imageArray:				[],
-			activeImage:			0
+			activeImage:			0,
+			afterShow:        function() {}
 		},settings);
 		// Caching the jQuery object with all elements matched
 		var jQueryMatchedObj = this; // This, in this context, refer to jQuery object
@@ -267,7 +268,9 @@
 			// If we have a image set, display 'Image X of X'
 			if ( settings.imageArray.length > 1 ) {
 				$('#lightbox-image-details-currentNumber').html(settings.txtImage + ' ' + ( settings.activeImage + 1 ) + ' ' + settings.txtOf + ' ' + settings.imageArray.length).show();
-			}		
+			}
+			
+			settings.afterShow();		
 		}
 		/**
 		 * Display the button navigations

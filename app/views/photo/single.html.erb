@@ -1,0 +1,17 @@
+<% content_for :fb_meta do -%>
+  <meta property="og:title" content="Фотография в Squat cafe" />
+  <meta property="og:description" content="<%= @attachment.resource.name %>" />
+  <meta property="og:type" content="photo" />
+  <meta property="og:url" content="<%= single_photo_url(@attachment.id) %>" />
+  <meta property="og:image" content="<%= image_path @attachment.image.url %>" />
+  <meta property="og:site_name" content="Squat cafe" />
+  <meta property="fb:admins" content="100001286098583" />
+<% end -%>
+
+<span class="photo_album_name">
+  <%= @attachment.resource.name %>
+</span>
+
+<%= link_to "Назад", photo_path, :class => "photo_back_link" %>
+
+<%= image_tag(@attachment.image.url) %>

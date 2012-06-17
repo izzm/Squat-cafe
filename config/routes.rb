@@ -47,6 +47,7 @@ RailsShop::Application.routes.draw do
 
   scope :controller => :photo do
     get '/photo', :action => :index, :as => 'photo'
+    get '/photo/:id', :action => :single, :as => 'single_photo'
   end
 
   scope :controller => :events do
