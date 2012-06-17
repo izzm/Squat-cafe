@@ -368,7 +368,7 @@ float:left}
 	width: 670px;
 	height: 65px;
 	margin-bottom: 20px;
-	background: #EEE;
+	background: lightGoldenrodYellow;
 }
 .today hr{
 	margin: 0px;
@@ -379,18 +379,18 @@ float:left}
 }
 .today-title{
 	float: left;
-	background-color: orange;
+	background-color: RGB(255,134,13);
 	color: white;
 	font-weight: bold;
-	padding: 20px;
-	font-size: 20px;
+	padding: 5px 10px;
+	font-size: 16px;
 }
 .today ul
 {width:500px;
 padding-top: 6px;
 padding-left: 20px;
 float:left;
-font-size: 18px;
+font-size: 16px;
 }
 .today li
 {padding-bottom: 2px;
@@ -523,7 +523,7 @@ float: left;
 	margin-right: 0px;	
 }
 .fName{
-	background-color: orange;
+	background-color: RGB(255,134,13);
 width: 100px;
 margin-left: 0px;
 height: 20px;
@@ -544,10 +544,10 @@ padding: 3px;
 	
 	
 }
-.fImage img{width: 200px;}
+.fImage img{width: 220px;}
 
 .fTitle
-{background: #CCC;
+{background: lightGoldenrodYellow;
 padding:5px;
 font-weight: bold;;}
 .fText{
