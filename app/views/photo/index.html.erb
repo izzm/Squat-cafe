@@ -6,7 +6,7 @@
 			<ul class="block-ul image-list folded">
         <% album.attachments.each do |photo| -%>
 			  <li>
-          <%= link_to image_tag(photo.image.url(:site)), photo.image.url, :title => "<div class=\"addthis_toolbox addthis_default_style\" addthis:url=\"#{single_photo_url(photo.id)}\">
+          <%= link_to image_tag(photo.image.url(:site)), photo.image.url, :rel => "<div class=\"addthis_toolbox addthis_default_style\" addthis:url=\"#{single_photo_url(photo.id)}\">
             <a class=\"addthis_button_facebook\"></a>
             <a class=\"addthis_button_vk\"></a>
             <a class=\"addthis_button_compact\"></a>
