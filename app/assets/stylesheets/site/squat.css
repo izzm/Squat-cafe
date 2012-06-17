@@ -240,7 +240,7 @@ footer{
 .menu{
 	border-top:3px solid #f08245;
 	background-color: #f3e93f;
-	height:35px;
+	height:28px;
 	font-size:12px;
 }
 
@@ -367,7 +367,7 @@ float:left}
 .today{
 	width: 700px;
 	height: 65px;
-	margin-bottom: 20px;
+	margin-bottom: 0px;
 	background: lightGoldenrodYellow;
 }
 .today hr{
