@@ -19,7 +19,7 @@
 }
 
 .menu_wrapper {
-  height: 38px;
+  height: 31px;
 }
 
 .menu a, a:visited{
@@ -54,7 +54,7 @@
 
 .search
 {
-	margin-top:20px;
+	margin-top:12px;
 }
 
 .search li
@@ -241,7 +241,7 @@ footer{
 	border-top:3px solid #f08245;
 	background-color: #f3e93f;
 	height:35px;
-	font-size:14px;
+	font-size:12px;
 }
 
 #menu_fixed_scroll, #sidebar_fixed_scroll {
@@ -278,15 +278,15 @@ float:left}
 	float:left;
 	
 	list-style:none;
-	height:34px;
+	height:28px;
 	
 }
 .menu-main a
 {
-	padding-top: 8px;
+	padding-top: 4px;
 	padding-left: 10px;
 	padding-right:10px;
-	padding-bottom:8px;
+	padding-bottom:4px;
 	display:block;
 	background-color:#f3e93f;
 	border-image:url(/assets/site/menu-d.png);
