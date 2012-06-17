@@ -8,6 +8,7 @@
 //= require jquery_plugins/jquery.chosen
 //= require jquery_plugins/jquery.form
 //= require jquery_plugins/jquery.tmpl
+//= require jquery_plugins/jquery.uploadify
 
 /* Active Admin JS */
 /* copied from 'app/assets/javascripts/base.js in active_admin source code */

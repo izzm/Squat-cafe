@@ -26,8 +26,27 @@
 
 <%= content_tag(:script, :id => 'new_image', :type => 'text/x-jquery-tmpl') { render :partial => 'admin/attachments/image', :locals => {:object => object, :attachment => nil, :show_delete => true} } %>
 
+<%= file_field_tag 'attachment[image]', :accept => 'image/png,image/gif,image/jpeg', :id => 'new_image_input' %>
+
 <%= javascript_tag do %>
 $(function() {
+  <% session_key_name = Rails.application.config.session_options[:key] %>
+  
+  $('#new_image_input').uploadify({
+    height        : 30,
+    swf           : '/uploadify.swf',
+    uploader      : '<%= admin_attachments_path %>',
+    width         : 120,
+    fileObjName   : 'attachment[image]',
+    formData      : {
+      'attachment[resource_id]' : '<%= object.id %>', 
+      'attachment[resource_type]' : '<%= object.class.name %>',
+      '_http_accept': 'application/json',
+      '<%= session_key_name %>' : encodeURIComponent('<%= u cookies[session_key_name] %>'),
+      'authenticity_token': $("meta[name='csrf-token']").attr('content')
+    }
+  });
+  
   $('#add_image_link').click(function() {
     var $new = $($('#new_image').html());
 
