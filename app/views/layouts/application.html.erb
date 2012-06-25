@@ -10,7 +10,7 @@
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" href="<%= image_path 'site/favicon.ico' %>" type="image/x-icon">
-  <%= stylesheet_link_tag    "application" %>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>  <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_tag do %>
     <%= yield :page_javascript %>
@@ -27,8 +27,12 @@
     <header>
 		  <div class="head">
 		    <div class="head-cont">
-          <%= link_to image_tag('site/logo.png'), root_path, :class => 'head-left' %>          
-          <%= link_to image_tag('site/partyserv.gif'), category_path('partyservice'), :class => 'head-banner' %>
+          <%= link_to image_tag('site/logo.png'), root_path, :class => 'head-left' %>
+          <% banner = StaticPage.visible.find_by_url_path('index/banner') -%>
+          <% if !banner.nil? && banner.attachments.count > 0 -%>
+            <% att = banner.attachments.first %>
+            <%= link_to image_tag(att.image.url), (att.link.blank? ? static_page(banner) : att.link) , :class => 'head-banner' %>
+          <% end -%>
           
           <div class="head-right">
             <%= link_to image_tag('site/squatcafe.png'), root_path %>
@@ -104,9 +108,13 @@
 				<!--BLOCK END !-->
         
         <div class="social-nets">
-          <%= link_to image_tag("site/facebook.png"), "http://www.facebook.com/squatcafe", :rel => "nofollow", :class => 'fb' %>
+          <%= link_to image_tag("site/facebook.png"), "http://www.facebook.com/squatcafe", :rel => "nofollow", :class => 'fb', :target => '_blank' %>
       		<div class="separator"></div>
-      		<%= link_to image_tag("site/vkontakte.png"), "http://vk.com/squatcafe", :rel => "nofollow", :class => 'vk '%>
+      		<%= link_to image_tag("site/vkontakte.png"), "http://vk.com/squatcafe", :rel => "nofollow", :class => 'vk', :target => '_blank' %>
+      		<div class="separator"></div>
+      		<%= link_to image_tag("site/twitter.png"), "http://twitter.com/squatcafe", :rel => "nofollow", :class => 'tw', :target => '_blank' %>
+      		<div class="separator"></div>
+      		<%= link_to image_tag("site/livejournal.png"), "http://squatcafe.livejournal.com/", :rel => "nofollow", :class => 'lj', :target => '_blank' %>
       		<div style="clear: both;"></div>
       	</div>
         

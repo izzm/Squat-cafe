@@ -27,11 +27,21 @@ $(function() {
   };
 
   $(window).resize(check_position).scroll(check_position);
+  
+  $('.block-content').each(function(){
+    if($.cookie('right_column_' + $(this).attr('id')) == "false") {
+      $(this).hide();
+    }
+  });
 
   $('input[placeholder]').placeholder();
   
   $('.block-header').click(function(){
-    $(this).parent().children('.block-content').toggle('blind');
+    var $content = $(this).parent().children('.block-content');
+    
+    $content.toggle('blind', function(){
+      $.cookie('right_column_' + $content.attr('id'), $content.css('display') == 'none' ? 'false' : 'true');
+    });
   });
   
   $('#calendar').datepicker({
