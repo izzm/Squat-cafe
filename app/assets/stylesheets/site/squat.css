@@ -476,6 +476,7 @@ float: left;
 	color: white;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	cursor: pointer;
 }
 
 .block-header-title
@@ -510,6 +511,23 @@ float: left;
 #calendar {
   padding: 1px;
 }
+
+.social-nets {
+  padding-left: 70px;
+}
+
+.social-nets a {
+  float: right;
+}
+
+.social-nets div {
+  float: right;
+}
+
+.social-nets div.separator {
+  width: 40px;
+}
+
 
 /* INDEX */
 .featured{
@@ -751,6 +769,12 @@ margin-left: 5px;}
 	margin-bottom: 10px;
 	width:690px;
 }
+
+.prices ul ul.extra_width{
+	width:700px;
+}
+
+
 .prices ul ul li {
 	margin-bottom: 5px;
 }
@@ -801,6 +825,10 @@ margin-left: 5px;}
 .image-list.folded {
   height: 85px;
   padding-top:0px;
+}
+
+img.one_photo_img {
+  width: 690px;
 }
 
 /* EVENTS */

@@ -3,7 +3,7 @@
     <% @photo_albums.each do |album| -%>
 	  <li id="album_<%= album.id %>_photos">
 		  <a href="#" class="prices-cat"><%= album.name %></a>
-			<ul class="block-ul image-list folded">
+			<ul class="block-ul image-list folded extra_width">
         <% album.attachments.each do |photo| -%>
 			  <li>
           <%= link_to image_tag(photo.image.url(:site)), photo.image.url, :rel => "<div class=\"addthis_toolbox addthis_default_style\" addthis:url=\"#{single_photo_url(photo.id)}\">

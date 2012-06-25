@@ -16,7 +16,7 @@ $(function() {
       $slave_fixed.css({
         position: 'fixed',
         top: menu_height,
-        left: sidebar_offset - 20
+        left: sidebar_offset - 10
       });
     } else {
       $fixed.css({top: '0px', position: 'relative'});
@@ -29,7 +29,11 @@ $(function() {
   $(window).resize(check_position).scroll(check_position);
 
   $('input[placeholder]').placeholder();
-
+  
+  $('.block-header').click(function(){
+    $(this).parent().children('.block-content').toggle('blind');
+  });
+  
   $('#calendar').datepicker({
     onSelect: function(dateText, inst) {
       window.location = "/events/bydate/" + dateText;

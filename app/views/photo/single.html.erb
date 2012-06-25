@@ -8,10 +8,10 @@
   <meta property="fb:admins" content="100001286098583" />
 <% end -%>
 
+<%= link_to "Назад", photo_path, :class => "photo_back_link" %>
+
 <span class="photo_album_name">
   <%= @attachment.resource.name %>
 </span>
 
-<%= link_to "Назад", photo_path, :class => "photo_back_link" %>
-
-<%= image_tag(@attachment.image.url) %>
+<%= image_tag(@attachment.image.url, :class => "one_photo_img") %>
