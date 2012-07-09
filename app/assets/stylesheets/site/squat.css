@@ -827,6 +827,11 @@ img.one_photo_img {
   width: 690px;
 }
 
+.photo_album_title_line {
+  font-size: 18px;
+  padding: 10px 0px;
+}
+
 /* EVENTS */
 
 div.event {

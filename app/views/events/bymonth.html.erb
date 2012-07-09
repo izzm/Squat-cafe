@@ -86,7 +86,9 @@
       }
       
       if($event.hasClass('closed')) {
-        $event.squatEvent('open');
+        $event.squatEvent('open', function(){
+          window.location.hash = $event.parent().children('a.afisha-item-header').attr('data-hash-id');
+        });
         $('.event.opened').squatEvent('close', function() {  
           $.scrollTo($li, 500, {offset: -50});
         });
@@ -108,7 +110,7 @@
       var $li = $event.closest('li');
 
       $event.squatEvent('open', function() {
-        return;
+        window.location.hash = $event.parent().children('a.afisha-item-header').attr('data-hash-id');
       }, 0);
       $.scrollTo($li, 0, {offset: -50});
     }, 500);

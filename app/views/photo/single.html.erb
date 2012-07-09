@@ -8,10 +8,21 @@
   <meta property="fb:admins" content="100001286098583" />
 <% end -%>
 
-<%= link_to "Назад", photo_path, :class => "photo_back_link" %>
 
-<span class="photo_album_name">
-  <%= @attachment.resource.name %>
-</span>
+<div class="photo_album_title_line">
+  <% unless @attachment.resource.event.nil? -%>
+  <span class="photo_album_date">
+    <%= Russian.strftime(@attachment.resource.event.date, '%d.%m.%Y') %>
+  </span>
+  <% end -%>
+  
+  <span class="photo_album_name">
+    <%= @attachment.resource.name %>
+  </span>
+
+  &nbsp;&nbsp;&nbsp;
+  <%= link_to "В альбом", photo_path(:anchor => @attachment.resource.id), :class => "photo_back_link" %>
+</div>
+
 
 <%= image_tag(@attachment.image.url, :class => "one_photo_img") %>

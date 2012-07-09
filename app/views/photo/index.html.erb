@@ -2,7 +2,8 @@
   <ul class="block-ul">
     <% @photo_albums.each do |album| -%>
 	  <li id="album_<%= album.id %>_photos">
-		  <a href="#" class="prices-cat"><%= album.name %></a>
+		  <%= link_to album.name, '#', :class => 'prices-cat', 'data-hash-id' => "##{album.id}" %>
+		  
 			<ul class="block-ul image-list folded extra_width">
         <% album.attachments.each do |photo| -%>
 			  <li>
@@ -41,6 +42,8 @@
         if(!$(this).hasClass('folded')) {
           $.scrollTo($li, 500, {offset: -50});
           $a_pc.addClass('prices-cat-selected');
+          
+          window.location.hash = $a_pc.attr('data-hash-id');
         } else {
           $a_pc.removeClass('prices-cat-selected');
         }
@@ -48,6 +51,14 @@
 
       return false;
     });
+    
+    window.setTimeout(function() {
+      if(location.hash != "") {
+        var $a_pc = $('a.prices-cat[data-hash-id="'+location.hash+'"]');
+        
+        $a_pc.click();
+      }
+    }, 500);
+    
   });
 <% end %>
-
