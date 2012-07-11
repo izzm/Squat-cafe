@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
   has_many :attachments, 
            :as => :resource,
            :dependent => :destroy
+  has_many :photo_albums,
+           :dependent => :nullify
   scope :sorted, order('date desc')
   scope :inv_sorted, order('date asc')
   scope :visible, where(:visible => true)

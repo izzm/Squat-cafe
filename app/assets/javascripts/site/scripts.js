@@ -42,6 +42,8 @@ $(function() {
     $content.toggle('blind', function(){
       $.cookie('right_column_' + $content.attr('id'), $content.css('display') == 'none' ? 'false' : 'true');
     });
+    
+    return false;
   });
   
   $('#calendar').datepicker({

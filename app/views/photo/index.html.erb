@@ -15,7 +15,12 @@
           </div>" %>
 				</li>
         <% end -%>
-      </ul>
+      </ul>      
+      
+      
+			<% unless album.event.nil? -%>
+        <%= link_to "Просмотреть событие", events_bydate_and_id_path(:date => Russian.strftime(album.event.date, '%d.%m.%Y'), :id => album.event.id), :class => 'event_url', :style => 'display: none' %>
+      <% end -%>
 		</li>
 		<% end -%>
     <!--
@@ -43,9 +48,19 @@
           $.scrollTo($li, 500, {offset: -50});
           $a_pc.addClass('prices-cat-selected');
           
-          window.location.hash = $a_pc.attr('data-hash-id');
+          $li.children('a.event_url').show();
+          
+          var page_id = $a_pc.attr('data-hash-id');
+
+          if(window.history.pushState != undefined) {
+            window.history.pushState("", "", "/photo/album/" + page_id.substring(1));
+          } else {
+            window.location.hash = page_id;
+          }
         } else {
           $a_pc.removeClass('prices-cat-selected');
+          $li.children('a.event_url').hide();
+          
         }
       });
 
