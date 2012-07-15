@@ -1,0 +1,43 @@
+<% content_for :page_javascript do -%>
+  window.location.href = "<%= photo_url(:anchor => @photo_album.id) %>";
+<% end -%>
+
+<div class="prices">
+  <ul class="block-ul">
+	  <li id="album_<%= @photo_album.id %>_photos">
+		  <%= link_to @photo_album.name, '#', :class => 'prices-cat', 'data-hash-id' => "##{@photo_album.id}" %>
+		  
+			<ul class="block-ul image-list extra_width">
+        <% @photo_album.attachments.each do |photo| -%>
+			  <li>
+          <%= link_to image_tag(photo.image.url(:site)), photo.image.url, :rel => "<div class=\"addthis_toolbox addthis_default_style\" addthis:url=\"#{single_photo_url(photo.id)}\">
+            <a class=\"addthis_button_facebook\"></a>
+            <a class=\"addthis_button_vk\"></a>
+            <a class=\"addthis_button_compact\"></a>
+            <a class=\"addthis_counter addthis_bubble_style\"></a>
+          </div>" %>
+				</li>
+        <% end -%>
+      </ul>      
+      
+      
+			<% unless @photo_album.event.nil? -%>
+        <%= link_to "Просмотреть событие", events_bydate_and_id_path(:date => Russian.strftime(@photo_album.event.date, '%d.%m.%Y'), :id => @photo_album.event.id), :class => 'event_url' %>
+      <% end -%>
+		</li>
+	</ul>
+</div>
+
+<% content_for :page_javascript do %>
+  $(function() {
+    $('.image-list a').lightBox({
+      afterShow: function() {
+        addthis.toolbox(".addthis_toolbox");
+      }
+    });
+    
+    $('a.prices-cat').click(function(){
+      return false;
+    });
+  });
+<% end %>

@@ -6,7 +6,7 @@ class PhotoController < ApplicationController
   def album
     @photo_album = PhotoAlbum.visible.find_by_id(params[:id])
     
-    redirect_to photo_url(:anchor => @photo_album.try(:id))
+    redirect_to photo_url if @photo_album.nil?
   end
   
   def single
