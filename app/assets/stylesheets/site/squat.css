@@ -903,3 +903,115 @@ input:placeholder {
   color: #999;
 }
 
+
+.register
+{
+	background-color:#a9d45e;
+	padding: 10px 10px;
+	
+}
+/*
+.register ul
+{
+	
+	padding-left:35px;
+	margin: 3px 0px;
+}
+
+.register ul li
+{
+	float:left;
+	padding:5px 10px;
+	cursor:pointer;
+	
+}
+
+.register ul li#item1
+{
+	
+}
+
+.register ul li#item2
+{
+	margin-left:15px;
+	
+}
+
+.register ul .selected
+{
+	color:white;
+	background-color:#17a559;
+	
+}
+*/
+.register #attselect-items
+{
+	background-color:#17a559;
+	width:225px;
+	padding: 5px 0px;
+	margin-top:5px;
+	padding-left: 5px;
+}
+.register #attselect-items select
+{
+	background-color:#c4f174;
+	border:none;
+	border-image: initial;
+	width:195px;
+}
+
+.register .userdata
+{
+	float:none;
+	margin-top:5px;
+}
+
+.register .userdata input
+{
+	margin-left: 9px;
+	border:none;
+	border-image: initial;
+	margin-top:2px;
+	padding: 0px 5px;
+	background-color:#c4f174;
+}
+
+.register #submit, .register #submit:visited
+{
+	margin-left: 30px;
+	margin-right: 30px;
+	border:none;
+	border-image: initial;
+	margin-top:10px;
+	padding: 5px 10px;
+	background-color:#21a859;
+	color:white;
+	width:160px;
+	text-align:center;
+	
+}
+
+.register #submit:hover
+{
+	background-color:#35dc7a;
+}
+
+.register #date
+{
+	border:none;
+	border-image: initial;
+	margin-top:2px;
+	padding: 0px 5px;
+	background-color:#c4f174;
+	text-align:center;
+}
+.register .userdata img {vertical-align: top}
+
+.register .userdata .field {display: block;clear:both;overflow:hidden;}
+.register .userdata .field .title {width: 70px; line-height: 18px;}
+.register .userdata .field .input {float:right;margin-left:-70px;width:100%;}
+.register .userdata .field .input input {display: block; margin-left: 70px;width:160px;}
+
+.register .userdata .field.birthday .title {width: 100px; line-height: 18px;}
+.register .userdata .field.birthday .input {float:right;margin-left:-130px;width:100%; background: url('/assets/site/present.png') 108px 1px no-repeat}
+.register .userdata .field.birthday .input input {display: block; margin-left: 130px;width:100px;}

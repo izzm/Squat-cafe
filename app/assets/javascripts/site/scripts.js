@@ -64,4 +64,7 @@ $(function() {
       return [false, ""];
     }
   });
+  
+  $('select#themes').multiSelect({ selectAllText: 'Выбрать все', oneOrMoreSelected: 'Выбрано: %', noneSelected: 'Выбери мероприятие', listHeight: 100500 });
+  $('input#birthday').datepicker({changeMonth: true, changeYear: true, yearRange: "c-80:c+5", defaultDate: "-20y"});
 });

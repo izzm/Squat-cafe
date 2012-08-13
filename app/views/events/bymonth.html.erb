@@ -14,7 +14,7 @@
 <% end if @current_event -%>
 
 <ul class="submenu">
-  <% Event.months.each do |month| -%>
+  <% Event.months.last(7).each do |month| -%>
     <li>
       <%= link_to Russian.strftime(month, "%B %Y"), events_bymonth_path(:year => month.year, :month => ("%02d" % month.month)) %>
   	</li>

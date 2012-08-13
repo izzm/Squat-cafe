@@ -12,15 +12,16 @@
             <a class=\"addthis_button_vk\"></a>
             <a class=\"addthis_button_compact\"></a>
             <a class=\"addthis_counter addthis_bubble_style\"></a>
-          </div>" %>
+          </div>", :class => 'photo_link' %>
 				</li>
         <% end -%>
+        
+        <% unless album.event.nil? -%>
+          <li>
+            <%= link_to image_tag('site/show_event.png'), events_bydate_and_id_path(:date => Russian.strftime(album.event.date, '%d.%m.%Y'), :id => album.event.id), :rel => "" %>
+          </li>
+        <% end -%>
       </ul>      
-      
-      
-			<% unless album.event.nil? -%>
-        <%= link_to "Просмотреть событие", events_bydate_and_id_path(:date => Russian.strftime(album.event.date, '%d.%m.%Y'), :id => album.event.id), :class => 'event_url', :style => 'display: none' %>
-      <% end -%>
 		</li>
 		<% end -%>
     <!--
@@ -33,7 +34,7 @@
 
 <% content_for :page_javascript do %>
   $(function() {
-    $('.image-list a').lightBox({
+    $('.image-list a.photo_link').lightBox({
       afterShow: function() {
         addthis.toolbox(".addthis_toolbox");
       }

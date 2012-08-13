@@ -106,7 +106,73 @@
 					</div>
 				</div>
 				<!--BLOCK END !-->
-        
+<% 
+=begin
+				<!--BLOCK START !-->
+				<div class="block">
+					<div class="block-header"> 
+						<a href="#"><div class="block-header-title">ПРИГЛАШЕНИЕ</div>
+						<!--<div class="block-header-arrow"><a class="arrow-down"></a></div>-->
+						<div class="clearfix"></div></a> 
+					</div>
+					
+					<div class="block-content register">
+						Хочу получать приглашения на самые интересные мероприятия:
+						<form>
+						  <!--
+							<ul id="attselect" class="block-ul">
+								
+								<li id="item1" >ВСЕ</li>
+								<li id="item2" class="selected">ВЫБОРОЧНО</li>
+								<div class="clearfix"></div>
+							</ul>
+							-->
+							<div id="attselect-items" >
+							<select multiselect id="themes">
+							  <option value=""></option>
+								<option value="1">Кино, поэзия</option>
+								<option value="2">Гастрономия, дегустация</option>
+								<option value="3">Джазовые концерты</option>
+								<option value="4">Концерты, вечеринки</option>
+								<option value="5">Выставки, презентации</option>
+								<option value="6">Акции, спецпредложения</option>
+							</select>
+							</div>
+							<div class="userdata">
+							  <div class="field">
+							    <div class="input">
+							      <input></input>
+							    </div>							    
+							    <div class="title">Имя:</div>
+							  </div>
+
+							  <div class="field">
+							    <div class="input">
+							      <input value="+7"></input>
+							    </div>
+							    <div class="title">Телефон: </div>
+							  </div>
+							  <div class="field">
+							    <div class="input">
+							      <input></input>
+							    </div>
+							    <div class="title">Email:</div>
+							  </div>							  
+							  <div class="field birthday">
+							    <div class="input">
+    								<input id="birthday"></input>
+							    </div>
+							    <div class="title">Дата рождения:</div>
+							  </div>
+							</div>
+							
+							<input type="submit" id="submit" value="ОТПРАВИТЬ"/>
+						</form>
+					</div>
+				</div>
+				<!--BLOCK END !-->
+=end
+%>        
         <div class="social-nets">
           <%= link_to image_tag("site/facebook.png"), "http://www.facebook.com/squatcafe", :rel => "nofollow", :class => 'fb', :target => '_blank' %>
       		<div class="separator"></div>
