@@ -7,12 +7,7 @@
 			<ul class="block-ul image-list folded extra_width">
         <% album.attachments.each do |photo| -%>
 			  <li>
-          <%= link_to image_tag(photo.image.url(:site)), photo.image.url, :rel => "<div class=\"addthis_toolbox addthis_default_style\" addthis:url=\"#{single_photo_url(photo.id)}\">
-            <a class=\"addthis_button_facebook\"></a>
-            <a class=\"addthis_button_vk\"></a>
-            <a class=\"addthis_button_compact\"></a>
-            <a class=\"addthis_counter addthis_bubble_style\"></a>
-          </div>", :class => 'photo_link' %>
+          <%= link_to image_tag(photo.image.url(:site), :alt => photo.id), (photo.link.blank? ? photo.image.url : photo.link), :rel => "prettyPhoto[gallery1]" , :class => 'photo_link' %>
 				</li>
         <% end -%>
         
@@ -34,8 +29,16 @@
 
 <% content_for :page_javascript do %>
   $(function() {
-    $('.image-list a.photo_link').lightBox({
-      afterShow: function() {
+    $("a[rel^=\"prettyPhoto[gallery1]\"]").prettyPhoto({
+      default_width: 1500,
+      default_height: 1344,
+      show_title: false,
+      social_tools: '<div class="addthis_toolbox addthis_default_style" id="addthis_image_likes" addthis:url="qq"><a class="addthis_button_facebook"></a><a class="addthis_button_vk"></a><a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a></div>',
+      changepicturecallback: function() {
+        var $activeimage = $("#fullResImage");
+        var $link = $("a[href=\""+$activeimage.attr('src')+"\"]");
+        
+        $('#addthis_image_likes').attr('addthis:url', '<%= root_url %>photo/' + $link.children('img').attr('alt'))
         addthis.toolbox(".addthis_toolbox");
       }
     });
