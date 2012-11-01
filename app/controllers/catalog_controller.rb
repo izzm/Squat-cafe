@@ -115,20 +115,20 @@ class CatalogController < ApplicationController
       #.page(@page).per(@perpage)
       @goods = @search_goods_name.relation.visible
       @goods += @search_goods_description.relation.visible
-      @goods.uniq!
+      @goods.compact!.uniq!
       
       @categories = @search_category_name.relation.visible
       @categories += @search_category_description.relation.visible
-      @categories.uniq!
+      @categories.compact!.uniq!
 
       @pages = @search_static_page_title.relation.visible
       @pages += @search_static_page_content.relation.visible
-      @pages.uniq!
+      @pages.compact!.uniq!
 
       @events = @search_event_name.relation.visible
       @events += @search_event_short_description.relation.visible
       @events += @search_event_description.relation.visible
-      @events.uniq!
+      @events.compact!.uniq!
     else
       @goods = @categories = @pages = @events = []
     end
