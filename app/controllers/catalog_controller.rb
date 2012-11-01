@@ -128,7 +128,7 @@ class CatalogController < ApplicationController
       @events = @search_event_name.relation.visible
       @events += @search_event_short_description.relation.visible
       @events += @search_event_description.relation.visible
-      @events = ()@events || []).compact.uniq
+      @events = (@events || []).compact.uniq
     else
       @goods = @categories = @pages = @events = []
     end
