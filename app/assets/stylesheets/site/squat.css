@@ -375,7 +375,7 @@ float:left}
 
 .today{
 	width: 700px;
-	height: 65px;
+	float:left;
 	margin-bottom: 0px;
 	background: lightGoldenrodYellow;
 }
