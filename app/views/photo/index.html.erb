@@ -7,7 +7,10 @@
 			<ul class="block-ul image-list folded extra_width">
         <% album.attachments.sorted.each do |photo| -%>
 			  <li>
-          <%= link_to image_tag(photo.image.url(:site), :alt => photo.id), (photo.link.blank? ? photo.image.url(:lightbox) : photo.link), :rel => "prettyPhoto[gallery1]" , :class => 'photo_link', :title => "#{link_to("Скачать фотографию", photo.image.url, :target => :blank)}" %>
+          <%= link_to image_tag(photo.image.url(:site), :alt => photo.id), (photo.link.blank? ? photo.image.url(:lightbox) : photo.link), :rel => "prettyPhoto[gallery1]" , :class => 'photo_link', :title => "Squat" %>
+          <div style="display: none;" id="photo_download_link_<%= photo.id %>">
+            <%= link_to("Скачать фотографию", photo.image.url, :target => :blank) %>
+          </div>
 				</li>
         <% end -%>
         
@@ -40,6 +43,8 @@
         
         $('#addthis_image_likes').attr('addthis:url', '<%= root_url %>photo/' + $link.children('img').attr('alt'))
         addthis.toolbox(".addthis_toolbox");
+        
+        $('.pp_description').html($('#photo_download_link_' + $link.children('img').attr('alt')).html());
       }
     });
 
