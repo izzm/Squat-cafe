@@ -25,7 +25,7 @@ class PhotoAlbum < ActiveRecord::Base
   end
 
   def attachment_styles
-    { :site => "100x100#" } 
+    { :site => "100x100#", :lightbox => "800x600>" } 
   end
 
 

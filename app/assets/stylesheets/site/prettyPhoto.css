@@ -13,17 +13,17 @@ div.pp_default .pp_contract{background:url(/assets/images/prettyPhoto/default/sp
 div.pp_default .pp_contract:hover{background:url(/assets/images/prettyPhoto/default/sprite.png) 0 -113px no-repeat;cursor:pointer}
 div.pp_default .pp_close{width:30px;height:30px;background:url(/assets/images/prettyPhoto/default/sprite.png) 2px 1px no-repeat;cursor:pointer}
 div.pp_default .pp_gallery ul li a{background:url(/assets/images/prettyPhoto/default/default_thumb.png) center center #f8f8f8;border:1px solid #aaa}
-div.pp_default .pp_social{margin-top:7px}
+div.pp_default .pp_social{margin-top:9px}
 div.pp_default .pp_gallery a.pp_arrow_previous,div.pp_default .pp_gallery a.pp_arrow_next{position:static;left:auto}
 div.pp_default .pp_nav .pp_play,div.pp_default .pp_nav .pp_pause{background:url(/assets/images/prettyPhoto/default/sprite.png) -51px 1px no-repeat;height:30px;width:30px}
 div.pp_default .pp_nav .pp_pause{background-position:-51px -29px}
 div.pp_default a.pp_arrow_previous,div.pp_default a.pp_arrow_next{background:url(/assets/images/prettyPhoto/default/sprite.png) -31px -3px no-repeat;height:20px;width:20px;margin:4px 0 0}
 div.pp_default a.pp_arrow_next{left:52px;background-position:-82px -3px}
 div.pp_default .pp_content_container .pp_details{margin-top:5px}
-div.pp_default .pp_nav{clear:none;height:30px;width:110px;position:relative}
+div.pp_default .pp_nav{clear:none;height:30px;width:75px;position:relative}
 div.pp_default .pp_nav .currentTextHolder{font-family:Georgia;font-style:italic;color:#999;font-size:11px;left:75px;line-height:25px;position:absolute;top:2px;margin:0;padding:0 0 0 10px}
 div.pp_default .pp_close:hover,div.pp_default .pp_nav .pp_play:hover,div.pp_default .pp_nav .pp_pause:hover,div.pp_default .pp_arrow_next:hover,div.pp_default .pp_arrow_previous:hover{opacity:0.7}
-div.pp_default .pp_description{font-size:11px;font-weight:700;line-height:14px;margin:5px 50px 5px 0}
+div.pp_default .pp_description{font-size:11px;font-weight:700;line-height:14px;margin:8px 50px 5px 0; float: right;}
 div.pp_default .pp_bottom .pp_left{background:url(/assets/images/prettyPhoto/default/sprite.png) -78px -127px no-repeat}
 div.pp_default .pp_bottom .pp_middle{background:url(/assets/images/prettyPhoto/default/sprite_x.png) bottom left repeat-x}
 div.pp_default .pp_bottom .pp_right{background:url(/assets/images/prettyPhoto/default/sprite.png) -112px -127px no-repeat}
@@ -159,6 +159,7 @@ div.light_rounded .pp_arrow_previous.disabled,div.dark_rounded .pp_arrow_previou
 div.light_rounded .pp_arrow_next.disabled,div.dark_rounded .pp_arrow_next.disabled,div.dark_square .pp_arrow_next.disabled,div.light_square .pp_arrow_next.disabled{background-position:-22px -87px;cursor:default}
 div.light_rounded .pp_loaderIcon,div.light_square .pp_loaderIcon{background:url(/assets/images/prettyPhoto/light_rounded/loader.gif) center center no-repeat}
 div.dark_rounded .pp_top .pp_middle,div.dark_rounded .pp_content,div.dark_rounded .pp_bottom .pp_middle{background:url(/assets/images/prettyPhoto/dark_rounded/contentPattern.png) top left repeat}
+p.currentTextHolder{display: none;}
 div.dark_rounded .currentTextHolder,div.dark_square .currentTextHolder{color:#c4c4c4}
 div.dark_rounded #pp_full_res .pp_inline,div.dark_square #pp_full_res .pp_inline{color:#fff}
 .pp_top,.pp_bottom{height:20px;position:relative}

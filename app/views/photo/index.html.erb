@@ -7,7 +7,7 @@
 			<ul class="block-ul image-list folded extra_width">
         <% album.attachments.sorted.each do |photo| -%>
 			  <li>
-          <%= link_to image_tag(photo.image.url(:site), :alt => photo.id), (photo.link.blank? ? photo.image.url : photo.link), :rel => "prettyPhoto[gallery1]" , :class => 'photo_link' %>
+          <%= link_to image_tag(photo.image.url(:site), :alt => photo.id), (photo.link.blank? ? photo.image.url(:lightbox) : photo.link), :rel => "prettyPhoto[gallery1]" , :class => 'photo_link', :title => "#{link_to("Скачать фотографию", photo.image.url, :target => :blank)}" %>
 				</li>
         <% end -%>
         
@@ -19,7 +19,7 @@
       </ul>      
 		</li>
 		<% end -%>
-		<%= paginate @photo_albums %>
+		<%= paginate @photo_albums, :left => 8, :right => 5 %>
     
     <!--
     <li >
