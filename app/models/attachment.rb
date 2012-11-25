@@ -1,11 +1,11 @@
 class Attachment < ActiveRecord::Base
   belongs_to :resource, :polymorphic => true
-  default_scope order('position ASC')
 
   before_save :check_main
 
   scope :main, where(:main => true).limit(1)
   scope :additional, where(:main => [false, nil])
+  scope :sorted,  order('position ASC')
 
   acts_as_list :scope => [:resource_type, :resource_id]
 

@@ -16,6 +16,14 @@ ru:
 
   add: Добавить
   choose: Выбрать
+  
+  views:
+    pagination:
+      first: "&laquo;"
+      last: "&raquo;"
+      previous: "&lsaquo;"
+      next: "&rsaquo;"
+      truncate: "..."
 
   simple_captcha:
     label: ""

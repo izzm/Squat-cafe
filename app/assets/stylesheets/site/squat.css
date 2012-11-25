@@ -354,11 +354,20 @@ float:left}
 	font-size: 12px;	
 }
 
+.submenu span.current
+{
+	background: #F3E93F;
+	color: black;
+	text-decoration: none;
+	padding: 2px 7px 2px 10px;
+	font-size: 12px;
+	margin-right: 3px;
+}
+
 .submenu a:hover
 {
 	background: #F3E93F;
 	color: black;
-	
 }
 .submenu a:visited
 {	color: black;

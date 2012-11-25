@@ -1,6 +1,6 @@
 class PhotoController < ApplicationController
   def index
-    @photo_albums = PhotoAlbum.visible
+    @photo_albums = PhotoAlbum.visible.sorted.page(params[:page]).per(5)
   end
   
   def album

@@ -5,7 +5,7 @@
 		  <%= link_to album.name, '#', :class => 'prices-cat', 'data-hash-id' => "##{album.id}" %>
 		  
 			<ul class="block-ul image-list folded extra_width">
-        <% album.attachments.each do |photo| -%>
+        <% album.attachments.sorted.each do |photo| -%>
 			  <li>
           <%= link_to image_tag(photo.image.url(:site), :alt => photo.id), (photo.link.blank? ? photo.image.url : photo.link), :rel => "prettyPhoto[gallery1]" , :class => 'photo_link' %>
 				</li>
@@ -19,6 +19,8 @@
       </ul>      
 		</li>
 		<% end -%>
+		<%= paginate @photo_albums %>
+    
     <!--
     <li >
 		  <a class="prices-cat prices-cat-selected">123</a>

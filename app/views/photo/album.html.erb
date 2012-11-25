@@ -8,7 +8,7 @@
 		  <%= link_to @photo_album.name, '#', :class => 'prices-cat', 'data-hash-id' => "##{@photo_album.id}" %>
 		  
 			<ul class="block-ul image-list extra_width">
-        <% @photo_album.attachments.each do |photo| -%>
+        <% @photo_album.attachments.sorted.each do |photo| -%>
 			  <li>
           <%= link_to image_tag(photo.image.url(:site)), photo.image.url, :rel => "<div class=\"addthis_toolbox addthis_default_style\" addthis:url=\"#{single_photo_url(photo.id)}\">
             <a class=\"addthis_button_facebook\"></a>

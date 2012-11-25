@@ -1,4 +1,19 @@
 <tr>
+  <td>
+    <% unless attachment.nil? -%>
+      <%= attachment.first? ? 
+            image_tag('arrow_up_notactive.png') :  
+            link_to(image_tag('arrow_up.png'), 
+              move_higher_admin_attachment_path(attachment), 
+              :method => :put) %>
+      <%= attachment.last? ?
+            image_tag('arrow_down_notactive.png') :
+            link_to(image_tag('arrow_down.png'), 
+              move_lower_admin_attachment_path(attachment), 
+              :method => :put) %>
+      <%= attachment.position %>
+    <% end -%>
+  </td>
   <td class="image">
     <%= image_tag(attachment.nil? ? 'image_not_found.jpg' : attachment.image.url(:thumb)) %>
   </td>

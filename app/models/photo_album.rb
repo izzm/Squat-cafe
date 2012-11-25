@@ -1,8 +1,10 @@
 class PhotoAlbum < ActiveRecord::Base
   belongs_to :event
+  
+  acts_as_list
 
   scope :visible, where(:visible => true)
-  default_scope order('created_at desc')
+  scope :sorted,  order('position ASC')
   
   has_many :attachments, 
            :as => :resource,

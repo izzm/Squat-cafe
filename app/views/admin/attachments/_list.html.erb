@@ -1,6 +1,7 @@
 <table border="0" cellspacing="0" cellpadding="0" class="index_table images_table">
   <thead>
     <tr>
+      <th></th>
       <th><%= Attachment.human_attribute_name(:picture) %></th>
       <th><%= Attachment.human_attribute_name(:info) %></th>
       <th></th>
@@ -8,7 +9,7 @@
   </thead>
 
   <tbody>
-    <% object.attachments.each { |attachment| -%>
+    <% object.attachments.sorted.each { |attachment| -%>
       <%= render :partial => 'admin/attachments/image', 
                  :locals => {:attachment => attachment} %>
     <% } -%>

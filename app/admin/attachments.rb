@@ -63,4 +63,18 @@ ActiveAdmin.register Attachment do
       render :json => {:status => :ok}
     end
   end
+  
+  member_action :move_higher, :method => :put do
+    attachment = Attachment.find(params[:id])
+    attachment.move_higher
+    
+    redirect_to request.referrer
+  end
+
+  member_action :move_lower, :method => :put do
+    attachment = Attachment.find(params[:id])
+    attachment.move_lower
+    
+    redirect_to request.referrer
+  end
 end
