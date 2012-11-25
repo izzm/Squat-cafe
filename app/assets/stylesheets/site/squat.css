@@ -1066,3 +1066,7 @@ float:left;
 	}
 
 .submenu li:last-child {margin-right:0px;}
+
+.pagination.submenu {
+text-align: center;
+}
