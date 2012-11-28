@@ -188,7 +188,7 @@ footer{
 }
 
 .head-cont, .head{
-	background-color:#1d1d1d;
+	background-color:#000;
 	min-height: 124px;
 }
 
@@ -462,7 +462,7 @@ footer .right-column img{
 	text-align: center;
 	width: 960px;
 	font-size: 10px;
-	margin-top: 10px;
+	margin-top: 60px;
 }
 footer li{margin-bottom: 2px;}
 .footer-c1{

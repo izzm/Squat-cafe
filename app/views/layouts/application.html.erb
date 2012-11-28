@@ -197,25 +197,34 @@
   </div> <!--! end of #container -->
     <footer>
       <div class="footer-cont">
+        <% parents = StaticPage.site_roots.navigation.all -%>
+        <% expanded = StaticPage.find_by_url_path('club') ||
+                      StaticPage.root -%>
+        <% children = expanded.children.navigation -%>
+        
         <ul class="footer-c1">
-          <% StaticPage.site_roots.navigation.each do |page| -%>
+          <% (parents[0..2] || []).each do |page| -%>
             <li>
               <%= link_to page.title, static_page(page), :class => (page == @page ? 'selected' : '') %>
             </li>
           <% end -%>    
     		</ul>
-        <% expanded = StaticPage.find_by_url_path('club') ||
-                      StaticPage.root -%>
-        <% children = expanded.children.navigation -%>
     		<ul class="footer-c2">
-          <% (children[0..4] || []).each do |page| -%>
+          <% (parents[3..-1] || []).each do |page| -%>
+            <li>
+              <%= link_to page.title, static_page(page), :class => (page == @page ? 'selected' : '') %>
+            </li>
+          <% end -%>    
+		    </ul>
+    		<ul class="footer-c2">
+          <% (children[0..2] || []).each do |page| -%>
             <li>
               <%= link_to page.title, static_page(page), :class => (page == @page ? 'selected' : '') %>
             </li>
           <% end -%>    
   		  </ul>
     		<ul class="footer-c3">
-          <% (children[5..9] || []).each do |page| -%>
+          <% (children[3..-1] || []).each do |page| -%>
             <li>
               <%= link_to page.title, static_page(page), :class => (page == @page ? 'selected' : '') %>
             </li>
