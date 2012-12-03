@@ -11,8 +11,12 @@ class PhotoAlbum < ActiveRecord::Base
            :dependent => :destroy
 
   validates :name, :presence => true, 
-                    :length => { :maximum => 255 }
-
+                   :length => { :maximum => 255 }
+  
+  after_create do |album|
+    album.move_to_top
+  end 
+        
   VISIBLE = "visible"
   INVISIBLE = "invisible"
 
