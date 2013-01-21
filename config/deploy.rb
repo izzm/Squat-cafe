@@ -59,6 +59,11 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/public/files #{release_path}/public/files"
     run "ln -nfs #{shared_path}/public/ckeditor_assets #{release_path}/public/ckeditor_assets"
   end
+  
+  desc "Link ckeditor assets"
+  task :link_ckeditor do
+    run "ln -nfs #{shared_path}/ckeditor #{release_path}/public/assets"
+  end
 
   desc 'Runs rake db:migrate'
   task :apply_migrations, :roles => :db do
@@ -70,3 +75,4 @@ end
 
 after 'deploy:setup', 'deploy:create_shared'
 after 'deploy', 'deploy:apply_migrations'
+after 'deploy:assets:clean_expired', 'deploy:link_ckeditor'
