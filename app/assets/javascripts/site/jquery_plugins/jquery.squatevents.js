@@ -6,10 +6,10 @@
     var $fcon = $closed.find('.full_content');
       
     var base_duration = speed == null ? 1000 : speed;
-    var hc = $image.height() / $fcon.outerHeight();
+    var hc = ($image.height() + 56) / $fcon.outerHeight();
     var duration = hc <= 1 ? base_duration * hc : base_duration;
 
-    var content_height = Math.max($fcon.outerHeight(), $image.outerHeight());
+    var content_height = Math.max($fcon.outerHeight(), $image.outerHeight() + 56);
     
     $closed.addClass('animated');
     

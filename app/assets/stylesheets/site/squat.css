@@ -1070,3 +1070,18 @@ float:left;
 .pagination.submenu {
 text-align: center;
 }
+
+.remindr-button {
+  float: left;
+  clear: left;
+  padding-top: 10px;
+  width: 250px;
+}
+
+.event.closed .remindr-button {
+  /*display: none;*/
+}
+
+.remindr-button .remindr-button-container {
+  width: 240px !important;
+}

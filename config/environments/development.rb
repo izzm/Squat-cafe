@@ -27,4 +27,6 @@ RailsShop::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  config.action_controller.asset_host = "http://127.0.0.1:3001"
 end
