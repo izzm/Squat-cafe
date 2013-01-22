@@ -1,7 +1,7 @@
 <% if false || (event.date > DateTime.now) -%>
   <div class="remindr-button" data-event="<%= event.name %>" 
                               data-date="<%= Russian.strftime(event.date, '%d.%m.%Y %H:%M:%S') %>"
-                              <% if event.attachments.count > 0 -%>
+                              <% if event.attachments.size > 0 -%>
                               data-image="<%= image_path event.attachments.first.image.url(:event) %>"
                               <% end -%>
                               data-description="<%= strip_tags(event.short_description).strip %>"
