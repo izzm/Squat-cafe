@@ -78,7 +78,7 @@ class Good < ActiveRecord::Base
     ( !category.virtual && self.category_id == category.id )
   end
   
-  def attachment_styles
+  def self.attachment_styles
     { :preview => "219x134#", :big => "350x245#", :small => "66x66#", :cart => "101x80", :compare => "184x111#" } 
   end
 

@@ -28,7 +28,7 @@ class PhotoAlbum < ActiveRecord::Base
     visible ? VISIBLE : INVISIBLE
   end
 
-  def attachment_styles
+  def self.attachment_styles
     { :site => "100x100#", :lightbox => "800x600>" } 
   end
 

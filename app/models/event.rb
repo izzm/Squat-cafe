@@ -52,7 +52,7 @@ class Event < ActiveRecord::Base
     Event.on_site.select("DISTINCT date_trunc('month', date) as date").collect(&:date).sort
   end
 
-  def attachment_styles
+  def self.attachment_styles
     { :main_page_images => "200x240#", :main_page_images_small => "150x150#", :event => "250" } 
   end
 

@@ -1,14 +1,14 @@
 <li>
-  <% if good.attachments.count > 0 -%>
+  <% if good.attachments.size > 0 -%>
     <div class="food-image">
-      <% att = good.attachments.main.first || good.attachments.first %>
+      <% att = good.attachments.find(&:main) || good.attachments.first %>
       <%= link_to image_tag(att.image.url(:small)), att.image.url, :title => "#{good.name} ... (#{number_to_currency good.price}) #{good.description}" %>
     </div>
   <% end -%>
   <div class="food">
     <span>
       <%= good.name %>
-      <% if good.parameters.count > 0 -%>
+      <% if good.parameters.size > 0 -%>
         <% good.parameters.each do |p| -%>
           <% unless p['value'].blank? -%>
           (<%= p['name'] %>: <%= p['value'] %> <%= p['unit'] %>)

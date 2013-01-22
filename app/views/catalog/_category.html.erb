@@ -1,6 +1,6 @@
 <li id="cat_<%= cat.id %>_goods">
   <a href="#" class="prices-cat"><%= cat.name %></a>
 	<ul class="block-ul" style="display: none;">
-    <%= render :partial => "good", :collection => cat.goods.site %>
+    <%= render :partial => "good", :collection => cat.goods.site.includes(:attachments) %>
   </ul>
 </li>

@@ -13,7 +13,7 @@ class Attachment < ActiveRecord::Base
     :url => "/system/:hash.:extension",
     :hash_secret => "U41b45fGvpaqShAVA2LE",
     :styles => lambda { |attachment| 
-      rs = attachment.instance.resource
+      rs = Object.const_get(attachment.instance.resource_type)
       styles = { :thumb => "100x100#" }
       if rs.methods.include? :attachment_styles
         styles.merge! rs.attachment_styles
