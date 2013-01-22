@@ -4,11 +4,11 @@
   <a href="#" class="arrow-left"></a>
 	<div id="carousel">
   	<ul class="block-ul slider">
-      <% Event.site_future.limit(12).each do |event| -%>
+      <% Event.site_future.includes(:attachments).limit(12).each do |event| -%>
   	  <li class="slider-item">
         <%= link_to events_bydate_path(:date => Russian.strftime(event.date, '%d.%m.%Y') ), :class => 'slider-item-a' do %>
   			  <div class="slider-item-img ">
-            <% if event.attachments.count > 0 -%>
+            <% if event.attachments.size > 0 -%>
               <%= image_tag event.attachments.first.image.url(:main_page_images_small) %>
             <% else -%>
               <%= image_tag 'site/slider.jpg'%>
