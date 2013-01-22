@@ -11,7 +11,7 @@ class CatalogController < ApplicationController
     @category = Category.find(params[:category_id])
     @roots = Category.site_roots.navigation
     
-    @subcats = Category.site_children(@category).navigation
+    @subcats = Category.site_children(@category).navigation.includes(:goods => :attachments)
   end
   
   def export
