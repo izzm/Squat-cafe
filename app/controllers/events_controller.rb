@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   end
   
   def bymonth
-    @events = Event.on_site.by_year_and_month(params[:year], params[:month])
+    @events = Event.on_site.by_year_and_month(params[:year], params[:month]).includes(:photo_albums, :attachments)
     @current_event = Event.find_by_id(flash[:current_event_id])
   end
 

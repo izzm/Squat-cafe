@@ -34,7 +34,7 @@
 			<% end %>
 			
 			<div class="event closed<%= ' today' if event.date.today? %>">
-        <% if event.attachments.count > 0 -%>
+        <% if event.attachments.size > 0 -%>
           <%= image_tag event.attachments.first.image.url(:event), :class => 'main', :style => 'top: -42px;' %>
           <%= render :partial => 'remindr', :locals => {:event => event} %>
         <% end -%>
@@ -48,7 +48,7 @@
             <%=raw event.description %>
             
             
-            <% unless event.photo_albums.count.zero? -%>
+            <% unless event.photo_albums.empty? -%>
               <br>
               <%= link_to "Просмотреть фотоальбом", photo_album_path(:id => event.photo_albums.first.id), :class => 'photo_album_url' %>
               <br>
