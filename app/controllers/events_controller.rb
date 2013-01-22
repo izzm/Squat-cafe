@@ -11,13 +11,13 @@ class EventsController < ApplicationController
   def bydate
     @current_event = Event.on_site.where(["date_trunc('day', date) = ?", params[:date].to_date]).first
     
-    flash[:current_event_id] = @current_event.id
+    flash[:current_event_id] = @current_event.id unless @current_event.nil?
   end
   
   def bydate_and_id
     @current_event = Event.on_site.where(["date_trunc('day', date) = ?", params[:date].to_date]).where(:id => params[:id].to_i).first
     
-    flash[:current_event_id] = @current_event.id
+    flash[:current_event_id] = @current_event.id unless @current_event.nil?
     render :action => 'bydate'
   end
 end
