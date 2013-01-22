@@ -887,7 +887,7 @@ div.read_more {
   bottom: 0px;
   left: 260px;
   height: 20px;
-  width: 100%;
+  width: 414px;
   padding-top: 4px;
 }
 
@@ -1078,10 +1078,24 @@ text-align: center;
   width: 250px;
 }
 
+.read_more .remindr-button {
+  float: none;
+  position: absolute;
+  right: 0;
+  top: -10px;
+  width: 175px;
+}
+
 .event.closed .remindr-button {
   /*display: none;*/
 }
 
 .remindr-button .remindr-button-container {
   width: 240px !important;
+}
+
+.read_more .remindr-button .remindr-button-container {
+  width: 165px !important;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
