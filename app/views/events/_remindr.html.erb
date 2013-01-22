@@ -1,4 +1,4 @@
-<% if true || (event.date > DateTime.now) -%>
+<% if false || (event.date > DateTime.now) -%>
   <div class="remindr-button" data-event="<%= event.name %>" 
                               data-date="<%= Russian.strftime(event.date, '%d.%m.%Y %H:%M:%S') %>"
                               <% if event.attachments.count > 0 -%>

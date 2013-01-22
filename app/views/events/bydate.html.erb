@@ -12,9 +12,10 @@
 
 <% content_for :page_javascript do -%>
   <% event_month, event_year = params[:date].split('.')[-2..-1] %>
-  window.location.href = "<%= events_bymonth_url(:year => event_year, :month => event_month, :anchor => "#{params[:date]}#{params[:id].nil? ? "" : "-#{@current_event.id}"}") %>";
+  window.location.href = "<%= events_bymonth_url(:year => event_year, :month => event_month, :anchor => "#{params[:date]}#{params[:id].nil? ? "" : "-#{@params[:id]}"}") %>";
 <% end -%>
 
+<% if @current_event -%>
 <div class="event">
   <% if @current_event.attachments.count > 0 -%>
     <%= image_tag @current_event.attachments.first.image.url(:event), :class => 'main', :style => 'top: -42px;' %>
@@ -46,3 +47,4 @@
 
   <div class="clearfix"></div>
 </div>
+<% end -%>
