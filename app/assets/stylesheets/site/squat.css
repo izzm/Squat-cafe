@@ -1099,3 +1099,7 @@ text-align: center;
   padding-top: 0px;
   padding-bottom: 0px;
 }
+
+.flash_tour {
+  margin: 10px 0;
+}

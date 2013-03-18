@@ -18,8 +18,14 @@
 
 </div>
 
+<div class="flash_tour">
+  <div id="tour1"></div>  
+</div>
+
 <% content_for :page_javascript do %>
   $(function() {
     $('.image-list a').lightBox();
+    
+    swfobject.embedSWF("/tour/zal1.swf", "tour1", "695", "500", "9.0.0");
   });
 <% end %>
