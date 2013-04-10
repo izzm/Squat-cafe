@@ -17,7 +17,8 @@ role :web, "62.76.191.136"                          # Your HTTP server, Apache/e
 role :app, "62.76.191.136"                          # This may be the same as your `Web` server
 role :db,  "62.76.191.136", :primary => true # This is where Rails migrations will run
 
-set :deploy_to, "/home/vizoria/www/#{application}"
+set :deploy_to, "/home/vizoria/www/remindr_cms"
+#set :deploy_to, "/home/vizoria/www/#{application}"
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
