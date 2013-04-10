@@ -3,7 +3,7 @@ class Customer < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-  apply_simple_captcha :always_check => true, :on => [:create]
+  #apply_simple_captcha :always_check => true, :on => [:create]
   validates :name, :presence => true
 
   # Setup accessible (or protected) attributes for your model

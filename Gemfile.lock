@@ -6,10 +6,10 @@ GIT
       nested_set
 
 GIT
-  remote: git://github.com/izzm/simple-captcha.git
-  revision: 652e5a4b40707f4d6d843dd4434e43723e6aea4a
+  remote: git://github.com/izzm/formtastic_nested_set.git
+  revision: bc3fadae32da99257e8046187b5dbd4d20025df2
   specs:
-    simple_captcha (0.1.3)
+    formtastic_nested_set (0.1)
 
 GEM
   remote: http://rubygems.org/
@@ -200,7 +200,7 @@ DEPENDENCIES
   capistrano
   ckeditor
   coffee-rails (~> 3.1.1)
-  formtastic (= 1.2.4)
+  formtastic_nested_set!
   jquery-rails
   kaminari
   meta-tags
@@ -211,7 +211,6 @@ DEPENDENCIES
   rails (= 3.1.3)
   russian
   sass-rails (~> 3.1.5)
-  simple_captcha!
   therubyracer
   turn (= 0.8.2)
   uglifier (>= 1.0.3)
