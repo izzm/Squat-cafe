@@ -27,7 +27,8 @@ gem 'kaminari'
 
 gem 'nested_set'
 gem 'acts_as_list'
-gem 'formtastic_nested_set', :git => 'git://github.com/izzm/formtastic_nested_set.git'
+gem 'formtastic', '1.2.4'
+#gem 'formtastic_nested_set', :git => 'git://github.com/izzm/formtastic_nested_set.git'
 #gem 'formtastic_datepicker', :git => 'git://github.com/izzm/formtastic_datepicker.git'
 gem 'acts_as_breadcrumbs', :git => 'git://github.com/izzm/acts_as_breadcrumbs.git' 
 

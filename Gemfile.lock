@@ -6,12 +6,6 @@ GIT
       nested_set
 
 GIT
-  remote: git://github.com/izzm/formtastic_nested_set.git
-  revision: bc3fadae32da99257e8046187b5dbd4d20025df2
-  specs:
-    formtastic_nested_set (0.1)
-
-GIT
   remote: git://github.com/izzm/simple-captcha.git
   revision: 652e5a4b40707f4d6d843dd4434e43723e6aea4a
   specs:
@@ -206,7 +200,7 @@ DEPENDENCIES
   capistrano
   ckeditor
   coffee-rails (~> 3.1.1)
-  formtastic_nested_set!
+  formtastic (= 1.2.4)
   jquery-rails
   kaminari
   meta-tags
